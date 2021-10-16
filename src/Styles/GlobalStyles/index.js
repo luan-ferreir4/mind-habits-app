@@ -26,6 +26,13 @@ const GlobalStyles = createGlobalStyle`
         --font-type-details: 'Saira';
         --font-type-body: 'Raleway';
         --font-type-formal: 'PT Serif';
+
+        --font-size-xsmall: 0.4;
+        --font-size-small: 0.6rem;
+        --font-size-standart: 1rem;
+        --font-size-medium: 1.4rem;
+        --font-size-large: 2rem;
+        --font-size-xlarge: 2.6rem;
     }
 `;
 
