@@ -26,13 +26,17 @@ export const UserHabitsProvider = ({ children }) => {
     axios.post("https://kenzie-habits.herokuapp.com/habits/", newHabit, { headers: { Authorization: `Bearer ${token}` } });
   };
 
+  const updateHabit = (habitId) => {
+    axios.patch(`https://kenzie-habits.herokuapp.com/habits/${habitId}`, { headers: { Authorization: `Bearer ${token}` } } )
+  }
+
   const removeFromHabits = (habitId) => {
     axios.delete(`https://kenzie-habits.herokuapp.com/habits/${habitId}`, { headers: { Authorization: `Bearer ${token}` }});
   };
 
   return (
     <userHabitsContext.Provider
-      value={{ habitsList, createHabit, removeFromHabits }}
+      value={{ habitsList, createHabit, updateHabit, removeFromHabits }}
     >
       {children}
     </userHabitsContext.Provider>
