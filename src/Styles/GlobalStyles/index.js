@@ -20,6 +20,12 @@ const GlobalStyles = createGlobalStyle`
         --alert-error: #FF5555; 
         --alert-succes: #81FF64;
         --bg-with-transp: rgba(0, 0, 0, 0.61);
+
+        --font-type-standart: Courier;
+        --font-type-cursive: 'Sail';
+        --font-type-details: 'Saira';
+        --font-type-body: 'Raleway';
+        --font-type-formal: 'PT Serif';
     }
 `;
 
