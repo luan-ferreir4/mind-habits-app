@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { createContext, useState } from "react";
 
-export const userHabitsContext = createContext();
+export const UserHabitsContext = createContext();
 
 export const UserHabitsProvider = ({ children }) => {
   const [habitsList, setHabitsList] = useState([]);
@@ -35,10 +35,10 @@ export const UserHabitsProvider = ({ children }) => {
   };
 
   return (
-    <userHabitsContext.Provider
+    <UserHabitsContext.Provider
       value={{ habitsList, createHabit, updateHabit, removeFromHabits }}
     >
       {children}
-    </userHabitsContext.Provider>
+    </UserHabitsContext.Provider>
   );
 };
