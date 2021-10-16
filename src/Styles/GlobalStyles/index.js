@@ -33,6 +33,11 @@ const GlobalStyles = createGlobalStyle`
         --font-size-medium: 1.4rem;
         --font-size-large: 2rem;
         --font-size-xlarge: 2.6rem;
+
+        --font-size-xthin: 200;
+        --font-size-thin: 300;
+        --font-size-normal: 400;
+        --font-size-bold: 600;
     }
 `;
 
