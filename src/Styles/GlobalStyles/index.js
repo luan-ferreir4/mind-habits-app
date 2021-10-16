@@ -27,17 +27,17 @@ const GlobalStyles = createGlobalStyle`
         --font-type-body: 'Raleway';
         --font-type-formal: 'PT Serif';
 
-        --font-size-xsmall: 0.4;
-        --font-size-small: 0.6rem;
-        --font-size-standart: 1rem;
-        --font-size-medium: 1.4rem;
-        --font-size-large: 2rem;
-        --font-size-xlarge: 2.6rem;
+        --font-size-xsmall: 0.8rem;
+        --font-size-small: 1rem;
+        --font-size-standart: 1.2rem;
+        --font-size-medium: 1.7rem;
+        --font-size-large: 2.3rem;
+        --font-size-xlarge: 3rem;
 
-        --font-size-xthin: 200;
-        --font-size-thin: 300;
-        --font-size-normal: 400;
-        --font-size-bold: 600;
+        --font-w-xthin: 200;
+        --font-w-thin: 300;
+        --font-w-normal: 400;
+        --font-w-bold: 600;
     }
 `;
 
