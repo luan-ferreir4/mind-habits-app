@@ -1,17 +1,27 @@
-import { RegisterContext } from "./register";
-import { LoginContext } from "./login";
-import { UserHabits } from "./userHabits";
-import { ActivitiesContext } from "./activities";
+import { RegisterProvider } from "./register";
+import { LoginProvider } from "./login";
+
+import { UserProvider } from "./user";
+import { UserHabitsProvider } from "./userHabits";
+
+import { ActivitiesProvider } from "./activities";
+import { GoalsProvider } from "./goals";
 
 const ProvidersGathered = ({ children }) => {
   return (
-    <RegisterContext>
-      <LoginContext>
-        <UserHabits>
-          <ActivitiesContext>{children}</ActivitiesContext>
-        </UserHabits>
-      </LoginContext>
-    </RegisterContext>
+    <RegisterProvider>
+      <LoginProvider>
+        <UserProvider>
+          <UserHabitsProvider>
+            <ActivitiesProvider>
+              <GoalsProvider>
+                {children}
+              </GoalsProvider>
+            </ActivitiesProvider>
+          </UserHabitsProvider>
+        </UserProvider>
+      </LoginProvider>
+    </RegisterProvider>
   );
 };
 
