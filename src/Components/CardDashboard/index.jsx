@@ -1,7 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { userHabitsContext } from "../../Providers/userHabits";
+import { userGroupsContext } from "../../Providers/userHabits";
 
 export const CardDashboard = ({ listType }) => {
+
   const [content, setContent] = useState("");
+
+  // const { habitsList } = useContext(userHabitsContext);
+  // const { grupsList } = useContext(userGroupsContext);
 
   useEffect(() => {
     listType === "habit" ? setContent("Habitos") : setContent("Grupos");
