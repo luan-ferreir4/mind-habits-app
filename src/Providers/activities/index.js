@@ -1,9 +1,11 @@
-import { createContext, useContext } from "react";
+import { createContext, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const ActivitiesContext = createContext();
 
 export const ActivitiesProvider = ({ children }) => {
+  const [activities, setActivities] = useState([]);
   const token = localStorage.getItem("token") || "";
 
   const getGroupActivities = (group, page) => {
@@ -11,17 +13,15 @@ export const ActivitiesProvider = ({ children }) => {
       .get(
         `https://kenzie-habits.herokuapp.com/activities/?group=${group}&page=${page}`
       )
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
+      .then((response) => setActivities(response.data.results))
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message);
+        } else {
+          toast.error("Error", error.message);
+        }
+      });
   };
-
-  const getOneActivity = (id) => {
-    axios
-      .get(`https://kenzie-habits.herokuapp.com/activities/${id}/`)
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
-  };
-
   const createActivity = (newActivity) => {
     axios
       .post("https://kenzie-habits.herokuapp.com/activities/", newActivity, {
@@ -30,19 +30,17 @@ export const ActivitiesProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
-  };
-
-  const updateActivity = (activityId, body) => {
-    axios
-      .patch(
-        `https://kenzie-habits.herokuapp.com/activities/${activityId}`,
-        body,
-        { headers: { Authorization: `Bearer ${token}` } }
-      )
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
+      .then((response) => {
+        console.log(response);
+        toast.success("Atividade criada com sucesso.");
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message);
+        } else {
+          toast.error("Error", error.message);
+        }
+      });
   };
 
   const deleteActivity = (activityId) => {
@@ -50,17 +48,47 @@ export const ActivitiesProvider = ({ children }) => {
       .delete(`https://kenzie-habits.herokuapp.com/activities/${activityId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
+      .then((response) => {
+        toast.success("Atividade excluida com sucesso.");
+        console.log(response);
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message);
+        } else {
+          toast.error("Error", error.message);
+        }
+      });
+  };
+
+  const updateActivity = (activityId, body) => {
+    axios
+      .patch(
+        `https://kenzie-habits.herokuapp.com/activities/${activityId}`,
+        body,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        toast.success("Atividade alterada com sucesso.");
+        console.log(response);
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message);
+        } else {
+          toast.error("Error", error.message);
+        }
+      });
   };
 
   return (
     <ActivitiesContext.Provider
       value={{
+        activities,
         getGroupActivities,
-        getOneActivity,
         createActivity,
-        updateActivity,
         deleteActivity,
       }}
     >
