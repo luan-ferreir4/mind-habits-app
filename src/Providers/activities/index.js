@@ -87,6 +87,7 @@ export const ActivitiesProvider = ({ children }) => {
     <ActivitiesContext.Provider
       value={{
         activities,
+        updateActivity,
         getGroupActivities,
         createActivity,
         deleteActivity,
