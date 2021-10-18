@@ -174,7 +174,7 @@ export const UserGroupsProvider = ({ children }) => {
 
   useEffect(() => {
     getSubscriptions();
-    getGroups("saúde");
+    getGroups();
   }, []);
 
   console.log("User Groups", userGroups);
