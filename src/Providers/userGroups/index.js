@@ -6,6 +6,7 @@ export const UserGroupsContext = createContext([]);
 
 export const UserGroupsProvider = ({ children }) => {
   const [userGroups, setUserGroups] = useState([]);
+  const [communityGroups, setCommunityGroups] = useState([]);
 
   const token = localStorage.getItem("token") || "";
 
@@ -123,6 +124,7 @@ export const UserGroupsProvider = ({ children }) => {
       .then((response) => {
         toast.success(response.statusText);
         getSubscriptions();
+        getGroups();
       })
       .catch((error) => {
         if (error.response) {
@@ -136,12 +138,15 @@ export const UserGroupsProvider = ({ children }) => {
 
   /** Hiran */
   const getGroups = (categoryName) => {
-    console.log(categoryName);
+    const newCategoryName = categoryName === undefined ? "" : categoryName;
     axios
       .get("https://kenzie-habits.herokuapp.com/groups/", {
-        params: { category: `${categoryName}` },
+        params: { category: `${newCategoryName}` },
       })
-      .then((response) => console.log(response.data))
+      .then((response) => {
+        console.log(response.data);
+        setCommunityGroups(response.data);
+      })
       .catch((error) => {
         if (error.response) {
           toast.error(error.response.data.message);
@@ -169,14 +174,17 @@ export const UserGroupsProvider = ({ children }) => {
 
   useEffect(() => {
     getSubscriptions();
+    getGroups("saúde");
   }, []);
 
-  console.log(userGroups);
+  console.log("User Groups", userGroups);
+  console.log("Community Groups", communityGroups);
 
   return (
     <UserGroupsContext.Provider
       value={{
         userGroups,
+        communityGroups,
         unsubscribeFromAGroup,
         getSubscriptions,
         subscribeToAGroup,
