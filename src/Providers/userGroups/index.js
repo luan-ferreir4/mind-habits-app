@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const UserGroupsContext = createContext([]);
 
@@ -20,15 +21,14 @@ export const UserGroupsProvider = ({ children }) => {
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response.data.message);
+          toast.error(error.response.data.message);
         } else {
           // Something happened in setting up the request and triggered an Error
-          console.log("Error", error.message);
+          toast.error("Error", error.message);
         }
       });
   };
 
-  /** unsubscribeFromAGroup(3) */
   const unsubscribeFromAGroup = (groupId) => {
     axios
       .delete(
@@ -40,20 +40,19 @@ export const UserGroupsProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        console.log(response);
+        toast.success("Exclusão do grupo realizada com sucesso");
         getSubscriptions();
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response.data.message);
+          toast.error(error.response.data.message);
         } else {
           // Something happened in setting up the request and triggered an Error
-          console.log("Error", error.message);
+          toast.error("Error", error.message);
         }
       });
   };
 
-  /** subscribeToAGroup(3) */
   const subscribeToAGroup = (groupId) => {
     axios
       .post(
@@ -66,25 +65,24 @@ export const UserGroupsProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        console.log(response.data.message);
+        toast.success(response.data.message);
         getSubscriptions();
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response.data.message);
+          toast.error(`Group ${groupId} ${error.response.data.detail}`);
         } else {
           // Something happened in setting up the request and triggered an Error
-          console.log("Error", error.message);
+          toast.error("Error", error.message);
         }
       });
   };
 
-  /** editGroup(113, "Saúde") */
-  const editGroup = (groupId, category) => {
+  const editGroup = (groupId, payload) => {
     axios
       .patch(
         `https://kenzie-habits.herokuapp.com/groups/${groupId}/`,
-        { category: category },
+        payload,
         {
           headers: {
             "Content-Type": "application/json",
@@ -93,15 +91,15 @@ export const UserGroupsProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        toast.success("Alteração realizada com sucesso");
         getSubscriptions();
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response.data);
+          toast.error(error.response.data);
         } else {
           // Something happened in setting up the request and triggered an Error
-          console.log("Error", error.message);
+          toast.error("Error", error.message);
         }
       });
   };
@@ -121,19 +119,19 @@ export const UserGroupsProvider = ({ children }) => {
         },
       })
       .then((response) => {
+        toast.success(response.statusText);
         getSubscriptions();
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response.data);
+          toast.error(error.response.data);
         } else {
           // Something happened in setting up the request and triggered an Error
-          console.log("Error", error.message);
+          toast.error("Error", error.message);
         }
       });
   };
 
-  /** getGroups("saúde") */
   const getGroups = (categoryName) => {
     console.log(categoryName);
     axios
@@ -143,25 +141,24 @@ export const UserGroupsProvider = ({ children }) => {
       .then((response) => console.log(response.data))
       .catch((error) => {
         if (error.response) {
-          console.log(error.response.data.message);
+          toast.error(error.response.data.message);
         } else {
           // Something happened in setting up the request and triggered an Error
-          console.log("Error", error.message);
+          toast.error("Error", error.message);
         }
       });
   };
 
-  /** getASpecificGroup(123) */
   const getASpecificGroup = (groupId) => {
     axios
       .get(`https://kenzie-habits.herokuapp.com/groups/${groupId}/`)
       .then((response) => console.log(response.data))
       .catch((error) => {
         if (error.response) {
-          console.log(error.response.data.message);
+          toast.error(error.response.data.message);
         } else {
           // Something happened in setting up the request and triggered an Error
-          console.log("Error", error.message);
+          toast.error("Error", error.message);
         }
       });
   };
@@ -169,6 +166,8 @@ export const UserGroupsProvider = ({ children }) => {
   useEffect(() => {
     getSubscriptions();
   }, []);
+
+  console.log(userGroups);
 
   return (
     <UserGroupsContext.Provider
