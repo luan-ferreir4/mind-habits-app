@@ -5,10 +5,7 @@ import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
-      <UserGroupsProvider>
-        <RoutesPaths />
-      </UserGroupsProvider>
+      <RoutesPaths />
     </>
   );
 };
