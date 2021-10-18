@@ -6,9 +6,7 @@ export const RegisterContext = createContext([]);
 
 export const RegisterProvider = ({ children }) => {
   const [errorRegs, setErrorRegs] = useState("");
-  const notifySuccessRegister = () => {
-    toast.success("Registro realizado!");
-  };
+  const notifySuccessRegister = () => toast.success("Registro realizado!");
   const notifyErrorRegister = () => toast.error("Erro no registro!");
 
   const handleRegister = (data, history) => {
@@ -22,7 +20,7 @@ export const RegisterProvider = ({ children }) => {
       .then((response) => {
         console.log(response.data);
         notifySuccessRegister();
-        return history.push("/login");
+        history.push("/login");
       })
       .catch((e) => {
         setErrorRegs(e.response.data.message);
