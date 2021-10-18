@@ -1,5 +1,9 @@
 const UserGroups = () => {
-  return <>User Groups</>;
+  return ( 
+    <>
+        User Groups
+    </>
+  )
 };
 
 export default UserGroups;
