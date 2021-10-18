@@ -1,12 +1,10 @@
 import { createContext, useContext } from "react";
-import { userContext } from "../user";
-
 import axios from "axios";
 
 export const ActivitiesContext = createContext();
 
 export const ActivitiesProvider = ({ children }) => {
-  /* const { token } = useContext(userContext); */
+  const token = localStorage.getItem("token") || "";
 
   const getGroupActivities = (group, page) => {
     axios
@@ -27,16 +25,19 @@ export const ActivitiesProvider = ({ children }) => {
   const createActivity = (newActivity) => {
     axios
       .post("https://kenzie-habits.herokuapp.com/activities/", newActivity, {
-        headers: { Autorization: `Bearer ${token}` },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
   };
 
-  const updateActivity = (body) => {
+  const updateActivity = (activityId, body) => {
     axios
       .patch(
-        `https://kenzie-habits.herokuapp.com/activities/${habitId}`,
+        `https://kenzie-habits.herokuapp.com/activities/${activityId}`,
         body,
         { headers: { Authorization: `Bearer ${token}` } }
       )
