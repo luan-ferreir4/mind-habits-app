@@ -53,6 +53,7 @@ export const UserGroupsProvider = ({ children }) => {
       });
   };
 
+  /** Hiran */
   const subscribeToAGroup = (groupId) => {
     axios
       .post(
@@ -110,6 +111,7 @@ export const UserGroupsProvider = ({ children }) => {
         "category": "Saúde"
       }) 
   */
+  /** Hiran */
   const createGroup = (data) => {
     axios
       .post("https://kenzie-habits.herokuapp.com/groups/", data, {
@@ -132,6 +134,7 @@ export const UserGroupsProvider = ({ children }) => {
       });
   };
 
+  /** Hiran */
   const getGroups = (categoryName) => {
     console.log(categoryName);
     axios
@@ -149,6 +152,7 @@ export const UserGroupsProvider = ({ children }) => {
       });
   };
 
+  /** Hiran */
   const getASpecificGroup = (groupId) => {
     axios
       .get(`https://kenzie-habits.herokuapp.com/groups/${groupId}/`)
