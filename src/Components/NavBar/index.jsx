@@ -7,17 +7,18 @@ import { AiOutlineMenu } from "react-icons/ai";
 
 const useStyles = makeStyles(() => ({
   appbar: {
-    backgroundColor: "#60b948",
+    backgroundColor: "var(--green-pallet-one)",
     color: "#f5f5f5",
     minHeight: "65px",
     boxShadow: "none",
   },
   item: {
     fontSize: "16px",
-    fontFamily: "PT Serif, serif",
+    fontFamily: "var(--font-type-formal)",
     lineHeight: "1",
     height: "50px",
     "@media (min-width: 1024px)": { fontSize: "22px" },
+    fontWeight: "var(--font-w-bold)",
   },
   icon: {
     position: "absolute",
