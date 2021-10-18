@@ -1,3 +1,4 @@
+import { UserGroupsProvider } from "./Providers/userGroups";
 import RoutesPaths from "./Routes";
 
 const App = () => {
