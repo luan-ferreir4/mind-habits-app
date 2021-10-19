@@ -26,7 +26,7 @@ const App = () => {
           },
         }}
       />
-      <RoutesPaths />;
+      <RoutesPaths />
     </>
   );
 };

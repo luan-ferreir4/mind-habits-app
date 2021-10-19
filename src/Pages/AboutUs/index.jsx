@@ -1,5 +1,6 @@
 import { NavBar } from "../../Components/NavBar";
 import { CardAboutUs } from "../../Components/CardAboutUS";
+import "../../Styles/PagesStyle/AboutUsPage/style.css";
 
 const AboutUs = () => {
   const groupArray = [
@@ -27,16 +28,24 @@ const AboutUs = () => {
       githubpage: "https://github.com/r-rocha",
       image: "images/robertorocha.jpg",
     },
+    {
+      name: "Roberto Rocha",
+      linkedin: "https://www.linkedin.com/in/rsrocha",
+      githubpage: "https://github.com/r-rocha",
+      image: "images/robertorocha.jpg",
+    },
   ];
 
   return (
-    <>
+    <div className="container">
       <NavBar typeNav={"unlogged"} />
-      About Us
-      {groupArray.map((item) => (
-        <CardAboutUs item={item} />
-      ))}
-    </>
+      <h2>Equipe MindHabits</h2>
+      <div className="cards">
+        {groupArray.map((item) => (
+          <CardAboutUs item={item} />
+        ))}
+      </div>
+    </div>
   );
 };
 
