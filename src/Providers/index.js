@@ -17,9 +17,7 @@ const ProvidersGathered = ({ children }) => {
             <UserGroupsProvider>
               <UserHabitsProvider>
                 <ActivitiesProvider>
-                  <GoalsProvider>
-                    {children}
-                  </GoalsProvider>
+                  <GoalsProvider>{children}</GoalsProvider>
                 </ActivitiesProvider>
               </UserHabitsProvider>
             </UserGroupsProvider>
