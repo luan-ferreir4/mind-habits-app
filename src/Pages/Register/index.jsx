@@ -12,13 +12,10 @@ import { useHistory } from "react-router";
 import { useContext } from "react";
 import { RegisterContext } from "../../Providers/register";
 import { InputForm } from "../../Components/InputForm";
-// import { Toaster } from "react-hot-toast";
 import { NavBar } from "../../Components/NavBar";
 import { ButtonForm } from "../../Components/ButtonForm";
 
 const RegisterPage = () => {
-  // const [error, setError] = useState("");
-
   const formSchema = yup.object().shape({
     username: yup
       .string()
