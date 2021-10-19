@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import appleImage from "../../../assets/healthy1.png";
 
 export const RegisterContainer = styled.div`
   display: flex;
@@ -14,7 +13,9 @@ export const RegisterContainer = styled.div`
 export const PictureBackground = styled.div`
   @media (min-width: 1024px) {
     flex: 1;
-    background: url(${appleImage}) no-repeat center, #e9f5db;
+
+    background: url("images/healthy1.png") no-repeat center,
+      var(--green-pallet-four);
     background-size: 638px;
   }
 `;
@@ -55,7 +56,7 @@ export const FormAnimationContainer = styled.div`
 
     text-align: center;
 
-    font-family: "PT Serif", serif;
+    font-family: var(--font-type-formal);
 
     @media (min-width: 1024px) {
       width: 700px;
@@ -66,8 +67,8 @@ export const FormAnimationContainer = styled.div`
     margin-bottom: 16px;
 
     font-size: 30px;
-    font-family: "Saira", sans-serif;
-    font-weight: lighter;
+    font-family: var(--font-type-details);
+    font-weight: var(--font-w-thin);
 
     @media (min-width: 1024px) {
       font-size: 46px;
@@ -81,16 +82,17 @@ export const FormAnimationContainer = styled.div`
     margin-top: 8px;
 
     font-size: 15px;
-    font-family: "Saira", sans-serif;
+    font-family: var(--font-type-details);
+
     @media (min-width: 1024px) {
       font-size: 20px;
     }
   }
 
   .link {
-    color: #60b948;
+    color: var(--green-pallet-one);
 
-    font-weight: bolder;
+    font-weight: var(--font-w-bold);
 
     cursor: pointer;
   }

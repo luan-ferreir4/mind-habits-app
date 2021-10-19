@@ -49,7 +49,7 @@ export const InputContainer = styled.div`
     border: 0;
 
     font-size: 16px;
-    font-family: "PT Serif', serif";
+    font-family: var(--font-type-formal);
 
     @media (min-width: 1024px) {
       font-size: 25px;
