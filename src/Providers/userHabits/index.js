@@ -38,7 +38,7 @@ export const UserHabitsProvider = ({ children }) => {
     });
   };
 
-  const removeFromHabits = (habitId) => {
+  const deleteHabit = (habitId) => {
     axios.delete(`https://kenzie-habits.herokuapp.com/habits/${habitId}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -46,7 +46,7 @@ export const UserHabitsProvider = ({ children }) => {
 
   return (
     <UserHabitsContext.Provider
-      value={{ habitsList, createHabit, updateHabit, removeFromHabits }}
+      value={{ habitsList, createHabit, updateHabit, deleteHabit }}
     >
       {children}
     </UserHabitsContext.Provider>
