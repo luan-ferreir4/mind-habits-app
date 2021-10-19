@@ -1,16 +1,12 @@
-import { useContext } from "react";
-import { userContext } from "../user";
-
 import axios from "axios";
-import { useEffect } from "react";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const UserHabitsContext = createContext();
 
 export const UserHabitsProvider = ({ children }) => {
   const [habitsList, setHabitsList] = useState([]);
 
-  const { token } = useContext(userContext);
+  const token = localStorage.getItem("token") || "";
 
   useEffect(() => {
     axios
