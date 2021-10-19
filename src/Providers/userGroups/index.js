@@ -6,6 +6,7 @@ export const UserGroupsContext = createContext([]);
 
 export const UserGroupsProvider = ({ children }) => {
   const [userGroups, setUserGroups] = useState([]);
+  const [errorUserGroups, setErrorUserGroups] = useState([]);
 
   const token = localStorage.getItem("token") || "";
 
@@ -21,10 +22,7 @@ export const UserGroupsProvider = ({ children }) => {
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(error.response.data.message);
-        } else {
-          // Something happened in setting up the request and triggered an Error
-          toast.error("Error", error.message);
+          setErrorUserGroups(error.response);
         }
       });
   };
@@ -45,10 +43,7 @@ export const UserGroupsProvider = ({ children }) => {
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(error.response.data.message);
-        } else {
-          // Something happened in setting up the request and triggered an Error
-          toast.error("Error", error.message);
+          setErrorUserGroups(error.response);
         }
       });
   };
@@ -70,10 +65,8 @@ export const UserGroupsProvider = ({ children }) => {
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(`Group ${groupId} ${error.response.data.detail}`);
-        } else {
-          // Something happened in setting up the request and triggered an Error
-          toast.error("Error", error.message);
+          // setErrorUserGroups(`Group ${groupId} ${error.response.data.detail}`);
+          setErrorUserGroups(error.response);
         }
       });
   };
@@ -96,10 +89,7 @@ export const UserGroupsProvider = ({ children }) => {
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(error.response.data);
-        } else {
-          // Something happened in setting up the request and triggered an Error
-          toast.error("Error", error.message);
+          setErrorUserGroups(error.response);
         }
       });
   };
@@ -112,6 +102,7 @@ export const UserGroupsProvider = ({ children }) => {
     <UserGroupsContext.Provider
       value={{
         userGroups,
+        errorUserGroups,
         unsubscribeFromAGroup,
         getSubscriptions,
         subscribeToAGroup,
