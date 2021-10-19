@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const obtainToken = JSON.parse(localStorage.getItem("token"));
+    const obtainToken = localStorage.getItem("token");
 
     obtainToken && getUserId(obtainToken);
   }, []);
