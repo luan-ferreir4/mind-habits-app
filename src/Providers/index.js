@@ -3,7 +3,7 @@ import { LoginProvider } from "./login";
 
 import { UserProvider } from "./user";
 import { GroupsCommunityProvider } from "./groupsCommunity";
-import { UserGroupsProvider } from "./groupsCommunity";
+import { UserGroupsProvider } from "./userGroups";
 import { UserHabitsProvider } from "./userHabits";
 import { ActivitiesProvider } from "./activities";
 import { GoalsProvider } from "./goals";
