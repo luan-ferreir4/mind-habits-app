@@ -36,11 +36,11 @@ const ButtonAbout = ({ item }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <p>Número de inscritos:{item.users_on_group.length}</p>
+          <p>Número de inscritos:{item.item.users_on_group.length}</p>
           <br />
-          <p>Atividades cadastradas:{item.activities.length}</p>
+          <p>Atividades cadastradas:{item.item.activities.length}</p>
           <br />
-          <p>Metas cadastradas:{item.goals.length}</p>
+          <p>Metas cadastradas:{item.item.goals.length}</p>
           <br />
         </Box>
       </Modal>
