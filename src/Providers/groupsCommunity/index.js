@@ -44,8 +44,8 @@ export const GroupsCommunityProvider = ({ children }) => {
         params: { category: `${newCategoryName}` },
       })
       .then((response) => {
-        console.log(response.data);
-        setCommunityGroups(response.data);
+        console.log(response.data.results);
+        setCommunityGroups(response.data.results);
       })
       .catch((error) => {
         if (error.response) {
