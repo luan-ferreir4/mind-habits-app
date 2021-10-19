@@ -12,18 +12,12 @@ import { Redirect, useHistory } from "react-router";
 import { useContext } from "react";
 import { LoginContext } from "../../Providers/login";
 import { InputForm } from "../../Components/InputForm";
-// import { Toaster } from "react-hot-toast";
 import { NavBar } from "../../Components/NavBar";
 import { ButtonForm } from "../../Components/ButtonForm";
 
 const LoginPage = () => {
-  // const [error, setError] = useState("");
-
   const formSchema = yup.object().shape({
-    username: yup
-      .string()
-      .max(50, "Campo obrigatório")
-      .required("Campo obrigatório"),
+    username: yup.string().required("Campo obrigatório"),
     password: yup.string().required("Campo obrigatório"),
   });
 
