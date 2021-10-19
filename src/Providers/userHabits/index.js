@@ -10,24 +10,38 @@ export const UserHabitsProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("https://kenzie-habits.herokuapp.com/habits/personal/", { headers: { Authorization: `Bearer ${token}`}})
+      .get("https://kenzie-habits.herokuapp.com/habits/personal/", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => {
-        console.log(res);
-        setHabitsList(res);
+        // console.log(res.data);
+        setHabitsList(res.data);
       })
       .catch((err) => console.log(err));
-  },[habitsList, token]);
+  }, [token]);
 
   const createHabit = (newHabit) => {
-    axios.post("https://kenzie-habits.herokuapp.com/habits/", newHabit, { headers: { Authorization: `Bearer ${token}` } });
+    axios.post("https://kenzie-habits.herokuapp.com/habits/", newHabit, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
   };
 
-  const updateHabit = (habitId) => {
-    axios.patch(`https://kenzie-habits.herokuapp.com/habits/${habitId}`, { headers: { Authorization: `Bearer ${token}` } } )
-  }
+  const updateHabit = (habitId, data) => {
+    axios.patch(`https://kenzie-habits.herokuapp.com/habits/${habitId}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  };
 
   const removeFromHabits = (habitId) => {
-    axios.delete(`https://kenzie-habits.herokuapp.com/habits/${habitId}`, { headers: { Authorization: `Bearer ${token}` }});
+    axios.delete(`https://kenzie-habits.herokuapp.com/habits/${habitId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   };
 
   return (
