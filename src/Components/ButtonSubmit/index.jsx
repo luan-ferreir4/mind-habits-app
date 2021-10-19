@@ -1,14 +1,14 @@
 import { useContext } from "react";
 
 import { UserHabitsContext } from "../../Providers/userHabits";
-import { GroupsContext } from "../../Providers/groupsCommunity";
+import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import { ActivitiesContext } from "../../Providers/activities"
 import { GoalsContext } from "../../Providers/goals";
 
 export const ButtonSubmit = ({ listType, item }) => {
 
     const { createHabit } = useContext(UserHabitsContext);
-    const { createGroup } = useContext(GroupsContext);
+    const { createGroup } = useContext(GroupsCommunityContext);
     const { createActivity } = useContext(ActivitiesContext);
     const { createGoal } = useContext(GoalsContext);
 
