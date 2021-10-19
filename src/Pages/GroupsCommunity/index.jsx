@@ -1,9 +1,5 @@
 const GroupsCommunity = () => {
-  return (
-    <>
-        Groups Community
-    </>
-  )
+  return <>Groups Community</>;
 };
 
 export default GroupsCommunity;
