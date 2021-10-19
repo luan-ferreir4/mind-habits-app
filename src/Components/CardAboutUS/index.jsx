@@ -1,19 +1,21 @@
-import { BsLinkedin, BsGithub } from "react-icons/bs";
-import { useHistory } from "react-router";
-
+import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 export const CardAboutUs = (item) => {
-  const history = useHistory();
-  const sendTo = (path) => {
-    history.push(path);
-  };
+  // const history = useHistory();
+  // const sendTo = (path) => {
+  //   <Redirect to=path />;
+  // };
   return (
     <div>
-      {item.img}
+      <img src={item.item.image} alt={item.item.name} />
       <br />
-      <h3>{item.name}</h3>
+      <h3>{item.item.name}</h3>
       <br />
-      <BsLinkedin onClick={() => sendTo(item.linkedin)} />
-      <BsGithub onclick={() => sendTo(item.github)} />
+      <a href={item.item.githubpage}>
+        <FaGithubSquare />
+      </a>
+      <a href={item.item.linkedin}>
+        <FaLinkedin />
+      </a>
     </div>
   );
 };
