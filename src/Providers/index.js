@@ -1,5 +1,5 @@
-import { RegisterProvider } from "./register";
 import { LoginProvider } from "./login";
+import { RegisterProvider } from "./register";
 
 import { UserProvider } from "./user";
 import { GroupsCommunityProvider } from "./groupsCommunity";
@@ -10,10 +10,10 @@ import { GoalsProvider } from "./goals";
 
 const ProvidersGathered = ({ children }) => {
   return (
-    <RegisterProvider>
-      <LoginProvider>
-        <GroupsCommunityProvider>
-          <UserProvider>
+    <LoginProvider>
+      <RegisterProvider>
+        <UserProvider>
+          <GroupsCommunityProvider>
             <UserGroupsProvider>
               <UserHabitsProvider>
                 <ActivitiesProvider>
@@ -23,10 +23,10 @@ const ProvidersGathered = ({ children }) => {
                 </ActivitiesProvider>
               </UserHabitsProvider>
             </UserGroupsProvider>
-          </UserProvider>
-        </GroupsCommunityProvider>
-      </LoginProvider>
-    </RegisterProvider>
+          </GroupsCommunityProvider>
+        </UserProvider>
+      </RegisterProvider>
+    </LoginProvider>
   );
 };
 
