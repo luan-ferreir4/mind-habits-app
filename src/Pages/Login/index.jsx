@@ -8,7 +8,7 @@ import { FiUser, FiLock } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import { useContext } from "react";
 import { LoginContext } from "../../Providers/login";
 import { InputForm } from "../../Components/InputForm";
@@ -43,6 +43,11 @@ const LoginPage = () => {
     // console.log(data);
     handleLogin(data, history);
   };
+
+  //usuário vai direto pra página dele quando já está logado:
+  if (auth) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <>
