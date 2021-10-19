@@ -1,9 +1,5 @@
 const GroupDetails = () => {
-  return (
-    <>
-        Group Details
-    </>
-  )
+  return <>Group Details</>;
 };
 
 export default GroupDetails;

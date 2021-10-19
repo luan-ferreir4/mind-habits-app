@@ -1,22 +1,25 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import LinearProgress from "@mui/material/LinearProgress";
-import Switch from "@mui/material/Switch";
-
 /* import ButtonRemove from "../Button-Remove";
 import ButtonUpdate from "../Button-Update";
-import ButtonSubscribe from "../ButtonSubscribe";
 import ButtonAbout from "../ButtonAbout"; */
 
-import { useContext } from "react";
-import { UserHabitsContext } from "../../Providers/userHabits";
+import ButtonSubscribe from "../ButtonSubscribe";
+import ButtonAbout from "../ButtonAbout";
 
-const CardRender = ({ listType }) => {
-  const { deleteHabit } = useContext(UserHabitsContext);
+import { Progress } from "react-sweet-progress";
+import "react-sweet-progress/lib/style.css";
 
-  const handleHabitRemove = (id) => {
-    deleteHabit(id);
+import { useHistory } from "react-router";
+import { Card, CardGroup } from "../../Styles/ComponentsStyle/CardRender";
+
+const CardRender = ({ listType, item }) => {
+  /*   const { deleteHabit } = useContext(UserHabitsContext); */
+
+  const history = useHistory("");
+
+  const handlePushToGroup = () => {
+    localStorage.removeItem("groupToRender" || "");
+    localStorage.setItem("groupToRender", JSON.stringify(item.id));
+    history.push("/groupdetails/");
   };
 
   return (
@@ -27,15 +30,19 @@ const CardRender = ({ listType }) => {
           <div>Categoria: {item.category}</div>
           <div>Dificuldade: {item.difficulty}</div>
           <div>Frequência: {item.frequency}</div>
-          <div>Progresso: {item.how_much_achieved}</div>
-          {/* <button onClick={() => handleHabitRemove(item.id)}></button> */}
+          <div className="progressbar">
+            Progresso:{" "}
+            <Progress percent={item.how_much_achieved} status="success" />
+          </div>
+          <div>Alcançado</div>
+          <button>remove</button>
         </Card>
       )}
 
       {/* {
   "id": 1724,
   "title": "Calistenia a tarde (15 minutos)",
-  "category": "Sáude",
+  "category": "Sáude",ya
   "difficulty": "Muito díficil",
   "frequency": "Diária",
   "achieved": false,
@@ -43,12 +50,18 @@ const CardRender = ({ listType }) => {
   "user": 657
 } */}
 
-      {listType === "groups" && (
-        <Card>
-          <div>Título: {item.name}</div>
-          <div>Descrição: {item.description}</div>
-          <div>{item.category}</div>
-        </Card>
+      {listType === "group" && (
+        <CardGroup className="group">
+          <div>
+            <div>Título: {item.name}</div>
+            <div>Descrição: {item.description}</div>
+            <div>{item.category}</div>
+          </div>
+          <div className="buttonContainer">
+            <ButtonSubscribe groupId={item.id}>Inscrever-se</ButtonSubscribe>
+            <ButtonAbout item={item}>Sobre</ButtonAbout>
+          </div>
+        </CardGroup>
       )}
 
       {/* {
@@ -62,7 +75,18 @@ const CardRender = ({ listType }) => {
         "email": "monica@mail.com"
     } */}
 
-      {listType === "mygroups" && <Card></Card>}
+      {listType === "mygroup" && (
+        <CardGroup>
+          <div>
+            <div>Título: {item.name}</div>
+            <div>Descrição: {item.description}</div>
+            <div>{item.category}</div>
+          </div>
+          <div className="buttonContainer">
+            <button onClick={handlePushToGroup}>Ver mais</button>
+          </div>
+        </CardGroup>
+      )}
 
       {/* {
         "id": 1724,
@@ -74,10 +98,12 @@ const CardRender = ({ listType }) => {
         "how_much_achieved": 30,
         "user": 657
         } */}
-      {listType === "activities" && (
+      {listType === "activitie" && (
         <Card>
           <h2>{item.title}</h2>
-          <label>Data: {item.realization_time}</label>
+          <div>Data: {item.realization_time}</div>
+          <button>Atualizar</button>
+          <button>Excluir</button>
         </Card>
       )}
 
@@ -88,16 +114,17 @@ const CardRender = ({ listType }) => {
         "group": 794
         } */}
 
-      {listType === "goals" && (
+      {listType === "goal" && (
         <Card>
-          <CardContent>
-            <h2>{item.title}</h2>
-            <div>Dificuldade: {item.difficulty}</div>
-            <div>Progresso: {item.how_much_achieved}</div>
-            <div>
-              Alcançado: <Switch />
-            </div>
-          </CardContent>
+          <h2>{item.title}</h2>
+          <div>Dificuldade: {item.difficulty}</div>
+          <div className="progressbar">
+            Progresso:{" "}
+            <Progress percent={item.how_much_achieved} status="success" />
+          </div>
+
+          <div>Alcançado:</div>
+          <button>Excluir</button>
         </Card>
       )}
 
