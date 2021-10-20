@@ -3,6 +3,7 @@ import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
 import { CardAbout } from "../CardAbout";
 import { ButtonAboutContainer } from "../../Styles/ComponentsStyle/ButtonAbout";
+
 export const ButtonAbout = ({ item }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
