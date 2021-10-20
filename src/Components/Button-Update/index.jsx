@@ -9,13 +9,13 @@ export const ButtonUpdate = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <div>
+    <>
       <ButtonUpdateContainer
         variant="outlined"
         color="success"
         onClick={handleOpen}
       >
-        Sobre
+        Atualizar
       </ButtonUpdateContainer>
       <Modal
         open={open}
@@ -25,6 +25,6 @@ export const ButtonUpdate = () => {
       >
         <CardUpdate />
       </Modal>
-    </div>
+    </>
   );
 };
