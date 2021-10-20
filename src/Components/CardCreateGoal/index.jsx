@@ -35,31 +35,40 @@ export const CardCreateGoal = () => {
     <div>
       <CardCreateContainer>
         <form onSubmit={handleSubmit(sendToCreateGoal)}>
-          <Input
-            type="text"
-            label="Meta"
-            placeholder="Meta"
-            name="title"
-            register={register}
-            error={errors.title?.message}
-          />
-          <InputSelector
-            selectType="difficulty"
-            label="Dificuldade"
-            name="difficulty"
-            register={register}
-            error={errors.difficulty?.message}
-          />
-          <Input
-            type="number"
-            label="Progresso"
-            placeholder="Progresso"
-            name="how_much_achieved"
-            register={register}
-            error={errors.how_much_achieved?.message}
-          />
+          <div className="containerTitleAndInput">
+            Meta:
+            <Input
+              type="text"
+              label="Meta"
+              placeholder="Meta"
+              name="title"
+              register={register}
+              error={errors.title?.message}
+            />
+          </div>
+          <div className="containerTitleAndInput">
+            Dificuldade:
+            <InputSelector
+              selectType="dificulty"
+              label="Dificuldade"
+              name="difficulty"
+              register={register}
+              error={errors.difficulty?.message}
+            />
+          </div>
+          <div className="containerTitleAndInput">
+            Progresso:
+            <Input
+              type="number"
+              label="Progresso"
+              placeholder="Progresso"
+              name="how_much_achieved"
+              register={register}
+              error={errors.how_much_achieved?.message}
+            />
+          </div>
 
-          <ButtonSubmitContainer type="submit" />
+          <ButtonSubmitContainer type="submit">Criar</ButtonSubmitContainer>
         </form>
       </CardCreateContainer>
     </div>
