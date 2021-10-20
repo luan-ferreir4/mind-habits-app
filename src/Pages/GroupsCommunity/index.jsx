@@ -1,5 +1,11 @@
+import { ButtonCreate } from "../../Components/Button-Create";
+
 const GroupsCommunity = () => {
-  return <>Groups Community</>;
+  return (
+    <>
+      <ButtonCreate listType={"habit"} />
+    </>
+  );
 };
 
 export default GroupsCommunity;
