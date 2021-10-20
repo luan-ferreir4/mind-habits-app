@@ -1,8 +1,11 @@
 import * as React from "react";
 import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
-import { CardCreate } from "../CardCreate";
 import { ButtonCreateContainer } from "../../Styles/ComponentsStyle/ButtonCreate";
+import { CardCreateHabit } from "../../Components/CardCreateHabit";
+import { CardCreateGroup } from "../../Components/CardCreateGroup";
+import { CardCreateGoal } from "../../Components/CardCreateGoal";
+import { CardCreateActivity } from "../../Components/CardCreateActivity";
 
 export const ButtonCreate = ({ listType }) => {
   const [open, setOpen] = useState(false);
@@ -20,6 +23,14 @@ export const ButtonCreate = ({ listType }) => {
           >
             Criar um hábito
           </ButtonCreateContainer>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <CardCreateHabit></CardCreateHabit>
+          </Modal>
         </>
       )}
 
@@ -32,6 +43,14 @@ export const ButtonCreate = ({ listType }) => {
           >
             Criar novo grupo
           </ButtonCreateContainer>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <CardCreateGroup></CardCreateGroup>
+          </Modal>
         </>
       )}
 
@@ -44,6 +63,14 @@ export const ButtonCreate = ({ listType }) => {
           >
             Criar meta
           </ButtonCreateContainer>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <CardCreateGoal></CardCreateGoal>
+          </Modal>
         </>
       )}
 
@@ -56,16 +83,16 @@ export const ButtonCreate = ({ listType }) => {
           >
             Criar atividade
           </ButtonCreateContainer>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <CardCreateActivity></CardCreateActivity>
+          </Modal>
         </>
       )}
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <CardCreate listType={listType}></CardCreate>
-      </Modal>
     </>
   );
 };
