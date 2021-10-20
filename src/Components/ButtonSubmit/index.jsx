@@ -1,3 +1,5 @@
+import { Button } from "../../Styles/ComponentsStyle/ButttonSubmit";
+
 import { useContext } from "react";
 
 import { UserHabitsContext } from "../../Providers/userHabits";
@@ -28,6 +30,6 @@ export const ButtonSubmit = ({ listType, item }) => {
     }
 
     return (
-        <button type="submit" onClick={chooseAction}>Criar</button>
+        <Button type="submit" onClick={chooseAction}>Criar</Button>
     )
 }
