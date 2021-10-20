@@ -5,7 +5,6 @@ import {
   DashboardContent,
   DashboardMain,
   DashboardPage,
-  DashboardHeader,
 } from "../../Styles/PagesStyle/DashboardPage";
 
 const Dashboard = () => {
