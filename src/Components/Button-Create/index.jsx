@@ -29,7 +29,7 @@ export const ButtonCreate = ({ listType }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <CardCreateHabit></CardCreateHabit>
+            <CardCreateHabit handleClose={handleClose}></CardCreateHabit>
           </Modal>
         </>
       )}
@@ -49,7 +49,7 @@ export const ButtonCreate = ({ listType }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <CardCreateGroup></CardCreateGroup>
+            <CardCreateGroup handleClose={handleClose}></CardCreateGroup>
           </Modal>
         </>
       )}
@@ -69,7 +69,7 @@ export const ButtonCreate = ({ listType }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <CardCreateGoal></CardCreateGoal>
+            <CardCreateGoal handleClose={handleClose}></CardCreateGoal>
           </Modal>
         </>
       )}
@@ -89,7 +89,7 @@ export const ButtonCreate = ({ listType }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <CardCreateActivity></CardCreateActivity>
+            <CardCreateActivity handleClose={handleClose}></CardCreateActivity>
           </Modal>
         </>
       )}
