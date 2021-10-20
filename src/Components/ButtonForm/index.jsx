@@ -8,9 +8,9 @@ export const ButtonForm = ({ buttonFunction }) => {
   const history = useHistory();
 
   const handleClick = () => {
-    if (buttonFunction === "algumaCoisaCadastra-se") {
+    if (buttonFunction === "redirectToRegister") {
       return history.push("/register");
-    } else if (buttonFunction === "algumaCoisaLogin") {
+    } else if (buttonFunction === "redirectToLogin") {
       return history.push("/login");
     }
   };
@@ -21,11 +21,13 @@ export const ButtonForm = ({ buttonFunction }) => {
         <ButtonSubmit>Cadastrar</ButtonSubmit>
       )}
       {buttonFunction === "loginUser" && <ButtonSubmit>Entrar</ButtonSubmit>}
-      {buttonFunction === "algumaCoisaCadastra" && (
-        <ButtonHomeNav onClick={handleClick} />
+      {buttonFunction === "redirectToRegister" && (
+        <ButtonHomeNav registerNewUser onClick={handleClick}>
+          Cadastre-se
+        </ButtonHomeNav>
       )}
-      {buttonFunction === "algumaCoisaLogin" && (
-        <ButtonHomeNav onClick={handleClick} />
+      {buttonFunction === "redirectToLogin" && (
+        <ButtonHomeNav onClick={handleClick}>Login</ButtonHomeNav>
       )}
     </>
   );
