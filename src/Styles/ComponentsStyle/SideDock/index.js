@@ -8,19 +8,19 @@ export const SideDockStyled = styled.div`
   background-color: var(--green-pallet-four);
   color: #000;
 
-  height: 100vh;
+  height: 100%;
   width: auto;
 
   font-family: var(--font-type-formal);
 
   img {
-    margin-top: 100px;
+    margin-top: 45px;
     height: auto;
   }
 
   button {
-    width: 75vw;
-    font-family: var(--font-type-formal);
+    width: 50%;
+    font-family: var(--font-type-details);
     font-size: 19px;
     background-color: #60b948;
     color: #ffff;
@@ -36,18 +36,15 @@ export const SideDockStyled = styled.div`
   }
 
   div {
-    font-family: var(--font-type-details: "Saira");
+    font-family: var(--font-type-details);
     font-size: 35px;
   }
 
   @media (min-width: 1024px) {
-    width: 25%;
-
+    width: 23vw;
     button {
-      height: 5vh;
-      width: 20vw;
-      text-align: center;
-      margin-top: 35px;
+      width: 56%;
+      font-size: var(--font-size-small);
     }
   }
 `;
