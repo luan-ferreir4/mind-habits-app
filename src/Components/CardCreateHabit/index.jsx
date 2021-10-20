@@ -19,7 +19,7 @@ export const CardCreateHabit = () => {
       .required("Campo obrigatório!"),
     category: yup.string().required("Campo obrigatório!"),
     difficulty: yup.string().required("Campo obrigatório!"),
-    frequencyPartOne: yup.string().required("Campo obrigatório!"),
+    frequencyPartOne: yup.number().required("Campo obrigatório!"),
     frequencyPartTwo: yup.string().required("Campo obrigatório!"),
   });
 
