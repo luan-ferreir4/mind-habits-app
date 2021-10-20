@@ -52,8 +52,8 @@ export const HomeContainer = styled.div`
 
   height: 100vh;
 
-  background: url("images/Lotus1.png") no-repeat center,
-    var(--green-pallet-four);
+  background-image: url("images/Lotus1.png");
+  background: var(--green-pallet-four);
 
   p {
     margin-top: 75px;
