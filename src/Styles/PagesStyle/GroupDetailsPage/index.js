@@ -1,26 +1,26 @@
 import styled from "styled-components";
 
 export const ButtonToggle = styled.button`
-  width: 180px;
-  height: 50px;
-  margin: 0px 10px;
+  width: 160px;
+  height: 55px;
+  margin: 30px 20px;
 
   background: #60b948;
   color: #f5f5f5;
   border: none;
   border-radius: 10px;
 
-  font-size: var(--font-size-standart);
+  font-size: 18px;
   font-family: "Saira", sans-serif;
 
   cursor: pointer;
 
   @media (min-width: 1024px) {
-    width: 250px;
-    height: 58px;
-    margin: 0px 20px;
+    /* width: 480px;
+    height: 78px;
+    margin: 35px auto 35px; */
 
-    font-size: var(--font-size-standart);
+    /* font-size: 25px; */
   }
 `;
 
@@ -29,11 +29,17 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 
-  .buttonContainer {
+  .buttonContainer-ativity {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    justify-content: center;
+    justify-content: left;
+  }
+  .buttonContainer-goal {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: right;
   }
 
   .listContainer {

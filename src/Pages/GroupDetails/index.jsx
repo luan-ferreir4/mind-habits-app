@@ -5,7 +5,7 @@ import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import CardRender from "../../Components/CardRender";
 import { CardAbout } from "../../Components/CardAbout";
 import { LoginContext } from "../../Providers/login";
-
+import { ButtonCreate } from "../../Components/Button-Create";
 import {
   Container,
   ButtonToggle,
@@ -36,7 +36,7 @@ const GroupDetails = () => {
 
   return (
     <>
-      <NavBar typeNav={"unlogged"} />
+      <NavBar typeNav={"logged"} />
       <TopContainer>
         <h1>Grupo {groupSelected?.name}</h1>
         <h2>Atividades e metas</h2>
@@ -46,15 +46,22 @@ const GroupDetails = () => {
       </TopContainer>
 
       <Container>
-        <div className="buttonContainer">
+        <div className="buttonContainer-render">
           <ButtonToggle onClick={handleSelectActivities}>
             Ver Atividades
           </ButtonToggle>
           <ButtonToggle onClick={handleSelectGoals}>Ver Metas</ButtonToggle>
-          <div className="buttonContainer">
-            <ButtonToggle onClick={handleSelectGoals}>Ver Metas</ButtonToggle>
-            <ButtonToggle onClick={handleSelectGoals}>Ver Metas</ButtonToggle>
-          </div>
+
+          {pageSelect === "activity" && (
+            <div className="buttonContainer-ativity">
+              <ButtonCreate listType="activity">Criar Atividade</ButtonCreate>
+            </div>
+          )}
+          {pageSelect === "goal" && (
+            <div className="buttonContainer-goal">
+              <ButtonCreate listType="goal">Criar Meta</ButtonCreate>
+            </div>
+          )}
         </div>
         <div className="listContainer">
           {pageSelect === "activity" &&
@@ -76,8 +83,6 @@ const GroupDetails = () => {
             ))}
         </div>
       </Container>
-
-      {}
     </>
   );
 };
