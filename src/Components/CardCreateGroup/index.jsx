@@ -38,32 +38,40 @@ export const CardCreateGroup = () => {
     <div>
       <CardCreateContainer>
         <form onSubmit={handleSubmit(sendToCreateGroup)}>
-          <Input
-            type="text"
-            label="Título"
-            placeholder="Título"
-            name="name"
-            register={register}
-            error={errors.name?.message}
-          />
-          <Input
-            type="text"
-            label="Descrição"
-            placeholder="Descrição"
-            name="description"
-            register={register}
-            error={errors.description?.message}
-          />
+          <div className="containerTitleAndInput">
+            Título:
+            <Input
+              type="text"
+              label="Título"
+              placeholder="Título"
+              name="name"
+              register={register}
+              error={errors.name?.message}
+            />
+          </div>
+          <div className="containerTitleAndInput">
+            Descrição:
+            <Input
+              type="text"
+              label="Descrição"
+              placeholder="Descrição"
+              name="description"
+              register={register}
+              error={errors.description?.message}
+            />
+          </div>
+          <div className="containerTitleAndInput">
+            Categoria:
+            <InputSelector
+              selectType="category"
+              label="Categoria"
+              name="category"
+              register={register}
+              error={errors.category?.message}
+            />
+          </div>
 
-          <InputSelector
-            selectType="category"
-            label="Categoria"
-            name="category"
-            register={register}
-            error={errors.category?.message}
-          />
-
-          <ButtonSubmitContainer type="submit" />
+          <ButtonSubmitContainer type="submit">Criar</ButtonSubmitContainer>
         </form>
       </CardCreateContainer>
     </div>

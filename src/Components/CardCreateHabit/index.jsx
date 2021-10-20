@@ -37,45 +37,58 @@ export const CardCreateHabit = () => {
     <div>
       <CardCreateContainer>
         <form onSubmit={handleSubmit(sendToCreateHabit)}>
-          <Input
-            type="text"
-            label="Hábito"
-            placeholder="Hábito"
-            name="title"
-            register={register}
-            error={errors.title?.message}
-          />
-          <InputSelector
-            selectType="category"
-            label="Categoria"
-            name="category"
-            register={register}
-            error={errors.category?.message}
-          />
-          <InputSelector
-            selectType="difficulty"
-            label="Dificuldade"
-            name="difficulty"
-            register={register}
-            error={errors.difficulty?.message}
-          />
-          <Input
-            type="number"
-            label="Frequência desejada"
-            placeholder="Frequência desejada"
-            name="frequencyPartOne"
-            register={register}
-            error={errors.frequencyPartOne?.message}
-          />
-          <InputSelector
-            selectType="time"
-            label="por"
-            name="frequencyPartTwo"
-            register={register}
-            error={errors.frequencyPartTwo?.message}
-          />
+          <div className="containerTitleAndInput">
+            <p>Hábito:</p>
+            <Input
+              type="text"
+              label="Hábito"
+              placeholder="Hábito"
+              name="title"
+              register={register}
+              error={errors.title?.message}
+            />
+          </div>
+          <div className="containerTitleAndInput">
+            Categoria:
+            <InputSelector
+              selectType="category"
+              label="Categoria"
+              name="category"
+              register={register}
+              error={errors.category?.message}
+            />
+          </div>
+          <div className="containerTitleAndInput">
+            Dificuldade:
+            <InputSelector
+              selectType="dificulty"
+              label="Dificuldade"
+              name="difficulty"
+              register={register}
+              error={errors.difficulty?.message}
+            />
+          </div>
+          <div className="frequencia">
+            Frequência desejada:
+            <Input
+              type="number"
+              label="Frequência desejada"
+              placeholder="Frequência desejada"
+              name="frequencyPartOne"
+              register={register}
+              error={errors.frequencyPartOne?.message}
+            />{" "}
+            por
+            <InputSelector
+              selectType="time"
+              label="por"
+              name="frequencyPartTwo"
+              register={register}
+              error={errors.frequencyPartTwo?.message}
+            />
+          </div>
 
-          <ButtonSubmitContainer type="submit" />
+          <ButtonSubmitContainer type="submit">Criar</ButtonSubmitContainer>
         </form>
       </CardCreateContainer>
     </div>
