@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import { useContext } from "react";
 import { UserGroupsContext } from "../../Providers/userGroups";
 
-const ButtonSubscribe = (groupId) => {
+export const ButtonSubscribe = ({ groupId }) => {
   const { subscribeToAGroup } = useContext(UserGroupsContext);
   return (
     <Button
@@ -14,5 +14,3 @@ const ButtonSubscribe = (groupId) => {
     </Button>
   );
 };
-
-export default ButtonSubscribe;
