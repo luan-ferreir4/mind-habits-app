@@ -2,7 +2,7 @@
 import ButtonUpdate from "../Button-Update";
 import ButtonAbout from "../ButtonAbout"; */
 
-import ButtonSubscribe from "../ButtonSubscribe";
+import { ButtonSubscribe } from "../ButtonSubscribe";
 import ButtonAbout from "../ButtonAbout";
 
 import { Progress } from "react-sweet-progress";
