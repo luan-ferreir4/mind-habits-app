@@ -4,8 +4,11 @@ import {
   TitleHome,
 } from "../../Styles/PagesStyle/HomePage";
 import { ButtonForm } from "../../Components/ButtonForm";
+import { useHistory } from "react-router";
 
 const Home = () => {
+  const history = useHistory();
+
   return (
     <HomeContainer>
       <div className="Image">
@@ -17,8 +20,8 @@ const Home = () => {
       <p>Crie e gerencie hábitos saudáveis para uma melhor qualidade de vida</p>
 
       <div className="Buttons">
-        <ButtonForm buttonFunction={"algumaCoisaLogin"} />
-        <ButtonForm buttonFunction={"algumaCoisaCadastra"} />
+        <ButtonForm buttonFunction={"registerNewUser"} />
+        <ButtonForm buttonFunction={"loginUser"}  />
       </div>
     </HomeContainer>
   );
