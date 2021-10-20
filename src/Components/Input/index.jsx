@@ -1,15 +1,17 @@
-import { InputBox } from "../../Styles/ComponentsStyle/Input";
+import { InputContainer, InputBox } from "../../Styles/ComponentsStyle/Input";
 
-export const Input = ({ icon: Icon, ...rest }) => {
+export const Input = ({ register, name, error, icon: Icon, ...rest }) => {
   return (
-      <>
-    <InputBox>
-    {Icon &&
-     <div>
-         <Icon size={16}/>
-    </div>} 
-    <input {...rest} />
-    </InputBox>
-    </>
+    <InputContainer>
+      <div>{!!error && <span> - {error}</span>}</div>
+      <InputBox>
+        {Icon && (
+          <div>
+            <Icon size={16} />
+          </div>
+        )}
+        <input {...register(name)} {...rest} />
+      </InputBox>
+    </InputContainer>
   );
 };
