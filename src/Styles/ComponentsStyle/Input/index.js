@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+export const InputContainer = styled.div`
+width: 200px;
+  div{
+    text-align: center;
+    color: var(--alert-error);
+    font-family: var(--font-type-details);
+    font-size: var(--font-size-xsmall);
+  }
+`;
 export const InputBox = styled.div`
   display: flex;
   align-items: center;
