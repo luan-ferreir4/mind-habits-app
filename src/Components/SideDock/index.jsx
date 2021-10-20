@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { SideDockStyled } from "../../Styles/ComponentsStyle/SideDock";
 
-const SideDock = () => {
+export const SideDock = () => {
   const history = useHistory();
   return (
     <>
@@ -16,5 +16,3 @@ const SideDock = () => {
     </>
   );
 };
-
-export default SideDock;
