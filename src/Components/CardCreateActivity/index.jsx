@@ -33,25 +33,30 @@ export const CardCreateActivity = () => {
     <div>
       <CardCreateContainer>
         <form onSubmit={handleSubmit(sendToCreateActivity)}>
-          <Input
-            type="text"
-            label="Atividade"
-            placeholder="Atividade"
-            name="title"
-            register={register}
-            error={errors.title?.message}
-          />
+          <div className="containerTitleAndInput">
+            Atividade:
+            <Input
+              type="text"
+              label="Atividade"
+              placeholder="Atividade"
+              name="title"
+              register={register}
+              error={errors.title?.message}
+            />
+          </div>
+          <div className="containerTitleAndInput">
+            Data:
+            <Input
+              type="date"
+              label="Data"
+              placeholder="Data"
+              name="realization_time"
+              register={register}
+              error={errors.realization_time?.message}
+            />
+          </div>
 
-          <Input
-            type="date"
-            label="Data"
-            placeholder="Data"
-            name="realization_time"
-            register={register}
-            error={errors.realization_time?.message}
-          />
-
-          <ButtonSubmitContainer type="submit" />
+          <ButtonSubmitContainer type="submit">Criar</ButtonSubmitContainer>
         </form>
       </CardCreateContainer>
     </div>
