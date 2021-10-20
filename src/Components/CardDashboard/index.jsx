@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserHabitsContext } from "../../Providers/userHabits";
 import { UserGroupsContext } from "../../Providers/userGroups";
 import { CardContainer } from "../../Styles/ComponentsStyle/CardDashboard";
+import { Link } from "react-router-dom";
 
 export const CardDashboard = ({ listType }) => {
   const [content, setContent] = useState("");
@@ -27,14 +28,14 @@ export const CardDashboard = ({ listType }) => {
 
   return (
     <CardContainer>
-      <h1>{content}</h1>
+      <h3>{content}</h3>
       <p>
         Você possui {listQuantity} {content}
       </p>
       {listType === "habit" ? (
-        <p>Cadastre um novo hábito agora mesmo!</p>
+        <p><Link classname="link" to="/habits">Cadastre um novo hábito agora mesmo!</Link></p>
       ) : (
-        <p>Procure grupos para se cadastrar!</p>
+        <p><Link classname="link" to="/groups">Procure grupos para se cadastrar!</Link></p>
       )
       }
     </CardContainer>
