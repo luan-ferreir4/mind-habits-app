@@ -1,9 +1,5 @@
 const UserHabits = () => {
-  return(
-    <>
-        User Habits
-    </> 
-  ) 
+  return <>User Habits</>;
 };
 
 export default UserHabits;
