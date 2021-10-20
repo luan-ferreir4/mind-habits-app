@@ -6,7 +6,7 @@ export const InputSelector = ({ register, name, error, selectType }) => {
       <div>
       {!!error && <span>{error}</span>}
       </div>
-      <Select defaultValue={"default"}>
+      <Select {...register(name)} defaultValue={"default"}>
         {selectType === "category" ? (
           <>
             <option value="default" disabled>
