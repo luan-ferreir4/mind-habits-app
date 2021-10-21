@@ -21,6 +21,19 @@ export const HabitsContent = styled.main`
 `;
 
 export const HabitsListContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
   width: 98vw;
   max-width: 700px;
+  padding: 5px 0;
+  margin: 15px auto;
+
+  @media(min-width: 768px){
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
 `;
