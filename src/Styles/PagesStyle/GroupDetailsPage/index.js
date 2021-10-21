@@ -1,9 +1,24 @@
 import styled from "styled-components";
 
+export const GroupDetailsPage = styled.div`
+  height: 100vh;
+  background-color: #f5f5f5;
+  width: 100vw;
+`;
+
+export const GroupDetailsMain = styled.div`
+  height: 91.2%;
+  @media (min-width: 1024px) {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+`;
+
 export const ButtonToggle = styled.button`
-  width: 160px;
+  width: 150px;
   height: 55px;
-  margin: 30px 20px;
+  margin: 5px;
 
   background: #60b948;
   color: #f5f5f5;
@@ -13,71 +28,127 @@ export const ButtonToggle = styled.button`
   font-size: 18px;
   font-family: "Saira", sans-serif;
 
-  cursor: pointer;
-
   @media (min-width: 1024px) {
-    /* width: 480px;
-    height: 78px;
-    margin: 35px auto 35px; */
+    margin: 0px 30px;
+    width: 310px;
+    height: 55px;
 
-    /* font-size: 25px; */
+    cursor: pointer;
+
+    :focus {
+      color: black;
+      border: 2px solid black;
+    }
+    :active {
+      color: black;
+    }
+    :hover {
+      color: black;
+    }
   }
 `;
 
-export const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+export const GroupDetailsContent = styled.div`
+  padding: 20px;
+  background-color: #e9f5db;
   justify-content: center;
 
-  .buttonContainer-ativity {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: left;
+  @media (min-width: 1024px) {
+    position: relative;
+    display: block;
+    flex-grow: 1;
+    height: 80vh;
+    width: 100vw;
+    max-width: 1100px;
+    padding: 0;
+    margin: 0 auto;
+    background-color: #f5f5f5;
   }
-  .buttonContainer-goal {
-    display: flex;
-    flex-wrap: wrap;
+
+  h1 {
+    font-size: var(--font-size-medium);
+    font-family: var(--font-type-details);
+    font-weight: var(--font-w-thin);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  .subtitle {
+    font-size: var(--font-size-standart);
+    font-family: var(--font-type-formal);
+    font-weight: var(--font-w-thin);
+    font-style: italic;
+    text-align: center;
     width: 100%;
-    justify-content: right;
+    display: inline-block;
+    margin: 0px 0px 40px 0px;
+  }
+
+  .buttonToggleContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ButtonCreateContainer {
+    display: flex;
+    justify-content: center;
   }
 
   .listContainer {
-    width: 100%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
+    margin: 20px;
   }
-`;
 
-export const TopContainer = styled.div`
-  width: 100%;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  h1 {
-    text-align: center;
-    font-family: var(--font-type-details);
-    font-weight: var(--font-w-normal);
-    font-size: var(--font-size-xlarge);
-    margin: 40px 0px 0px 0px;
+  .about {
+    height: 175px;
     width: 100%;
-  }
-  h2 {
-    width: 100%;
-    text-align: center;
-    font-family: var(--font-type-formal);
-    font-weight: var(--font-w-normal);
-    font-size: var(--font-size-medium);
-    font-style: italic;
-    margin: 0px 0px 40px 0px;
+    display: block;
+    position: relative;
+    div {
+      top: 0;
+    }
+    margin-bottom: 30px;
   }
 
   @media (min-width: 1024px) {
     h1 {
-      margin: 60px 0px 0px 0px;
+      font-size: 50px;
+      font-family: var(--font-type-details);
+      font-weight: var(--font-w-normal);
+      text-align: center;
+      margin: 0;
+    }
+    h2 {
+      margin: 0;
+    }
+    span {
+      font-size: var(--font-size-small);
+      font-family: var(--font-type-formal);
+      font-weight: var(--font-w-thin);
+      font-style: italic;
+      text-align: center;
+      margin: 0;
+    }
+
+    .ButtonCreateContainer {
+      display: default;
+    }
+
+    .buttonContainer-ativity {
+      display: flex;
+      justify-content: left;
+
+      width: 700px;
+      padding: 10px;
+    }
+
+    .buttonContainer-goal {
+      display: flex;
+      justify-content: right;
+
+      width: 700px;
+      padding: 10px;
     }
   }
 `;

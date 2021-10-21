@@ -44,8 +44,9 @@ export const ActivitiesProvider = ({ children }) => {
   };
 
   const deleteActivity = (activityId) => {
+    console.log(activityId);
     axios
-      .delete(`https://kenzie-habits.herokuapp.com/activities/${activityId}`, {
+      .delete(`https://kenzie-habits.herokuapp.com/activities/${activityId}/`, {
         headers: { Authorization: `Bearer ${JSON.parse(token)}` },
       })
       .then((response) => {
