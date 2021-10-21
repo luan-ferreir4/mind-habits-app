@@ -7,14 +7,13 @@ export const UserHabitsProvider = ({ children }) => {
   const [habitsList, setHabitsList] = useState([]);
   const [notRenderd, setNotRenderd] = useState(false);
   const { userId } = useContext(UserContext)
-  const token =
-    localStorage.getItem("token") || 
-    "";
+
+  const token = localStorage.getItem("token") || "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MjE5NTkxLCJqdGkiOiI2ZTgwNDAxNGVkMDk0MjVkOWUxMDBjMjhhYjczMjc4ZCIsInVzZXJfaWQiOjQwMH0.B3Mp3hfsWQMmJtVu90TA-vjLL8ioo8MUE9b2rZGsKyM";
 
   useEffect(() => {
     axios
       .get("https://kenzie-habits.herokuapp.com/habits/personal/", {
-        headers: { Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NjUxMjQwLCJqdGkiOiIzNTQxMmM0NGM0NjI0ZjZhOTU3NTIzNGJlNzJiMmQ0ZSIsInVzZXJfaWQiOjE5fQ.kFFi1u2rRMG49LUeVOln18ViRtG_XioJKa2-H-ZNi3c` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         console.log(res);
@@ -24,10 +23,11 @@ export const UserHabitsProvider = ({ children }) => {
         console.log(err.messages);
         setNotRenderd(true);
       });
-  });
+  },[token]);
+  
 console.log(notRenderd)
   const createHabit = (newHabit) => {
-    axios.post("https://kenzie-habits.herokuapp.com/habits/", {...newHabit, userId}, {
+    axios.post("https://kenzie-habits.herokuapp.com/habits/", {...newHabit, user: userId}, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
