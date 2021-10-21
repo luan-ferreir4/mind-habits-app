@@ -5,7 +5,7 @@ export const SideDockStyled = styled.div`
   flex-direction: column;
   align-items: center;
 
-  background-color: var(--green-pallet-four);
+  background-color: #f5f5f5;
   color: #000;
 
   height: 598px;
@@ -18,7 +18,8 @@ export const SideDockStyled = styled.div`
   }
 
   button {
-    width: 50%;
+    width: 160px;
+    height: 40px;
     font-family: var(--font-type-details);
     font-size: 19px;
     background-color: #60b948;
@@ -40,10 +41,12 @@ export const SideDockStyled = styled.div`
   }
 
   @media (min-width: 1024px) {
+    background-color: var(--green-pallet-four);
     height: 100%;
     width: 23vw;
     button {
-      width: 56%;
+      width: 200px;
+      height: 46px;
       font-size: var(--font-size-small);
     }
   }
