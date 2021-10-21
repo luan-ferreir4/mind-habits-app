@@ -8,7 +8,7 @@ export const UserHabitsProvider = ({ children }) => {
   const [notRenderd, setNotRenderd] = useState(false);
   const { userId } = useContext(UserContext)
 
-  const token = localStorage.getItem("token") || "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MjE5NTkxLCJqdGkiOiI2ZTgwNDAxNGVkMDk0MjVkOWUxMDBjMjhhYjczMjc4ZCIsInVzZXJfaWQiOjQwMH0.B3Mp3hfsWQMmJtVu90TA-vjLL8ioo8MUE9b2rZGsKyM";
+  const token = localStorage.getItem("token") || "";
 
   useEffect(() => {
     axios
@@ -16,7 +16,6 @@ export const UserHabitsProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${JSON.parse(token)}` },
       })
       .then((res) => {
-        console.log(res);
         setHabitsList(res.data);
       })
       .catch((err) => {
