@@ -17,16 +17,33 @@ import {
 } from "../../Styles/PagesStyle/GroupDetailsPage";
 
 import { useParams } from "react-router";
+import { ActivitiesContext } from "../../Providers/activities";
+import { GoalsContext } from "../../Providers/goals";
 
 const GroupDetails = () => {
   const params = useParams();
   const { getASpecificGroup, groupSelected } = useContext(
     GroupsCommunityContext
   );
+
+  const { getGroupActivities, activities } = useContext(ActivitiesContext);
+
+  const { setGroupIdGoal } = useContext(GoalsContext);
+
   const { auth, handleLogin } = useContext(LoginContext);
   const [pageSelect, setPageSelect] = useState({});
-  useState(() => {
+
+  useEffect(() => {
     getASpecificGroup(params.id);
+    console.log(params.id);
+  }, []);
+
+  useEffect(() => {
+    getGroupActivities(params.id);
+  }, []);
+
+  useEffect(() => {
+    setGroupIdGoal(params.id);
   }, []);
 
   const handleSelectGoals = () => {
@@ -72,21 +89,23 @@ const GroupDetails = () => {
                 <div className="ButtonCreateContainer">
                   {pageSelect === "activity" && (
                     <div className="buttonContainer-ativity">
-                      <ButtonCreate listType="activity">
+                      <ButtonCreate listType="activity" idGroup={params.id}>
                         Criar Atividade
                       </ButtonCreate>
                     </div>
                   )}
                   {pageSelect === "goal" && (
                     <div className="buttonContainer-goal">
-                      <ButtonCreate listType="goal">Criar Meta</ButtonCreate>
+                      <ButtonCreate listType="goal" idGroup={params.id}>
+                        Criar Meta
+                      </ButtonCreate>
                     </div>
                   )}
                 </div>
 
                 <div className="listContainer">
                   {pageSelect === "activity" &&
-                    groupSelected.activities.map((item) => (
+                    activities.map((item) => (
                       <CardRender
                         listType="activity"
                         item={item}

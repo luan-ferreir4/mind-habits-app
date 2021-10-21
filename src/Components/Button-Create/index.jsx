@@ -7,7 +7,7 @@ import { CardCreateGroup } from "../../Components/CardCreateGroup";
 import { CardCreateGoal } from "../../Components/CardCreateGoal";
 import { CardCreateActivity } from "../../Components/CardCreateActivity";
 
-export const ButtonCreate = ({ listType }) => {
+export const ButtonCreate = ({ listType, idGroup }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -69,7 +69,10 @@ export const ButtonCreate = ({ listType }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <CardCreateGoal handleClose={handleClose}></CardCreateGoal>
+            <CardCreateGoal
+              handleClose={handleClose}
+              idGroup={idGroup}
+            ></CardCreateGoal>
           </Modal>
         </>
       )}
@@ -89,7 +92,10 @@ export const ButtonCreate = ({ listType }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <CardCreateActivity handleClose={handleClose}></CardCreateActivity>
+            <CardCreateActivity
+              idGroup={idGroup}
+              handleClose={handleClose}
+            ></CardCreateActivity>
           </Modal>
         </>
       )}
