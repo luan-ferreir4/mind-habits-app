@@ -14,6 +14,11 @@ const UserHabits = () => {
             <SideDock/>
             <div>
                 <h1>Meus Hábitos</h1>
+                <div>
+                  {
+                    habitsList.map(item=><p>{item.title}</p>)
+                  }
+                </div>
             </div>
         </div>
     </div> 
