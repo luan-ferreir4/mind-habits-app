@@ -8,7 +8,16 @@ export const GroupsCommunityProvider = ({ children }) => {
   const [communityGroups, setCommunityGroups] = useState([]);
   const [groupSelected, setGroupSelected] = useState();
 
-  const token = localStorage.getItem("token") || "";
+  // const token = localStorage.getItem("token") || "";
+
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (localToken !== "") {
+      return JSON.parse(localToken);
+    } else {
+      return localToken;
+    }
+  });
 
   /** createGroup({
         "name": "Grupo novo 2",
@@ -40,6 +49,7 @@ export const GroupsCommunityProvider = ({ children }) => {
 
   const [goToPage, setGoToPage] = useState(1);
   const [isThereNext, setIsThereNext] = useState(null);
+
   const getGroups = (categoryName) => {
     const newCategoryName = categoryName === undefined ? "" : categoryName;
     axios

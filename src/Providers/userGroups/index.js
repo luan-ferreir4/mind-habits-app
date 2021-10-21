@@ -8,13 +8,22 @@ export const UserGroupsProvider = ({ children }) => {
   const [userGroups, setUserGroups] = useState([]);
   const [errorUserGroups, setErrorUserGroups] = useState([]);
 
-  const token = localStorage.getItem("token") || "";
+  // const token = localStorage.getItem("token") || "";
 
-  useEffect( () => {
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (localToken !== "") {
+      return JSON.parse(localToken);
+    } else {
+      return localToken;
+    }
+  });
+
+  useEffect(() => {
     axios
       .get("https://kenzie-habits.herokuapp.com/groups/subscriptions/", {
         headers: {
-          Authorization: `Bearer ${JSON.parse(token)}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
@@ -25,7 +34,7 @@ export const UserGroupsProvider = ({ children }) => {
           setErrorUserGroups(error.response);
         }
       });
-  },[token, userGroups]);
+  }, [token, userGroups]);
 
   const unsubscribeFromAGroup = (groupId) => {
     axios
@@ -97,7 +106,7 @@ export const UserGroupsProvider = ({ children }) => {
         userGroups,
         errorUserGroups,
         unsubscribeFromAGroup,
-        
+
         subscribeToAGroup,
         editGroup,
       }}

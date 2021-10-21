@@ -9,7 +9,7 @@ import { InputSelector } from "../inputSelector";
 import { CardCreateContainer } from "../../Styles/ComponentsStyle/CardCreate";
 import { ButtonSubmitContainer } from "../../Styles/ComponentsStyle/ButtonSubmit";
 
-export const CardCreateGoal = ({ handleClose }) => {
+export const CardCreateGoal = ({ handleClose, idGroup }) => {
   const { createGoal } = useContext(GoalsContext);
 
   const schema = yup.object().shape({
@@ -28,7 +28,7 @@ export const CardCreateGoal = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const sendToCreateGoal = (data) => {
-    createGoal(data);
+    createGoal(data, idGroup);
     handleClose();
   };
 
