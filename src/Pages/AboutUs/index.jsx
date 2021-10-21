@@ -1,6 +1,7 @@
 import { NavBar } from "../../Components/NavBar";
 import { CardAboutUs } from "../../Components/CardAboutUS";
-import "../../Styles/PagesStyle/AboutUsPage/style.css";
+
+import { ContainerAbout } from "../../Styles/PagesStyle/AboutUsPage";
 
 const AboutUs = () => {
   const groupArray = [
@@ -29,23 +30,25 @@ const AboutUs = () => {
       image: "images/robertorocha.jpg",
     },
     {
-      name: "Roberto Rocha",
-      linkedin: "https://www.linkedin.com/in/rsrocha",
-      githubpage: "https://github.com/r-rocha",
-      image: "images/robertorocha.jpg",
+      name: "Kelvin Crepaldi",
+      linkedin: "https://www.linkedin.com/in/kelvincrepaldi",
+      githubpage: "https://github.com/KelvinCrepaldi",
+      image: "images/kelvincrepaldi.jpeg",
     },
   ];
 
   return (
-    <div className="container">
+    <>
       <NavBar typeNav={"unlogged"} />
-      <h2>Equipe MindHabits</h2>
-      <div className="cards">
-        {groupArray.map((item) => (
-          <CardAboutUs item={item} />
-        ))}
-      </div>
-    </div>
+      <ContainerAbout>
+        <h2>Equipe MindHabits</h2>
+        <ul>
+          {groupArray.map((item) => (
+            <CardAboutUs item={item} />
+          ))}
+        </ul>
+      </ContainerAbout>
+    </>
   );
 };
 
