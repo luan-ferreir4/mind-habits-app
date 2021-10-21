@@ -12,9 +12,6 @@ export const CardDashboard = ({ listType }) => {
   
   const { userGroups } = useContext(UserGroupsContext);
 
-  console.log(habitsList);
-  console.log(userGroups);
-
   useEffect(() => {
     if (listType === "habit") {
       setContent("Habitos");
