@@ -16,12 +16,12 @@ const Dashboard = () => {
   const [userName, setUserName] = useState("");
 
   const { userId } = useContext(UserContext);
-
-  console.log(userId);
-
+  const token = localStorage.getItem("token") || "";
   useEffect(() => {
     axios
-      .get(`https://kenzie-habits.herokuapp.com/users/${userId}/`)
+      .get(`https://kenzie-habits.herokuapp.com/users/${userId}/`, {
+        headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+      })
       .then((res) => setUserName(res.data.username))
       .catch((err) => console.log(err.message));
   });

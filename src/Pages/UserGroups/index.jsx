@@ -1,14 +1,14 @@
 import { useContext } from "react";
-import { UserGroupsContext } from "../../Providers/userGroups";
-
-import { Button, Typography } from "@material-ui/core";
-
 import { useHistory } from "react-router-dom";
-import { NavBar } from "../../Components/NavBar";
 import {
-  UserGroupsContainer,
-  MainContent,
+  UserGroupsContent,
+  UserGroupsMain,
+  UserGroupsPage,
 } from "../../Styles/PagesStyle/UserGroupsPage";
+import { NavBar } from "../../Components/NavBar";
+import { SideDock } from "../../Components/SideDock";
+import CardRender from "../../Components/CardRender";
+import { UserGroupsContext } from "../../Providers/userGroups";
 
 const UserGroups = () => {
   const { userGroups } = useContext(UserGroupsContext);
@@ -16,33 +16,19 @@ const UserGroups = () => {
 
   return (
     <>
-      <NavBar typeNav={"unlogged"} />
-      <UserGroupsContainer className="Container">
-        <MainContent>
-          <h3>Meus Grupos</h3>
-          {userGroups.map((group) => (
-            <div className="CardMyGroup">
-              <Typography variant="h5" component="div">
-                {group.name}
-              </Typography>
-              <Typography sx={{ fontSize: 14 }}>
-                {`Descrição: ${group.description}`}
-              </Typography>
-              <Typography sx={{ fontSize: 14 }}>
-                {`Categoria: ${group.category}`}
-              </Typography>
+      <NavBar typeNav={"logged"} />
+      <UserGroupsPage>
+        <UserGroupsMain>
 
-              <Button
-                size="medium"
-                color="primary"
-                onClick={() => history.push(`/groupdetails/${group.id}`)}
-              >
-                Ver mais
-              </Button>
-            </div>
-          ))}
-        </MainContent>
-      </UserGroupsContainer>
+          <SideDock />
+
+          <UserGroupsContent>
+            <h3>Meus Grupos</h3>
+            {userGroups.map((group) => (<CardRender listType={"userGroup"} item={group} key={group.id} />))}
+          </UserGroupsContent>
+          
+        </UserGroupsMain>
+      </UserGroupsPage>
     </>
   );
 };
