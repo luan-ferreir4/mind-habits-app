@@ -9,7 +9,7 @@ import { InputSelector } from "../inputSelector";
 import { CardCreateContainer } from "../../Styles/ComponentsStyle/CardCreate";
 import { ButtonSubmitContainer } from "../../Styles/ComponentsStyle/ButtonSubmit";
 
-export const CardCreateHabit = () => {
+export const CardCreateHabit = ({ handleClose }) => {
   const { createHabit } = useContext(UserHabitsContext);
 
   const schema = yup.object().shape({
@@ -31,6 +31,7 @@ export const CardCreateHabit = () => {
 
   const sendToCreateHabit = (data) => {
     createHabit(data);
+    handleClose();
   };
 
   return (
