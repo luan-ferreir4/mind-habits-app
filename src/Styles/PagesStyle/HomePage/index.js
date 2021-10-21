@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const TitleHome = styled.div`
-  margin-top: 125px;
+  margin-top: 65px;
 
   color: #000;
   font-family: var(--font-type-cursive);
   font-size: 46px;
 
-  z-index: 1;
+  /* z-index: 1; */
 
   @media (min-width: 1024px) {
     margin-top: 5px;
@@ -20,7 +20,7 @@ export const Subtitle = styled.div`
   font-family: var(--font-type-body);
   font-size: 22px;
 
-  z-index: 1;
+  /* z-index: 1; */
 
   @media (min-width: 1024px) {
     font-size: 59px;
@@ -32,13 +32,15 @@ export const HomePage = styled.div`
   flex-direction: column;
   align-items: center;
 
-  height: 100vh; 
+  height: 100vh;
+  width: 100vw;
+  background-color: #f5f5f5;
 
   p {
-    margin-top: 75px;
+    margin-top: 105px;
     padding: 10px;
 
-    z-index: 1;
+    /* z-index: 1; */
 
     font-family: var(--font-type-formal);
     font-size: 16px;
@@ -59,19 +61,25 @@ export const HomePage = styled.div`
     display: block;
     position: absolute;
 
-    margin-top: 155px;
+    margin-top: 90px;
 
     img {
-      height: 45vh;
-      width 75vw;
+      height: 309px;
+      width: 320px;
     }
   }
 
   .Buttons {
-      z-index: 1;
-      button {
-          margin: 10px;
+    z-index: 1;
+    button {
+      margin: 10px auto;
+    }
+    button + button {
+      margin-left: 5px;
+      @media (min-width: 1024px) {
+        margin-left: 40px;
       }
+    }
   }
 
   @media (min-width: 1024px) {
@@ -80,11 +88,11 @@ export const HomePage = styled.div`
     background: var(--green-pallet-four);
 
     p {
-        margin-top: 125px;
-    
-        font-family: var(--font-type-formal);
-        font-size: 31px;
-      }
+      margin-top: 125px;
+
+      font-family: var(--font-type-formal);
+      font-size: 31px;
+    }
 
     .Logo {
       justify-content: end;
@@ -101,12 +109,12 @@ export const HomePage = styled.div`
     .Background {
       display: block;
       position: absolute;
-  
-      margin-top: 125px;
+
+      margin-top: 70px;
 
       img {
         height: 815px;
-        width 875px;
+        width: 875px;
       }
     }
   }
