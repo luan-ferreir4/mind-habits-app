@@ -1,12 +1,12 @@
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
-import "../../Styles/ComponentsStyle/CardAboutUs/style.css";
+import { LiContainer } from "../../Styles/ComponentsStyle/CardAboutUs";
 export const CardAboutUs = (item) => {
   // const history = useHistory();
   // const sendTo = (path) => {
   //   <Redirect to=path />;
   // };
   return (
-    <div className="cardAbout">
+    <LiContainer>
       <img src={item.item.image} alt={item.item.name} />
       <br />
       <h3>{item.item.name}</h3>
@@ -19,6 +19,6 @@ export const CardAboutUs = (item) => {
           <FaLinkedin size={30} />
         </a>
       </div>
-    </div>
+    </LiContainer>
   );
 };

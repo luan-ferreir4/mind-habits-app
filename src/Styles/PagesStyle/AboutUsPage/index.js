@@ -1,33 +1,39 @@
 import styled from "styled-components";
 
-export const DashboardPage = styled.div`
-  height: 100vh;
-  background-color: #f5f5f5;
-  width: 100vw;
+export const ContainerAbout = styled.div`
+  background-color: #ffffff;
 
-  @media (min-width: 1024px) {
+  max-width: 1510px;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  h2 {
+    margin-bottom: 20px;
+
+    text-align: center;
+    font-family: var(--font-type-details);
+    font-size: 30px;
+
+    @media (min-width: 1024px) {
+      margin-bottom: 40px;
+
+      font-size: 65px;
+      letter-spacing: 5px;
+      font-weight: var(--font-w-thin);
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    max-width: 90%;
+
+    @media (min-width: 1024px) {
+      max-width: 75%;
+    }
   }
 `;
-
-// .container {
-//     background-color: #f5f5f5;
-//   }
-
-//   .cards {
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: space-around;
-//   }
-
-//   h2 {
-//     margin: 15px;
-//     text-align: center;
-//     font-family: var(--font-type-details);
-//     font-size: 30px;
-//   }
-
-//   @media screen and (min-width: 1024px) {
-//     h2 {
-//       font-size: 46px;
-//     }
-//   }

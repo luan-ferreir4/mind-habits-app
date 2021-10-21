@@ -1,6 +1,7 @@
 import { NavBar } from "../../Components/NavBar";
 import { CardAboutUs } from "../../Components/CardAboutUS";
-import "../../Styles/PagesStyle/AboutUsPage/style.css";
+
+import { ContainerAbout } from "../../Styles/PagesStyle/AboutUsPage";
 
 const AboutUs = () => {
   const groupArray = [
@@ -37,15 +38,17 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="container">
+    <>
       <NavBar typeNav={"unlogged"} />
-      <h2>Equipe MindHabits</h2>
-      <div className="cards">
-        {groupArray.map((item) => (
-          <CardAboutUs item={item} />
-        ))}
-      </div>
-    </div>
+      <ContainerAbout>
+        <h2>Equipe MindHabits</h2>
+        <ul>
+          {groupArray.map((item) => (
+            <CardAboutUs item={item} />
+          ))}
+        </ul>
+      </ContainerAbout>
+    </>
   );
 };
 
