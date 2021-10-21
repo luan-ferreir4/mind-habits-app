@@ -13,6 +13,43 @@ export const GComMain = styled.div`
   }
 `;
 
+export const ButtonPageOne = styled.button`
+  font-family: var(--font-type-details);
+  font-size: var(--font-size-small);
+  background-color: var(--green-pallet-one);
+  color: #f5f5f5;
+  border: none;
+  cursor: pointer;
+
+  margin: 10px;
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+
+  @media (min-width: 1024px) {
+    position: absolute;
+    top: 0;
+  }
+`;
+export const ButtonPageTwo = styled.button`
+  font-family: var(--font-type-details);
+  font-size: var(--font-size-small);
+  background-color: var(--green-pallet-one);
+  color: #f5f5f5;
+  border: none;
+  cursor: pointer;
+
+  margin: 10px;
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+
+  @media (min-width: 1024px) {
+    position: absolute;
+    top: 80px;
+  }
+`;
+
 export const GComContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,7 +73,7 @@ export const GComContent = styled.div`
     position: relative;
     display: block;
     .divCards {
-      height: 60vh;
+      height: 10vh;
     }
     .btnCreate {
       padding-left: 680px;
