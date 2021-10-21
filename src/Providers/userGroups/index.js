@@ -10,7 +10,7 @@ export const UserGroupsProvider = ({ children }) => {
 
   const token = localStorage.getItem("token") || "";
 
-  const getSubscriptions = () => {
+  useEffect( () => {
     axios
       .get("https://kenzie-habits.herokuapp.com/groups/subscriptions/", {
         headers: {
@@ -18,7 +18,6 @@ export const UserGroupsProvider = ({ children }) => {
         },
       })
       .then((response) => {
-        console.log(response);
         setUserGroups(response.data);
       })
       .catch((error) => {
@@ -26,7 +25,7 @@ export const UserGroupsProvider = ({ children }) => {
           setErrorUserGroups(error.response);
         }
       });
-  };
+  },[token, userGroups]);
 
   const unsubscribeFromAGroup = (groupId) => {
     axios
@@ -40,7 +39,6 @@ export const UserGroupsProvider = ({ children }) => {
       )
       .then((response) => {
         toast.success("Exclusão do grupo realizada com sucesso");
-        getSubscriptions();
       })
       .catch((error) => {
         if (error.response) {
@@ -62,7 +60,6 @@ export const UserGroupsProvider = ({ children }) => {
       )
       .then((response) => {
         toast.success(response.data.message);
-        getSubscriptions();
       })
       .catch((error) => {
         if (error.response) {
@@ -86,7 +83,6 @@ export const UserGroupsProvider = ({ children }) => {
       )
       .then((response) => {
         toast.success("Alteração realizada com sucesso");
-        getSubscriptions();
       })
       .catch((error) => {
         if (error.response) {
@@ -95,17 +91,13 @@ export const UserGroupsProvider = ({ children }) => {
       });
   };
 
-  useEffect(() => {
-    getSubscriptions();
-  }, []);
-
   return (
     <UserGroupsContext.Provider
       value={{
         userGroups,
         errorUserGroups,
         unsubscribeFromAGroup,
-        getSubscriptions,
+        
         subscribeToAGroup,
         editGroup,
       }}
