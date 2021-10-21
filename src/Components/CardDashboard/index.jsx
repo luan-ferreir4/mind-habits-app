@@ -33,9 +33,9 @@ export const CardDashboard = ({ listType }) => {
         Você possui {listQuantity} {content}
       </p>
       {listType === "habit" ? (
-        <p><Link classname="link" to="/habits">Cadastre um novo hábito agora mesmo!</Link></p>
+        <p><Link classname="link" to="/userhabits">Cadastre um novo hábito agora mesmo!</Link></p>
       ) : (
-        <p><Link classname="link" to="/groups">Procure grupos para se cadastrar!</Link></p>
+        <p><Link classname="link" to="/usergroups">Procure grupos para se cadastrar!</Link></p>
       )
       }
     </CardContainer>
