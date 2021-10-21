@@ -29,10 +29,10 @@ const AboutUs = () => {
       image: "images/robertorocha.jpg",
     },
     {
-      name: "Roberto Rocha",
-      linkedin: "https://www.linkedin.com/in/rsrocha",
-      githubpage: "https://github.com/r-rocha",
-      image: "images/robertorocha.jpg",
+      name: "Kelvin Crepaldi",
+      linkedin: "https://www.linkedin.com/in/kelvincrepaldi",
+      githubpage: "https://github.com/KelvinCrepaldi",
+      image: "images/kelvincrepaldi.jpeg",
     },
   ];
 
