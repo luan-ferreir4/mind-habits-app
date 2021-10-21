@@ -100,6 +100,17 @@ export const GroupDetailsContent = styled.div`
     margin: 20px;
   }
 
+  .about {
+    height: 175px;
+    width: 100%;
+    display: block;
+    position: relative;
+    div {
+      top: 0;
+    }
+    margin-bottom: 30px;
+  }
+
   @media (min-width: 1024px) {
     h1 {
       font-size: 50px;

@@ -53,6 +53,12 @@ const GroupDetails = () => {
 
               <span className="subtitle">Atividades e metas</span>
 
+              <div className="about">
+                <CardAbout
+                  className="mid"
+                  groupSpecific={groupSelected}
+                ></CardAbout>
+              </div>
               <div>
                 <div className="buttonToggleContainer">
                   <ButtonToggle onClick={handleSelectActivities}>
@@ -62,10 +68,6 @@ const GroupDetails = () => {
                     Ver Metas
                   </ButtonToggle>
                 </div>
-                <CardAbout
-                  className="mid"
-                  groupSpecific={groupSelected}
-                ></CardAbout>
 
                 <div className="ButtonCreateContainer">
                   {pageSelect === "activity" && (

@@ -32,7 +32,9 @@ const CardRender = ({ listType, item }) => {
   const handleRemoveGoal = () => {
     deleteGoal(item.id);
   };
-  const handleRemoveAtivity = () => {};
+  const handleRemoveAtivity = () => {
+    deleteActivity(item.id);
+  };
 
   return (
     <>
