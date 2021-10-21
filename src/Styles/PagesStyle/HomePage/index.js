@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const TitleHome = styled.div`
+  margin-top: 125px;
+
   color: #000;
   font-family: var(--font-type-cursive);
   font-size: 46px;
@@ -8,6 +10,7 @@ export const TitleHome = styled.div`
   z-index: 1;
 
   @media (min-width: 1024px) {
+    margin-top: 5px;
     font-size: 146px;
   }
 `;
@@ -45,10 +48,10 @@ export const HomePage = styled.div`
   .Logo {
     display: flex;
 
-    img {
-      margin-top: 25px;
+    margin-top: 25px;
 
-      height: auto;
+    img {
+      display: none;
     }
   }
 
@@ -56,7 +59,7 @@ export const HomePage = styled.div`
     display: block;
     position: absolute;
 
-    margin-top: 175px;
+    margin-top: 155px;
 
     img {
       height: 45vh;
@@ -89,7 +92,9 @@ export const HomePage = styled.div`
       width: 100vw;
 
       img {
-        height: 21;
+        display: flex;
+        height: 17vh;
+        width: auto;
       }
     }
 
