@@ -1,50 +1,85 @@
-import { NavBar } from "../../Components/NavBar";
-import { useState, useContext, useEffect } from "react";
-import { Redirect } from "react-router";
-import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import CardRender from "../../Components/CardRender";
 import { CardAbout } from "../../Components/CardAbout";
 import { LoginContext } from "../../Providers/login";
 import { ButtonCreate } from "../../Components/Button-Create";
+import { NavBar } from "../../Components/NavBar";
 import { SideDock } from "../../Components/SideDock";
+
 import {
-  Container,
   ButtonToggle,
-  TopContainer,
   GroupDetailsContent,
   GroupDetailsPage,
   GroupDetailsMain,
 } from "../../Styles/PagesStyle/GroupDetailsPage";
 
-import { useParams } from "react-router";
+import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import { ActivitiesContext } from "../../Providers/activities";
 import { GoalsContext } from "../../Providers/goals";
 
+import axios from "axios";
+import { useState, useContext, useEffect } from "react";
+import { Redirect } from "react-router";
+import toast from "react-hot-toast";
+import { useParams } from "react-router";
+
 const GroupDetails = () => {
   const params = useParams();
+
+  const { auth } = useContext(LoginContext);
+
   const { getASpecificGroup, groupSelected } = useContext(
     GroupsCommunityContext
   );
 
-  const { getGroupActivities, activities } = useContext(ActivitiesContext);
+  const { goals, setGoals, goalsPage, setGoalsPage } = useContext(GoalsContext);
 
-  const { setGroupIdGoal } = useContext(GoalsContext);
+  const { activities, setActivities, activitiesPage, setActivitiesPage } =
+    useContext(ActivitiesContext);
 
-  const { auth, handleLogin } = useContext(LoginContext);
+  const [goalsLink, setGoalsLink] = useState(
+    `https://kenzie-habits.herokuapp.com/goals/?group=${params.id}&page=${goalsPage}`
+  );
+  const [activitiesLink, setActivitiesLink] = useState(
+    `https://kenzie-habits.herokuapp.com/activities/?group=${params.id}&page=${activitiesPage}`
+  );
+ 
   const [pageSelect, setPageSelect] = useState({});
 
   useEffect(() => {
+    axios
+      .get(goalsLink)
+      .then((res) => setGoals(res.data.results))
+      .then((res) => setGoalsLink(res.data.next))
+      .catch((error) => {
+        if (error.response) {
+          toast.error(
+            `Goals: ${error.response.status} ${error.response.statusText}`
+          );
+        }
+      });
+  }, [goalsLink, goals, setGoals]);
+
+  useEffect(() => {
+    axios
+      .get(activitiesLink)
+      .then((res) => setActivities(res.data.results))
+      .then((res) => setActivitiesLink(res.data.next))
+      .catch((error) => {
+        if (error.response) {
+          toast.error(
+            `Goals: ${error.response.status} ${error.response.statusText}`
+          );
+        }
+      });
+  }, [activitiesLink, activities, setActivities]);
+
+  useEffect(() => {
     getASpecificGroup(params.id);
-    console.log(params.id);
-  }, []);
+  }, [getASpecificGroup, params.id]);
 
-  useEffect(() => {
-    getGroupActivities(params.id);
-  }, []);
-
-  useEffect(() => {
-    setGroupIdGoal(params.id);
-  }, []);
+  if (!auth) {
+    return <Redirect to="/login" />;
+  }
 
   const handleSelectGoals = () => {
     setPageSelect("goal");
@@ -54,16 +89,35 @@ const GroupDetails = () => {
     setPageSelect("activity");
   };
 
-  if (!auth) {
-    return <Redirect to="/login" />;
-  }
+  //  const nextActivitiesPage = () => {
+  //    if (activitiesPage !== null) {
+  //      setActivitiesPage(activitiesPage + 1);
+  //    }
+  //  };
+  //  const prevActivitiesPage = () => {
+  //    if (activitiesPage > 1) {
+  //      setActivitiesPage(activitiesPage + 1);
+  //    }
+  //  };
+  //  const nextGoalsPage = () => {
+  //   if (goalsPage !== null) {
+  //     setGoalsPage(goalsPage + 1);
+  //   }
+  // };
+  // const prevGoalsPage = () => {
+  //   if (goalsPage > 1) {
+  //     setGoalsPage(goalsPage + 1);
+  //   }
+  // };
 
   return (
     <>
       <NavBar typeNav={"logged"} />
+
       <GroupDetailsPage>
         <GroupDetailsMain>
           <SideDock />
+
           {groupSelected !== undefined && (
             <GroupDetailsContent>
               <h1>Grupo {groupSelected?.name}</h1>
@@ -76,6 +130,7 @@ const GroupDetails = () => {
                   groupSpecific={groupSelected}
                 ></CardAbout>
               </div>
+
               <div>
                 <div className="buttonToggleContainer">
                   <ButtonToggle onClick={handleSelectActivities}>
@@ -94,6 +149,7 @@ const GroupDetails = () => {
                       </ButtonCreate>
                     </div>
                   )}
+
                   {pageSelect === "goal" && (
                     <div className="buttonContainer-goal">
                       <ButtonCreate listType="goal" idGroup={params.id}>
@@ -114,7 +170,7 @@ const GroupDetails = () => {
                     ))}
 
                   {pageSelect === "goal" &&
-                    groupSelected.goals.map((item) => (
+                    goals.map((item) => (
                       <CardRender
                         listType="goal"
                         item={item}
@@ -127,7 +183,6 @@ const GroupDetails = () => {
           )}
         </GroupDetailsMain>
       </GroupDetailsPage>
-      {/*  */}
     </>
   );
 };
