@@ -11,7 +11,7 @@ export const UserHabitsProvider = ({ children }) => {
   const getHabits = () => {
     axios
       .get("https://kenzie-habits.herokuapp.com/habits/personal/", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${JSON.parse(token)}` },
       })
       .then((res) => {
         // console.log(res.data);
@@ -24,7 +24,7 @@ export const UserHabitsProvider = ({ children }) => {
     axios.post("https://kenzie-habits.herokuapp.com/habits/", newHabit, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${JSON.parse(token)}`,
       },
     });
   };
@@ -33,14 +33,14 @@ export const UserHabitsProvider = ({ children }) => {
     axios.patch(`https://kenzie-habits.herokuapp.com/habits/${habitId}`, data, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${JSON.parse(token)}`,
       },
     });
   };
 
   const deleteHabit = (habitId) => {
     axios.delete(`https://kenzie-habits.herokuapp.com/habits/${habitId}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${JSON.parse(token)}` },
     });
   };
 

@@ -21,7 +21,7 @@ export const GroupsCommunityProvider = ({ children }) => {
       .post("https://kenzie-habits.herokuapp.com/groups/", data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${JSON.parse(token)}`,
         },
       })
       .then((response) => {

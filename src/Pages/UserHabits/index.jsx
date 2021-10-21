@@ -4,12 +4,13 @@ import { SideDock } from "../../Components/SideDock";
 import { UserHabitsContext } from "../../Providers/userHabits";
 
 const UserHabits = () => {
-
   const { habitsList } = useContext(UserHabitsContext);
-  console.log(habitsList)
-  return(
+  console.log(habitsList);
+  return (
     <div>
-        <NavBar typeNav="logged"/>
+      <NavBar typeNav="logged" />
+      <div>
+        <SideDock />
         <div>
             <SideDock/>
             <div>
@@ -21,8 +22,9 @@ const UserHabits = () => {
                 </div>
             </div>
         </div>
-    </div> 
-  ) 
+      </div>
+    </div>
+  );
 };
 
 export default UserHabits;
