@@ -1,10 +1,7 @@
 import { useContext } from "react";
 import { UserGroupsContext } from "../../Providers/userGroups";
 
-import {
-  Button,
-  Typography,
-} from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 
 import { useHistory } from "react-router-dom";
 import { NavBar } from "../../Components/NavBar";
@@ -22,9 +19,9 @@ const UserGroups = () => {
       <NavBar typeNav={"unlogged"} />
       <UserGroupsContainer className="Container">
         <MainContent>
-        <h3>Meus Grupos</h3>
+          <h3>Meus Grupos</h3>
           {userGroups.map((group) => (
-            <div className="CardMyGroup" >
+            <div className="CardMyGroup">
               <Typography variant="h5" component="div">
                 {group.name}
               </Typography>
@@ -38,7 +35,7 @@ const UserGroups = () => {
               <Button
                 size="medium"
                 color="primary"
-                onClick={() => history.push("/groupdetails")}
+                onClick={() => history.push(`/groupdetails/${group.id}`)}
               >
                 Ver mais
               </Button>

@@ -27,7 +27,7 @@ export const ActivitiesProvider = ({ children }) => {
       .post("https://kenzie-habits.herokuapp.com/activities/", newActivity, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${JSON.parse(token)}`,
         },
       })
       .then((response) => {
@@ -46,7 +46,7 @@ export const ActivitiesProvider = ({ children }) => {
   const deleteActivity = (activityId) => {
     axios
       .delete(`https://kenzie-habits.herokuapp.com/activities/${activityId}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${JSON.parse(token)}` },
       })
       .then((response) => {
         toast.success("Atividade excluida com sucesso.");
@@ -67,7 +67,7 @@ export const ActivitiesProvider = ({ children }) => {
         `https://kenzie-habits.herokuapp.com/activities/${activityId}`,
         body,
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${JSON.parse(token)}` },
         }
       )
       .then((response) => {

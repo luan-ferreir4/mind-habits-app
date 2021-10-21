@@ -30,7 +30,7 @@ export const ButtonHomeNav = styled.button`
   margin: 45px auto 20px;
 
   background: ${(props) => (props.registerNewUser ? "##f5f5f5" : "#60b948")};
-  color: #000;
+  color: ${(props) => (props.registerNewUser ? "#000" : "#f1ede0")};
   border: ${(props) => (props.registerNewUser ? "##121212" : "none")};
   border-radius: 10px;
 
