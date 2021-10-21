@@ -1,27 +1,33 @@
 import axios from "axios";
-import { createContext, useState } from "react";
-
+import { createContext, useContext, useEffect, useState } from "react";
+import { UserContext } from "../user"
 export const UserHabitsContext = createContext();
 
 export const UserHabitsProvider = ({ children }) => {
   const [habitsList, setHabitsList] = useState([]);
+  const [notRenderd, setNotRenderd] = useState(false);
+  const { userId } = useContext(UserContext)
+  const token =
+    localStorage.getItem("token") || 
+    "";
 
-  const token = localStorage.getItem("token") || "";
-
-  const getHabits = () => {
+  useEffect(() => {
     axios
       .get("https://kenzie-habits.herokuapp.com/habits/personal/", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NjUxMjQwLCJqdGkiOiIzNTQxMmM0NGM0NjI0ZjZhOTU3NTIzNGJlNzJiMmQ0ZSIsInVzZXJfaWQiOjE5fQ.kFFi1u2rRMG49LUeVOln18ViRtG_XioJKa2-H-ZNi3c` },
       })
       .then((res) => {
-        // console.log(res.data);
+        console.log(res);
         setHabitsList(res.data);
       })
-      .catch((err) => console.log(err));
-  }
-
+      .catch((err) => {
+        console.log(err.messages);
+        setNotRenderd(true);
+      });
+  });
+console.log(notRenderd)
   const createHabit = (newHabit) => {
-    axios.post("https://kenzie-habits.herokuapp.com/habits/", newHabit, {
+    axios.post("https://kenzie-habits.herokuapp.com/habits/", {...newHabit, userId}, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -30,7 +36,7 @@ export const UserHabitsProvider = ({ children }) => {
   };
 
   const updateHabit = (habitId, data) => {
-    axios.patch(`https://kenzie-habits.herokuapp.com/habits/${habitId}`, data, {
+    axios.patch(`https://kenzie-habits.herokuapp.com/habits/${habitId}/`, data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -39,16 +45,17 @@ export const UserHabitsProvider = ({ children }) => {
   };
 
   const deleteHabit = (habitId) => {
-    axios.delete(`https://kenzie-habits.herokuapp.com/habits/${habitId}`, {
+    axios.delete(`https://kenzie-habits.herokuapp.com/habits/${habitId}/`, {
       headers: { Authorization: `Bearer ${token}` },
     });
   };
 
   return (
     <UserHabitsContext.Provider
-      value={{ habitsList, getHabits, createHabit, updateHabit, deleteHabit }}
+      value={{ habitsList, notRenderd, createHabit, updateHabit, deleteHabit }}
     >
       {children}
     </UserHabitsContext.Provider>
   );
 };
+
