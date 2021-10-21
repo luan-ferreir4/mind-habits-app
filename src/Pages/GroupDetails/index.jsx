@@ -50,7 +50,9 @@ const GroupDetails = () => {
           {groupSelected !== undefined && (
             <GroupDetailsContent>
               <h1>Grupo {groupSelected?.name}</h1>
-              <h2>Atividades e metas</h2>
+
+              <span className="subtitle">Atividades e metas</span>
+
               <div>
                 <div className="buttonToggleContainer">
                   <ButtonToggle onClick={handleSelectActivities}>
@@ -60,7 +62,10 @@ const GroupDetails = () => {
                     Ver Metas
                   </ButtonToggle>
                 </div>
-                {/* <CardAbout groupSpecific={groupSelected}></CardAbout> */}
+                <CardAbout
+                  className="mid"
+                  groupSpecific={groupSelected}
+                ></CardAbout>
 
                 <div className="ButtonCreateContainer">
                   {pageSelect === "activity" && (

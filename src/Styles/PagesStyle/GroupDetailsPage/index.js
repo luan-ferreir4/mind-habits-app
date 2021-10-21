@@ -28,11 +28,23 @@ export const ButtonToggle = styled.button`
   font-size: 18px;
   font-family: "Saira", sans-serif;
 
-  cursor: pointer;
-
   @media (min-width: 1024px) {
     margin: 0px 30px;
-    width: 200px;
+    width: 310px;
+    height: 55px;
+
+    cursor: pointer;
+
+    :focus {
+      color: black;
+      border: 2px solid black;
+    }
+    :active {
+      color: black;
+    }
+    :hover {
+      color: black;
+    }
   }
 `;
 
@@ -58,13 +70,18 @@ export const GroupDetailsContent = styled.div`
     font-family: var(--font-type-details);
     font-weight: var(--font-w-thin);
     text-align: center;
+    margin: 0;
+    padding: 0;
   }
-  h2 {
-    font-size: var(--font-size-small);
+  .subtitle {
+    font-size: var(--font-size-standart);
     font-family: var(--font-type-formal);
     font-weight: var(--font-w-thin);
     font-style: italic;
     text-align: center;
+    width: 100%;
+    display: inline-block;
+    margin: 0px 0px 40px 0px;
   }
 
   .buttonToggleContainer {
@@ -80,22 +97,27 @@ export const GroupDetailsContent = styled.div`
   .listContainer {
     display: flex;
     justify-content: center;
+    margin: 20px;
   }
 
   @media (min-width: 1024px) {
     h1 {
-      font-size: var(--font-size-medium);
+      font-size: 50px;
       font-family: var(--font-type-details);
-      font-weight: var(--font-w-thin);
+      font-weight: var(--font-w-normal);
       text-align: center;
-      margin: 40px 0px 0px 0px;
+      margin: 0;
     }
     h2 {
+      margin: 0;
+    }
+    span {
       font-size: var(--font-size-small);
       font-family: var(--font-type-formal);
       font-weight: var(--font-w-thin);
       font-style: italic;
       text-align: center;
+      margin: 0;
     }
 
     .ButtonCreateContainer {
@@ -106,7 +128,7 @@ export const GroupDetailsContent = styled.div`
       display: flex;
       justify-content: left;
 
-      width: 480px;
+      width: 700px;
       padding: 10px;
     }
 
@@ -114,7 +136,7 @@ export const GroupDetailsContent = styled.div`
       display: flex;
       justify-content: right;
 
-      width: 480px;
+      width: 700px;
       padding: 10px;
     }
   }
