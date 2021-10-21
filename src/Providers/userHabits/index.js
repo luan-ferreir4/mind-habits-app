@@ -23,7 +23,7 @@ export const UserHabitsProvider = ({ children }) => {
         console.log(err.messages);
         setNotRenderd(true);
       });
-  },[token]);
+  },[token, habitsList]);
   
 console.log(notRenderd)
   const createHabit = (newHabit) => {
