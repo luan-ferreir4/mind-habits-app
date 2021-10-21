@@ -4,11 +4,14 @@ import { ButtonUpdate } from "../Button-Update";
 import { ButtonRemoveContainer } from "../../Styles/ComponentsStyle/ButtonRemove";
 import { Progress } from "react-sweet-progress";
 import "react-sweet-progress/lib/style.css";
-
+import {
+  Card,
+  CardGroup,
+  ButtonMoreInfo,
+} from "../../Styles/ComponentsStyle/CardRender";
 import { useHistory } from "react-router";
-import { useContext } from "react";
-import { Card, CardGroup } from "../../Styles/ComponentsStyle/CardRender";
 
+import { useContext } from "react";
 import { UserHabitsContext } from "../../Providers/userHabits";
 import { GoalsContext } from "../../Providers/goals";
 import { ActivitiesContext } from "../../Providers/activities";
@@ -21,9 +24,7 @@ const CardRender = ({ listType, item }) => {
   const history = useHistory("");
 
   const handlePushToGroup = () => {
-    localStorage.removeItem("groupToRender" || "");
-    localStorage.setItem("groupToRender", JSON.stringify(item.id));
-    history.push("/groupdetails/");
+    history.push(`/groupdetails/${item.id}`);
   };
 
   const handleRemoveHabit = () => {
@@ -55,17 +56,6 @@ const CardRender = ({ listType, item }) => {
         </Card>
       )}
 
-      {/* {
-  "id": 1724,
-  "title": "Calistenia a tarde (15 minutos)",
-  "category": "Sáude",ya
-  "difficulty": "Muito díficil",
-  "frequency": "Diária",
-  "achieved": false,
-  "how_much_achieved": 30,
-  "user": 657
-} */}
-
       {listType === "group" && (
         <CardGroup className="group">
           <div>
@@ -80,17 +70,6 @@ const CardRender = ({ listType, item }) => {
         </CardGroup>
       )}
 
-      {/* {
-        "id": 11,
-        "name": "GAT - Grupo de apoio ao tabagista",
-        "description": "Grupo de prevenção e encorajamento ao tratamento do tabagismo.",
-        "category": "Saúde",
-        "creator": {
-        "id": 1,
-        "username": "monica",
-        "email": "monica@mail.com"
-    } */}
-
       {listType === "userGroup" && (
         <CardGroup>
           <div>
@@ -99,21 +78,13 @@ const CardRender = ({ listType, item }) => {
             <div>{item.category}</div>
           </div>
           <div className="buttonContainer">
-            <button onClick={handlePushToGroup}>Ver mais</button>
+            <ButtonMoreInfo onClick={handlePushToGroup}>
+              Ver mais
+            </ButtonMoreInfo>
           </div>
         </CardGroup>
       )}
 
-      {/* {
-        "id": 1724,
-        "title": "Calistenia a tarde (15 minutos)",
-        "category": "Sáude",
-        "difficulty": "Muito díficil",
-        "frequency": "Diária",
-        "achieved": false,
-        "how_much_achieved": 30,
-        "user": 657
-        } */}
       {listType === "activity" && (
         <Card>
           <h2>{item.title}</h2>
@@ -124,13 +95,6 @@ const CardRender = ({ listType, item }) => {
           </ButtonRemoveContainer>
         </Card>
       )}
-
-      {/* {
-        "id": 1047,
-        "title": "tiro ao alvo",
-        "realization_time": "2021-03-10T15:00:00Z",
-        "group": 794
-        } */}
 
       {listType === "goal" && (
         <Card>
@@ -147,15 +111,6 @@ const CardRender = ({ listType, item }) => {
           </ButtonRemoveContainer>
         </Card>
       )}
-
-      {/* {
-        "id": 957,
-        "title": "Ler varios livros",
-        "difficulty": "Fácil",
-        "achieved": false,
-        "how_much_achieved": 100,
-        "group": 11
-      } */}
     </>
   );
 };
