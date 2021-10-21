@@ -65,6 +65,7 @@ export const HomePage = styled.div`
   }
 
   .Buttons {
+      z-index: 1;
       button {
           margin: 10px;
       }
