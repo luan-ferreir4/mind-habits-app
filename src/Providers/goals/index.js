@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -6,7 +6,7 @@ export const GoalsContext = createContext();
 
 export const GoalsProvider = ({ children }) => {
   const [goals, setGoals] = useState([]);
-  // const token = localStorage.getItem("token") || "";
+  const [goalsPage, setGoalsPage] = useState(1);
 
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
@@ -17,65 +17,8 @@ export const GoalsProvider = ({ children }) => {
     }
   });
 
-  const [groupIdGoal, setGroupIdGoal] = useState("");
-  const [page, setPage] = useState(1);
-  const [next, setNext] = useState(
-    `https://kenzie-habits.herokuapp.com/goals/?group=${groupIdGoal}&page=${page}`
-  );
-  console.log("next do goal", next);
-  // const getGroupGoals = (group, page) => {
-  //   axios
-  //     .get(
-  //       `https://kenzie-habits.herokuapp.com/goals/?group=${group}&page=${page}`
-  //     )
-  //     .then((response) => setGoals(response.data.results))
-  //     .catch((error) => {
-  //       if (error.response) {
-  //         toast.error(error.response.data.message);
-  //       } else {
-  //         toast.error("Error", error.message);
-  //       }
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   axios
-  //     .get("https://kenzie-habits.herokuapp.com/habits/personal/", {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     })
-  //     .then((res) => {
-  //       setHabitsList(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.messages);
-  //       setNotRenderd(true);
-  //     });
-  // }, [token, habitsList]);
-
-  useEffect(() => {
-    if (next) {
-      axios
-        .get(next)
-        .then((response) => {
-          console.log("response no goals", response.data.results);
-          setGoals([...goals, ...response.data.results]);
-
-          setNext(response.info.next);
-          // setTotalPages(response.info.pages);
-        })
-        .catch((error) => {
-          if (error.response) {
-            toast.error(error.response.data.message);
-          } else {
-            toast.error("Error", error.message);
-          }
-        });
-    }
-  }, [next]);
 
   const createGoal = (newGoal, idGroup) => {
-    console.log("new goal", newGoal);
-
     const { title, difficulty, how_much_achieved } = newGoal;
 
     axios
@@ -113,7 +56,6 @@ export const GoalsProvider = ({ children }) => {
       })
       .then((response) => {
         toast.success("Meta excluida com sucesso.");
-        console.log(response);
       })
       .catch((error) => {
         if (error.response) {
@@ -131,7 +73,6 @@ export const GoalsProvider = ({ children }) => {
       })
       .then((response) => {
         toast.success("Meta alterada com sucesso.");
-        console.log(response);
       })
       .catch((error) => {
         if (error.response) {
@@ -146,11 +87,12 @@ export const GoalsProvider = ({ children }) => {
     <GoalsContext.Provider
       value={{
         goals,
-        // getGroupGoals,
+        setGoals,
+        goalsPage,
+        setGoalsPage,
         createGoal,
         deleteGoal,
         updateGoal,
-        setGroupIdGoal,
       }}
     >
       {children}
