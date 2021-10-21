@@ -16,6 +16,10 @@ export const CardContainer = styled.div`
 
   font-size: 22px;
   font-family: var(--font-type-details);
+  position: absolute;
+  right: 50%;
+  top: 30%;
+  transform: translateX(50%);
 
   p {
     padding-left: 15px;
