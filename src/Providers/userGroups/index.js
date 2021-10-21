@@ -14,10 +14,11 @@ export const UserGroupsProvider = ({ children }) => {
     axios
       .get("https://kenzie-habits.herokuapp.com/groups/subscriptions/", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${JSON.parse(token)}`,
         },
       })
       .then((response) => {
+        console.log(response);
         setUserGroups(response.data);
       })
       .catch((error) => {
@@ -33,7 +34,7 @@ export const UserGroupsProvider = ({ children }) => {
         `https://kenzie-habits.herokuapp.com/groups/${groupId}/unsubscribe/`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${JSON.parse(token)}`,
           },
         }
       )
@@ -55,7 +56,7 @@ export const UserGroupsProvider = ({ children }) => {
         null,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${JSON.parse(token)}`,
           },
         }
       )
@@ -79,7 +80,7 @@ export const UserGroupsProvider = ({ children }) => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${JSON.parse(token)}`,
           },
         }
       )

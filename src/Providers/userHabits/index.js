@@ -13,7 +13,7 @@ export const UserHabitsProvider = ({ children }) => {
   useEffect(() => {
     axios
       .get("https://kenzie-habits.herokuapp.com/habits/personal/", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${JSON.parse(token)}` },
       })
       .then((res) => {
         console.log(res);
@@ -30,7 +30,7 @@ console.log(notRenderd)
     axios.post("https://kenzie-habits.herokuapp.com/habits/", {...newHabit, user: userId}, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${JSON.parse(token)}`,
       },
     });
   };
@@ -39,7 +39,7 @@ console.log(notRenderd)
     axios.patch(`https://kenzie-habits.herokuapp.com/habits/${habitId}/`, data, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${JSON.parse(token)}`,
       },
     });
   };

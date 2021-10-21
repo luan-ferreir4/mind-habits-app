@@ -28,7 +28,7 @@ export const GoalsProvider = ({ children }) => {
       .post("https://kenzie-habits.herokuapp.com/goals/", newGoal, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${JSON.parse(token)}`,
         },
       })
       .then((response) => {
@@ -46,7 +46,7 @@ export const GoalsProvider = ({ children }) => {
   const deleteGoal = (goalId) => {
     axios
       .delete(`https://kenzie-habits.herokuapp.com/goals/${goalId}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${JSON.parse(token)}` },
       })
       .then((response) => {
         toast.success("Meta excluida com sucesso.");
@@ -64,7 +64,7 @@ export const GoalsProvider = ({ children }) => {
   const updateGoal = (goalId, body) => {
     axios
       .patch(`https://kenzie-habits.herokuapp.com/goals/${goalId}`, body, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${JSON.parse(token)}` },
       })
       .then((response) => {
         toast.success("Meta alterada com sucesso.");

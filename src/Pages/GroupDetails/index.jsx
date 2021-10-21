@@ -12,20 +12,23 @@ import {
   TopContainer,
 } from "../../Styles/PagesStyle/GroupDetailsPage";
 
+import { useParams } from "react-router";
+
 const GroupDetails = () => {
-  const groupId = localStorage.getItem("groupToRender") || "";
+  const params = useParams();
   const { getASpecificGroup, groupSelected } = useContext(
     GroupsCommunityContext
   );
+  const { auth, handleLogin } = useContext(LoginContext);
   const [pageSelect, setPageSelect] = useState({});
   useState(() => {
-    getASpecificGroup(groupId);
+    getASpecificGroup(params.id);
   }, []);
 
   const handleSelectGoals = () => {
     setPageSelect("goal");
   };
-  const { auth, handleLogin } = useContext(LoginContext);
+
   const handleSelectActivities = () => {
     setPageSelect("activity");
   };
@@ -67,7 +70,7 @@ const GroupDetails = () => {
           {pageSelect === "activity" &&
             groupSelected.activities.map((item) => (
               <CardRender
-                listType="activitie"
+                listType="activity"
                 item={item}
                 key={item.id}
               ></CardRender>
