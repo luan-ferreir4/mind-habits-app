@@ -9,7 +9,7 @@ export const SideDock = () => {
         <img src="images/avatar.png" alt="Avatar" />
         <div>Username</div>
         <button onClick={() => history.push("/")}>Dashboard</button>
-        <button onClick={() => history.push("/habits")}>Meus Hábitos</button>
+        <button onClick={() => history.push("/userhabits")}>Meus Hábitos</button>
         <button onClick={() => history.push("/usergroups")}>Meus Grupos</button>
         <button onClick={() => history.push("/groups")}>Grupos</button>
       </SideDockStyled>
