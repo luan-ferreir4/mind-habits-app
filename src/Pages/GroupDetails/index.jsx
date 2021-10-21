@@ -19,6 +19,7 @@ const GroupDetails = () => {
   const { getASpecificGroup, groupSelected } = useContext(
     GroupsCommunityContext
   );
+  const { auth, handleLogin } = useContext(LoginContext);
   const [pageSelect, setPageSelect] = useState({});
   useState(() => {
     getASpecificGroup(params.id);
@@ -27,7 +28,7 @@ const GroupDetails = () => {
   const handleSelectGoals = () => {
     setPageSelect("goal");
   };
-  const { auth, handleLogin } = useContext(LoginContext);
+
   const handleSelectActivities = () => {
     setPageSelect("activity");
   };
@@ -69,7 +70,7 @@ const GroupDetails = () => {
           {pageSelect === "activity" &&
             groupSelected.activities.map((item) => (
               <CardRender
-                listType="activitie"
+                listType="activity"
                 item={item}
                 key={item.id}
               ></CardRender>

@@ -5,12 +5,14 @@ import {
 } from "../../Styles/PagesStyle/HomePage";
 import { ButtonForm } from "../../Components/ButtonForm";
 import { useHistory } from "react-router";
+import { NavBar } from "../../Components/NavBar";
 
 const Home = () => {
   const history = useHistory();
 
   return (
     <HomePage>
+      <NavBar />
       <div className="Logo">
         <img src="images/Logo-verde1.png" alt="Logo" />
       </div>
