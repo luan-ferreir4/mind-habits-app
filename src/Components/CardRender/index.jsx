@@ -1,18 +1,22 @@
-/* import ButtonRemove from "../Button-Remove";
-import ButtonUpdate from "../Button-Update";
-import ButtonAbout from "../ButtonAbout"; */
-
 import { ButtonSubscribe } from "../ButtonSubscribe";
 import { ButtonAbout } from "../ButtonAbout";
-
+import { ButtonUpdate } from "../Button-Update";
+import { ButtonRemoveContainer } from "../../Styles/ComponentsStyle/ButtonRemove";
 import { Progress } from "react-sweet-progress";
 import "react-sweet-progress/lib/style.css";
 
 import { useHistory } from "react-router";
+import { useContext } from "react";
 import { Card, CardGroup } from "../../Styles/ComponentsStyle/CardRender";
 
+import { UserHabitsContext } from "../../Providers/userHabits";
+import { GoalsContext } from "../../Providers/goals";
+import { ActivitiesContext } from "../../Providers/activities";
+
 const CardRender = ({ listType, item }) => {
-  /*   const { deleteHabit } = useContext(UserHabitsContext); */
+  const { deleteHabit } = useContext(UserHabitsContext);
+  const { deleteGoal } = useContext(GoalsContext);
+  const { deleteActivity } = useContext(ActivitiesContext);
 
   const history = useHistory("");
 
@@ -21,6 +25,14 @@ const CardRender = ({ listType, item }) => {
     localStorage.setItem("groupToRender", JSON.stringify(item.id));
     history.push("/groupdetails/");
   };
+
+  const handleRemoveHabit = () => {
+    deleteHabit(item.id);
+  };
+  const handleRemoveGoal = () => {
+    deleteGoal(item.id);
+  };
+  const handleRemoveAtivity = () => {};
 
   return (
     <>
@@ -35,7 +47,9 @@ const CardRender = ({ listType, item }) => {
             <Progress percent={item.how_much_achieved} status="success" />
           </div>
           <div>Alcançado</div>
-          <button>remove</button>
+          <ButtonRemoveContainer onClick={handleRemoveHabit}>
+            remove
+          </ButtonRemoveContainer>
         </Card>
       )}
 
@@ -75,7 +89,7 @@ const CardRender = ({ listType, item }) => {
         "email": "monica@mail.com"
     } */}
 
-      {listType === "mygroup" && (
+      {listType === "userGroup" && (
         <CardGroup>
           <div>
             <div>Título: {item.name}</div>
@@ -98,12 +112,14 @@ const CardRender = ({ listType, item }) => {
         "how_much_achieved": 30,
         "user": 657
         } */}
-      {listType === "activitie" && (
+      {listType === "activity" && (
         <Card>
           <h2>{item.title}</h2>
           <div>Data: {item.realization_time}</div>
-          <button>Atualizar</button>
-          <button>Excluir</button>
+          <ButtonUpdate>Atualizar</ButtonUpdate>
+          <ButtonRemoveContainer onClick={handleRemoveAtivity}>
+            Excluir
+          </ButtonRemoveContainer>
         </Card>
       )}
 
@@ -124,7 +140,9 @@ const CardRender = ({ listType, item }) => {
           </div>
 
           <div>Alcançado:</div>
-          <button>Excluir</button>
+          <ButtonRemoveContainer onClick={handleRemoveGoal}>
+            Excluir
+          </ButtonRemoveContainer>
         </Card>
       )}
 
