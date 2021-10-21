@@ -8,9 +8,8 @@ export const SideDockStyled = styled.div`
   background-color: var(--green-pallet-four);
   color: #000;
 
-  height: 100%;
+  height: 598px;
   width: auto;
-
   font-family: var(--font-type-formal);
 
   img {
@@ -41,6 +40,7 @@ export const SideDockStyled = styled.div`
   }
 
   @media (min-width: 1024px) {
+    height: 100%;
     width: 23vw;
     button {
       width: 56%;

@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
-export const DashboardPage = styled.body`
+export const DashboardPage = styled.div`
   height: 100vh;
 `;
 
-export const DashboardMain = styled.main`
+export const DashboardMain = styled.div`
   height: 91.2%;
-
   @media (min-width: 1024px) {
     display: flex;
     align-items: center;
@@ -14,26 +13,43 @@ export const DashboardMain = styled.main`
   }
 `;
 
-export const DashboardContent = styled.section`
-  display: none;
+export const DashboardContent = styled.div`
+  padding: 20px;
+  h1 {
+    font-size: var(--font-size-medium);
+    font-family: var(--font-type-details);
+    text-align: center;
+
+    span {
+      color: var(--font-primary-light);
+      font-weight: var(--font-w-thin);
+    }
+  }
+  .cardDescpt {
+      max-width: 400px;
+      margin: 10px auto 0;
+      font-family: var(--font-type-formal);
+    }
+
+    .card--right {
+      text-align: right;
+    }
+
+
   @media (min-width: 1024px) {
     position: relative;
     display: block;
     flex-grow: 1;
     height: 100%;
+    width: 76vw;
     max-width: 1100px;
+    padding: 0;
+    
     h1 {
       position: absolute;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      font-size: var(--font-size-large);
-      font-family: var(--font-type-details);
-      text-align: center;
-      span {
-        color: var(--font-primary-light);
-        font-weight: var(--font-w-thin);
-      }
     }
 
     .cardDescpt {
@@ -55,7 +71,7 @@ export const DashboardContent = styled.section`
 
     .Card2 {
       position: absolute;
-      right: 6%;
+      right: 4%;
       bottom: 2%;
       width: 368px;
     }
