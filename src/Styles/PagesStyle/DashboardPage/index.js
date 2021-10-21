@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DashboardPage = styled.div`
-  height: 100vh;
+  height: 90vh;
 `;
 
 export const DashboardMain = styled.div`
@@ -9,7 +9,7 @@ export const DashboardMain = styled.div`
   @media (min-width: 1024px) {
     display: flex;
     align-items: center;
-    height: 90%;
+    height: 100%;
   }
 `;
 
@@ -41,13 +41,13 @@ export const DashboardContent = styled.div`
     display: block;
     flex-grow: 1;
     height: 100%;
-    width: 76vw;
+    width: 75vw;
     max-width: 1100px;
     padding: 0;
     
     h1 {
       position: absolute;
-      top: 0;
+      top: 1%;
       left: 50%;
       transform: translateX(-50%);
     }
