@@ -21,17 +21,13 @@ justify-content: center;
   }
   
   p {
-    text-align: left;
-    /* margin-top: 8px; */
-  
+      text-align: center;
+      font-size: var(--font-size-standart);
   }
 
   @media (min-width: 1024px) {
     width: 360px;
     height: 190px;
-    p {
-      text-align: center;
-      font-size: var(--font-size-standart);
-    }
+    
   }
 `;
