@@ -8,10 +8,10 @@ export const SideDock = () => {
       <SideDockStyled className="Menu">
         <img src="images/avatar.png" alt="Avatar" />
         <div>Username</div>
-        <button onClick={() => history.push("/")}>Dashboard</button>
-        <button onClick={() => history.push("/habits")}>Meus Hábitos</button>
+        <button onClick={() => history.push("/dashboard")}>Dashboard</button>
+        <button onClick={() => history.push("/userhabits")}>Meus Hábitos</button>
         <button onClick={() => history.push("/usergroups")}>Meus Grupos</button>
-        <button onClick={() => history.push("/groups")}>Grupos</button>
+        <button onClick={() => history.push("/groupscommunity")}>Grupos</button>
       </SideDockStyled>
     </>
   );
