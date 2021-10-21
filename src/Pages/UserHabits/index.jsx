@@ -1,29 +1,36 @@
-import { useContext } from "react";
+import { UserHabitsPage, HabitsContent, HabitsListContainer } from "../../Styles/PagesStyle/UserHabitsPages";
+
 import { NavBar } from "../../Components/NavBar";
+import { ButtonCreate } from "../../Components/Button-Create";
 import { SideDock } from "../../Components/SideDock";
+
 import { UserHabitsContext } from "../../Providers/userHabits";
+import { useContext } from "react";
 
 const UserHabits = () => {
   const { habitsList } = useContext(UserHabitsContext);
-  console.log(habitsList);
+
   return (
-    <div>
+    <>
       <NavBar typeNav="logged" />
-      <div>
-        <SideDock />
-        <div>
-            <SideDock/>
-            <div>
-                <h1>Meus Hábitos</h1>
-                <div>
-                  {
-                    habitsList.map(item=><p>{item.title}</p>)
-                  }
-                </div>
-            </div>
+
+      <UserHabitsPage>
+
+        <div className="sideDock">
+          <SideDock />
         </div>
-      </div>
-    </div>
+
+        <HabitsContent>
+          <h1>Meus Hábitos</h1>
+            <ButtonCreate listType="habit" />
+          <HabitsListContainer>
+            {habitsList.map((item) => (
+              <p>{item.title}</p>
+            ))}
+          </HabitsListContainer>
+        </HabitsContent>
+      </UserHabitsPage>
+    </>
   );
 };
 
