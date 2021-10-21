@@ -12,14 +12,16 @@ import {
   TopContainer,
 } from "../../Styles/PagesStyle/GroupDetailsPage";
 
+import { useParams } from "react-router";
+
 const GroupDetails = () => {
-  const groupId = localStorage.getItem("groupToRender") || "";
+  const params = useParams();
   const { getASpecificGroup, groupSelected } = useContext(
     GroupsCommunityContext
   );
   const [pageSelect, setPageSelect] = useState({});
   useState(() => {
-    getASpecificGroup(groupId);
+    getASpecificGroup(params.id);
   }, []);
 
   const handleSelectGoals = () => {
