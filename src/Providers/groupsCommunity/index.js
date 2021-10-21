@@ -74,9 +74,9 @@ export const GroupsCommunityProvider = ({ children }) => {
       });
   };
 
-  /*   useEffect(() => {
+  useEffect(() => {
     getGroups();
-  }, []); */
+  }, []);
 
   return (
     <GroupsCommunityContext.Provider
