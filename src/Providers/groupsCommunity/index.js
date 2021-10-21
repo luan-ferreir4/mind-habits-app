@@ -6,6 +6,7 @@ export const GroupsCommunityContext = createContext([]);
 
 export const GroupsCommunityProvider = ({ children }) => {
   const [communityGroups, setCommunityGroups] = useState([]);
+  const [groupSelected, setGroupSelected] = useState();
 
   const token = localStorage.getItem("token") || "";
 
@@ -60,7 +61,9 @@ export const GroupsCommunityProvider = ({ children }) => {
   const getASpecificGroup = (groupId) => {
     axios
       .get(`https://kenzie-habits.herokuapp.com/groups/${groupId}/`)
-      .then((response) => console.log(response.data))
+      .then((response) => {
+        setGroupSelected(response.data);
+      })
       .catch((error) => {
         if (error.response) {
           toast.error(error.response.data.message);
@@ -71,9 +74,9 @@ export const GroupsCommunityProvider = ({ children }) => {
       });
   };
 
-  useEffect(() => {
+  /*   useEffect(() => {
     getGroups();
-  }, []);
+  }, []); */
 
   return (
     <GroupsCommunityContext.Provider
@@ -82,6 +85,7 @@ export const GroupsCommunityProvider = ({ children }) => {
         createGroup,
         getGroups,
         getASpecificGroup,
+        groupSelected,
       }}
     >
       {children}

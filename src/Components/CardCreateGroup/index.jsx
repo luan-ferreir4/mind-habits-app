@@ -9,7 +9,7 @@ import { InputSelector } from "../inputSelector";
 import { CardCreateContainer } from "../../Styles/ComponentsStyle/CardCreate";
 import { ButtonSubmitContainer } from "../../Styles/ComponentsStyle/ButtonSubmit";
 
-export const CardCreateGroup = () => {
+export const CardCreateGroup = ({ handleClose }) => {
   const { createGroup } = useContext(GroupsCommunityContext);
 
   const schema = yup.object().shape({
@@ -32,6 +32,7 @@ export const CardCreateGroup = () => {
 
   const sendToCreateGroup = (data) => {
     createGroup(data);
+    handleClose();
   };
 
   return (

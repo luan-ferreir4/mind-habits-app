@@ -18,7 +18,7 @@ export const UserHabitsProvider = ({ children }) => {
         setHabitsList(res.data);
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   const createHabit = (newHabit) => {
     axios.post("https://kenzie-habits.herokuapp.com/habits/", newHabit, {
