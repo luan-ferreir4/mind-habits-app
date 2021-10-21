@@ -2,6 +2,8 @@ import {
   GComPage,
   GComMain,
   GComContent,
+  ButtonPageOne,
+  ButtonPageTwo,
 } from "../../Styles/PagesStyle/GroupsComunnityPage";
 
 import { NavBar } from "../../Components/NavBar";
@@ -12,7 +14,9 @@ import { useContext } from "react";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 
 const GroupsCommunity = () => {
-  const { communityGroups } = useContext(GroupsCommunityContext);
+  const { communityGroups, GoToNextPage, GoToPreviewPage } = useContext(
+    GroupsCommunityContext
+  );
 
   return (
     <>
@@ -29,6 +33,15 @@ const GroupsCommunity = () => {
               {communityGroups.map((item) => (
                 <CardRender listType={"group"} item={item} />
               ))}
+            </div>
+            <div className="divButtons">
+              <ButtonPageOne onClick={() => GoToPreviewPage()}>
+                Página anterior
+              </ButtonPageOne>
+              <br />
+              <ButtonPageTwo onClick={() => GoToNextPage()}>
+                Próxima página
+              </ButtonPageTwo>
             </div>
           </GComContent>
         </GComMain>

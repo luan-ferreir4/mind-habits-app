@@ -26,7 +26,7 @@ flex-direction: column; */
     flex-direction: column;
     flex-wrap: wrap;
     text-align: left;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     margin: 100px 10px 0px;
     position: relative;
     padding-top: 10px;
@@ -39,7 +39,7 @@ flex-direction: column; */
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: flex-start;
-      border: 1px solid red;
+      /* border: 1px solid red; */
     }
 
     .frequencia {
@@ -47,7 +47,7 @@ flex-direction: column; */
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: flex-start;
-      border: 1px solid red;
+      /* border: 1px solid red; */
     }
 
     button {
