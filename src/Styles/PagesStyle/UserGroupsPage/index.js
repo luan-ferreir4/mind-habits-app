@@ -1,29 +1,23 @@
 import styled from "styled-components";
 
-export const UserGroupsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+export const UserGroupsPage = styled.div`
+  height: 100vh;
+  background-color: #f5f5f5;
+  width: 100vw;
+`;
 
-  background-color: var(--green-pallet-four);
-  color: #000;
-
+export const UserGroupsMain = styled.div`
+  height: 91.2%;
   @media (min-width: 1024px) {
-    flex-direction: row;
-    align-items: start;
+    display: flex;
+    align-items: center;
+    height: 100%;
   }
 `;
 
-export const MainContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-start: start;
-
-  height: auto;
-  width: 75vw;
-
-  background-color: #f5f5f5;
-  color: #000;
+export const UserGroupsContent = styled.div`
+  padding: 20px;
+  background-color: #e9f5db;
 
   h3 {
     font-family: var(--font-type-details: "Saira");
@@ -33,16 +27,15 @@ export const MainContent = styled.div`
     text-align: center;
   }
 
-  .CardMyGroup {
-    background-color: #84c67c;
-    border-radius: 30px;
-    margin: 10px;
-    padding: 35px;
-    padding-left: 35px;
-  }
-
-  .CardMyGroup:hover {
-      cursor: pointer;
-      background-color: #60B948;
+  @media (min-width: 1024px) {
+    position: relative;
+    display: block;
+    flex-grow: 1;
+    height: 80vh;
+    width: 100vw;
+    max-width: 1100px;
+    padding: 0;
+    margin: 0 auto;
+    background-color: #f5f5f5;
   }
 `;
