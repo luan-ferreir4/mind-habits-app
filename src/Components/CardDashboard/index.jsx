@@ -9,7 +9,7 @@ export const CardDashboard = ({ listType }) => {
   const [listQuantity, setListQuantity] = useState(0);
 
   const { habitsList } = useContext(UserHabitsContext);
-  
+
   const { userGroups } = useContext(UserGroupsContext);
 
   console.log(habitsList);
@@ -19,8 +19,7 @@ export const CardDashboard = ({ listType }) => {
     if (listType === "habit") {
       setContent("Habitos");
       setListQuantity(habitsList.length);
-    } 
-    else if (listType === "group") {
+    } else if (listType === "group") {
       setContent("Grupos");
       setListQuantity(userGroups.length);
     }

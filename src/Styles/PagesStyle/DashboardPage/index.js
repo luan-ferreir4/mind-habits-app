@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const DashboardPage = styled.div`
-  height: 90vh;
+  height: 100vh;
+  background-color: #f5f5f5;
+  width: 100vw;
 `;
 
 export const DashboardMain = styled.div`
@@ -15,6 +17,9 @@ export const DashboardMain = styled.div`
 
 export const DashboardContent = styled.div`
   padding: 20px;
+  background-color: #e9f5db;
+  /* border: 1px solid red; */
+
   h1 {
     font-size: var(--font-size-medium);
     font-family: var(--font-type-details);
@@ -26,28 +31,29 @@ export const DashboardContent = styled.div`
     }
   }
   .cardDescpt {
-      max-width: 400px;
-      margin: 10px auto 0;
-      font-family: var(--font-type-formal);
-    }
+    max-width: 400px;
+    margin: 10px auto 0;
+    font-family: var(--font-type-formal);
+  }
 
-    .card--right {
-      text-align: right;
-    }
-
+  .card--right {
+    text-align: right;
+  }
 
   @media (min-width: 1024px) {
     position: relative;
     display: block;
     flex-grow: 1;
-    height: 100%;
-    width: 75vw;
+    height: 80vh;
+    width: 100vw;
     max-width: 1100px;
     padding: 0;
-    
+    margin: 0 auto;
+    background-color: #f5f5f5;
+
     h1 {
       position: absolute;
-      top: 1%;
+      top: -40px;
       left: 50%;
       transform: translateX(-50%);
     }
@@ -56,6 +62,8 @@ export const DashboardContent = styled.div`
       max-width: 400px;
       margin: 10px 0 0;
       font-family: var(--font-type-formal);
+      font-size: 19px;
+      font-style: italic;
     }
 
     .card--right {
