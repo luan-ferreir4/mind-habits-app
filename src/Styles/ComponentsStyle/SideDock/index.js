@@ -14,7 +14,8 @@ export const SideDockStyled = styled.div`
 
   img {
     margin-top: 45px;
-    height: auto;
+    height: 175px;
+    width 175px;
   }
 
   button {
@@ -48,6 +49,10 @@ export const SideDockStyled = styled.div`
       width: 200px;
       height: 46px;
       font-size: var(--font-size-small);
+    }
+
+    img {
+      margin-top: 45px;
     }
   }
 `;
