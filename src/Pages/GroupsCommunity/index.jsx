@@ -12,11 +12,20 @@ import { SideDock } from "../../Components/SideDock";
 import CardRender from "../../Components/CardRender";
 import { useContext } from "react";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
+import { LoginContext } from "../../Providers/login";
+import { Redirect } from "react-router";
 
 const GroupsCommunity = () => {
   const { communityGroups, GoToNextPage, GoToPreviewPage } = useContext(
     GroupsCommunityContext
   );
+
+  const { auth } = useContext(LoginContext);
+
+  if (!auth) {
+    return <Redirect to="/login" />;
+  }
+
 
   return (
     <>

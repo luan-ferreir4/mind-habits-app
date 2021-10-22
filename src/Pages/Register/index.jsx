@@ -8,9 +8,10 @@ import { FiUser, FiMail, FiLock } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import { useContext } from "react";
 import { RegisterContext } from "../../Providers/register";
+import { LoginContext } from "../../Providers/login";
 import { InputForm } from "../../Components/InputForm";
 import { NavBar } from "../../Components/NavBar";
 import { ButtonForm } from "../../Components/ButtonForm";
@@ -48,6 +49,12 @@ const RegisterPage = () => {
     // console.log(data);
     handleRegister(data, history);
   };
+
+  const { auth } = useContext(LoginContext);
+
+  if (auth) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <>

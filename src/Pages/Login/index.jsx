@@ -38,10 +38,9 @@ const LoginPage = () => {
     handleLogin(data, history);
   };
 
-  //usuário vai direto pra página dele quando já está logado. Descomentar depois quando implementarmos seguranças das rotas.
-  // if (auth) {
-  //   return <Redirect to="/dashboard" />;
-  // }
+  if (auth) {
+     return <Redirect to="/dashboard" />;
+  }
 
   return (
     <>
