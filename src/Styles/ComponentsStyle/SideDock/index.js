@@ -5,16 +5,16 @@ export const SideDockStyled = styled.div`
   flex-direction: column;
   align-items: center;
 
+  padding: 30px 0 ;
+
   background-color: #f5f5f5;
   color: #000;
 
-  height: 598px;
   width: auto;
   font-family: var(--font-type-formal);
 
   img {
-    margin-top: 45px;
-    height: auto;
+    width: 100px;
   }
 
   button {
@@ -26,7 +26,7 @@ export const SideDockStyled = styled.div`
     color: #ffff;
     border: none;
     border-radius: 10px;
-    margin-top: 25px;
+    margin-top: 15px;
     padding: 5px;
     cursor: pointer;
   }
@@ -42,12 +42,19 @@ export const SideDockStyled = styled.div`
 
   @media (min-width: 1024px) {
     background-color: var(--green-pallet-four);
-    height: 100%;
+    height: 93vh;
     width: 23vw;
+    padding-top: 100px;
+
+    img{
+      width: 180px;
+    }
+
     button {
-      width: 200px;
+      width: 70%;
       height: 46px;
-      font-size: var(--font-size-small);
+      margin-top: 25px;
+      font-size: var(--font-size-standart);
     }
   }
 `;
