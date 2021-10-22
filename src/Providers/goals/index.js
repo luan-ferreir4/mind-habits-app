@@ -6,31 +6,37 @@ export const GoalsContext = createContext();
 
 export const GoalsProvider = ({ children }) => {
   const [goals, setGoals] = useState([]);
-  const token = localStorage.getItem("token") || "";
+  const [goalsPage, setGoalsPage] = useState(1);
 
-  const getGroupGoals = (group, page) => {
-    axios
-      .get(
-        `https://kenzie-habits.herokuapp.com/goals/?group=${group}&page=${page}`
-      )
-      .then((response) => setGoals(response.data.results))
-      .catch((error) => {
-        if (error.response) {
-          toast.error(error.response.data.message);
-        } else {
-          toast.error("Error", error.message);
-        }
-      });
-  };
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (localToken !== "") {
+      return JSON.parse(localToken);
+    } else {
+      return localToken;
+    }
+  });
 
-  const createGoal = (newGoal) => {
+
+  const createGoal = (newGoal, idGroup) => {
+    const { title, difficulty, how_much_achieved } = newGoal;
+
     axios
-      .post("https://kenzie-habits.herokuapp.com/goals/", newGoal, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${JSON.parse(token)}`,
+      .post(
+        "https://kenzie-habits.herokuapp.com/goals/",
+        {
+          title: title,
+          difficulty: difficulty,
+          how_much_achieved: how_much_achieved,
+          group: idGroup,
         },
-      })
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
         toast.success("Meta criada com sucesso.");
       })
@@ -45,12 +51,11 @@ export const GoalsProvider = ({ children }) => {
 
   const deleteGoal = (goalId) => {
     axios
-      .delete(`https://kenzie-habits.herokuapp.com/goals/${goalId}`, {
-        headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+      .delete(`https://kenzie-habits.herokuapp.com/goals/${goalId}/`, {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         toast.success("Meta excluida com sucesso.");
-        console.log(response);
       })
       .catch((error) => {
         if (error.response) {
@@ -64,11 +69,10 @@ export const GoalsProvider = ({ children }) => {
   const updateGoal = (goalId, body) => {
     axios
       .patch(`https://kenzie-habits.herokuapp.com/goals/${goalId}`, body, {
-        headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         toast.success("Meta alterada com sucesso.");
-        console.log(response);
       })
       .catch((error) => {
         if (error.response) {
@@ -83,7 +87,9 @@ export const GoalsProvider = ({ children }) => {
     <GoalsContext.Provider
       value={{
         goals,
-        getGroupGoals,
+        setGoals,
+        goalsPage,
+        setGoalsPage,
         createGoal,
         deleteGoal,
         updateGoal,

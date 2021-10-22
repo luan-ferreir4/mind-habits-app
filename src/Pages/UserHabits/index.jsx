@@ -33,7 +33,7 @@ const UserHabits = () => {
             ) : (
               <>
                 {habitsList.map((habit, index) => (
-                  <CardRender listType="habit" item={habit} key={index}/>
+                  <CardRender listType="habit" item={habit} key={index} />
                 ))}
               </>
             )}

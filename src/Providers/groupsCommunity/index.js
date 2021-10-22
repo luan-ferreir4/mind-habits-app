@@ -8,7 +8,16 @@ export const GroupsCommunityProvider = ({ children }) => {
   const [communityGroups, setCommunityGroups] = useState([]);
   const [groupSelected, setGroupSelected] = useState();
 
-  const token = localStorage.getItem("token") || "";
+  // const token = localStorage.getItem("token") || "";
+
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (localToken !== "") {
+      return JSON.parse(localToken);
+    } else {
+      return localToken;
+    }
+  });
 
   /** createGroup({
         "name": "Grupo novo 2",
@@ -38,15 +47,22 @@ export const GroupsCommunityProvider = ({ children }) => {
       });
   };
 
+  const [goToPage, setGoToPage] = useState(1);
+  const [isThereNext, setIsThereNext] = useState(null);
+
   const getGroups = (categoryName) => {
     const newCategoryName = categoryName === undefined ? "" : categoryName;
     axios
-      .get("https://kenzie-habits.herokuapp.com/groups/", {
-        params: { category: `${newCategoryName}` },
-      })
+      .get(
+        `https://kenzie-habits.herokuapp.com/groups/?page=${goToPage}&category`,
+        {
+          params: { category: `${newCategoryName}` },
+        }
+      )
       .then((response) => {
         console.log(response.data.results);
         setCommunityGroups(response.data.results);
+        setIsThereNext(response.data.next);
       })
       .catch((error) => {
         if (error.response) {
@@ -56,6 +72,16 @@ export const GroupsCommunityProvider = ({ children }) => {
           toast.error("Error", error.message);
         }
       });
+  };
+  const GoToNextPage = () => {
+    if (isThereNext !== null) {
+      setGoToPage(goToPage + 1);
+    }
+  };
+  const GoToPreviewPage = () => {
+    if (goToPage > 1) {
+      setGoToPage(goToPage - 1);
+    }
   };
 
   const getASpecificGroup = (groupId) => {
@@ -74,9 +100,9 @@ export const GroupsCommunityProvider = ({ children }) => {
       });
   };
 
-  /*   useEffect(() => {
+  useEffect(() => {
     getGroups();
-  }, []); */
+  }, [goToPage]);
 
   return (
     <GroupsCommunityContext.Provider
@@ -86,6 +112,8 @@ export const GroupsCommunityProvider = ({ children }) => {
         getGroups,
         getASpecificGroup,
         groupSelected,
+        GoToNextPage,
+        GoToPreviewPage,
       }}
     >
       {children}

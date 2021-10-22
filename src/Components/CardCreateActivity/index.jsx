@@ -8,7 +8,7 @@ import { Input } from "../../Components/Input";
 import { CardCreateContainer } from "../../Styles/ComponentsStyle/CardCreate";
 import { ButtonSubmitContainer } from "../../Styles/ComponentsStyle/ButtonSubmit";
 
-export const CardCreateActivity = ({ handleClose }) => {
+export const CardCreateActivity = ({ handleClose, idGroup }) => {
   const { createActivity } = useContext(ActivitiesContext);
 
   const schema = yup.object().shape({
@@ -26,7 +26,8 @@ export const CardCreateActivity = ({ handleClose }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const sendToCreateActivity = (data) => {
-    createActivity(data);
+    console.log("data no card create", data);
+    createActivity(data, idGroup);
     handleClose();
   };
 
