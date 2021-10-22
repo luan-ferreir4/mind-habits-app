@@ -1,14 +1,16 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { UserContext } from "../user";
+import toast from "react-hot-toast";
+
 export const UserHabitsContext = createContext();
 
 export const UserHabitsProvider = ({ children }) => {
   const [habitsList, setHabitsList] = useState([]);
   const [notRenderd, setNotRenderd] = useState(false);
+ 
   const { userId } = useContext(UserContext);
 
-  // const token = localStorage.getItem("token") || "";
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (localToken !== "") {
@@ -32,10 +34,8 @@ export const UserHabitsProvider = ({ children }) => {
       });
   }, [token, habitsList]);
 
-  // console.log(notRenderd);
 
   const createHabit = (newHabit) => {
-    console.log("newHabit", newHabit);
     const { title, category, difficulty, frequencyPartOne, frequencyPartTwo } =
       newHabit;
 
@@ -56,31 +56,54 @@ export const UserHabitsProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       }
-    );
+    ).then(res=>{
+      toast.success("Hábito criado")
+    }).catch(err=>{
+      if (err.response) {
+        toast.error(
+          `Goals: ${err.response.status} ${err.response.statusText}`
+        );
+      } else {
+        toast.error("Error", err.message);
+      }
+    });
   };
 
-  const updateHabit = (habitId, data) => {
+  const updateHabit = (habitId, progress, isAchieved) => {
     axios.patch(
       `https://kenzie-habits.herokuapp.com/habits/${habitId}/`,
-      data,
+      { how_much_achieved: progress, achieved: isAchieved },
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${JSON.parse(token)}`,
+          Authorization: `Bearer ${token}`,
         },
       }
-    );
+    ).then(toast.success("Hábito atualizado")).catch(err=>{
+      if (err.response) {
+        toast.error(
+          `Goals: ${err.response.status} ${err.response.statusText}`
+        );
+      } else {
+        toast.error("Error", err.message);
+      }});
   };
 
   const deleteHabit = (habitId) => {
     axios.delete(`https://kenzie-habits.herokuapp.com/habits/${habitId}/`, {
       headers: { Authorization: `Bearer ${token}` },
-    });
+    }).then(toast.success("Hábito deletado"));
   };
 
   return (
     <UserHabitsContext.Provider
-      value={{ habitsList, notRenderd, createHabit, updateHabit, deleteHabit }}
+      value={{
+        habitsList,
+        notRenderd,
+        createHabit,
+        updateHabit,
+        deleteHabit
+      }}
     >
       {children}
     </UserHabitsContext.Provider>

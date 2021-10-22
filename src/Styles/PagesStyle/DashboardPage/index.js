@@ -1,27 +1,32 @@
 import styled from "styled-components";
 
 export const DashboardPage = styled.div`
-  height: 100vh;
-  background-color: #f5f5f5;
-  width: 100vw;
-`;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
 
-export const DashboardMain = styled.div`
-  height: 91.2%;
+  .sideDock {
+    display: none;
+  }
+
   @media (min-width: 1024px) {
-    display: flex;
-    align-items: center;
+    flex-direction: row;
     height: 100%;
+    .sideDock {
+      display: block;
+    }
   }
 `;
 
 export const DashboardContent = styled.div`
-  padding: 20px;
-  background-color: #e9f5db;
-  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  padding: 25px 0;
 
   h1 {
-    font-size: var(--font-size-medium);
+    font-size: var(--font-size-xlarge);
     font-family: var(--font-type-details);
     text-align: center;
 
@@ -31,7 +36,7 @@ export const DashboardContent = styled.div`
     }
   }
   .cardDescpt {
-    max-width: 400px;
+    width: 300px;
     margin: 10px auto 0;
     font-family: var(--font-type-formal);
   }
@@ -39,30 +44,31 @@ export const DashboardContent = styled.div`
   .card--right {
     text-align: right;
   }
-
+  @media (min-width: 768px) {
+    .cardDescpt {
+      width: 400px;
+    }
+  }
   @media (min-width: 1024px) {
     position: relative;
-    display: block;
     flex-grow: 1;
-    height: 80vh;
-    width: 100vw;
-    max-width: 1100px;
+    height: 92vh;
+    /* width: 76vw; */
     padding: 0;
-    margin: 0 auto;
-    background-color: #f5f5f5;
 
     h1 {
       position: absolute;
-      top: -40px;
+      top: 4%;
       left: 50%;
       transform: translateX(-50%);
+      font-family: var(--font-type-details);
     }
 
     .cardDescpt {
-      max-width: 400px;
-      margin: 10px 0 0;
+      width: 460px;
+      margin-top: 40px;
+      font-size: var(--font-size-medium);
       font-family: var(--font-type-formal);
-      font-size: 19px;
       font-style: italic;
     }
 
@@ -79,7 +85,7 @@ export const DashboardContent = styled.div`
 
     .Card2 {
       position: absolute;
-      right: 4%;
+      right: 8%;
       bottom: 2%;
       width: 368px;
     }

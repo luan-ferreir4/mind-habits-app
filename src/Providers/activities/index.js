@@ -42,7 +42,9 @@ export const ActivitiesProvider = ({ children }) => {
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(error.response.data.message);
+          toast.error(
+            `Goals: ${error.response.status} ${error.response.statusText}`
+          );
         } else {
           toast.error("Error", error.message);
         }
@@ -59,7 +61,9 @@ export const ActivitiesProvider = ({ children }) => {
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(error.response.data.message);
+          toast.error(
+            `Goals: ${error.response.status} ${error.response.statusText}`
+          );
         } else {
           toast.error("Error", error.message);
         }
