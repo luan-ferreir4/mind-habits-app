@@ -96,8 +96,10 @@ export const GroupDetailsContent = styled.div`
 
   .listContainer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 20px;
+    margin: 30px auto;
+    max-width: 700px;
   }
 
   .about {
@@ -149,6 +151,13 @@ export const GroupDetailsContent = styled.div`
 
       width: 700px;
       padding: 10px;
+    }
+
+    .listContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 100%;
     }
   }
 `;

@@ -5,19 +5,23 @@ import { ButtonRemoveContainer } from "../../Styles/ComponentsStyle/ButtonRemove
 import { Progress } from "react-sweet-progress";
 import "react-sweet-progress/lib/style.css";
 import {
-  Card,
   CardGroup,
   ButtonMoreInfo,
+  CardGoal,
+  CardActivity,
+  CardHabit,
+  ProgressButton,
+  CardGroupCommunity,
 } from "../../Styles/ComponentsStyle/CardRender";
 import { useHistory } from "react-router";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserHabitsContext } from "../../Providers/userHabits";
 import { GoalsContext } from "../../Providers/goals";
 import { ActivitiesContext } from "../../Providers/activities";
 
 const CardRender = ({ listType, item }) => {
-  const { deleteHabit } = useContext(UserHabitsContext);
+  const { deleteHabit, updateHabit } = useContext(UserHabitsContext);
   const { deleteGoal } = useContext(GoalsContext);
   const { deleteActivity } = useContext(ActivitiesContext);
 
@@ -37,37 +41,68 @@ const CardRender = ({ listType, item }) => {
     deleteActivity(item.id);
   };
 
+  const [progress, setProgress] = useState(item.how_much_achieved);
+
+  const handleAddProgress = () => {
+    if (progress > 100 && progress >= 0) {
+      updateHabit(item.id, progress + 10, false);
+    }
+    if (progress === 100) {
+      updateHabit(item.id, progress, true);
+    }
+  };
+
+  const handleSubProgress = () => {
+    if (progress > 100 && progress > 0) {
+      updateHabit(progress - 10);
+    }
+    if (progress === 100) {
+      updateHabit(item.id, progress, true);
+    }
+  };
+
   return (
     <>
       {listType === "habit" && (
-        <Card>
+        <CardHabit>
           <h2>{item.title}</h2>
-          <div>Categoria: {item.category}</div>
-          <div>Dificuldade: {item.difficulty}</div>
-          <div>Frequência: {item.frequency}</div>
-          <div className="progressbar">
-            Progresso:{" "}
-            <Progress percent={item.how_much_achieved} status="success" />
-          </div>
-          <div>Alcançado</div>
+          <label>
+            Categoria: <span>{item.category}</span>
+          </label>
+          <label>
+            Dificuldade: <span>{item.difficulty}</span>
+          </label>
+          <label>
+            Frequência: <span>{item.frequency}</span>
+          </label>
+          <label>Progresso: </label>
+          <label>
+            <ProgressButton onClick={handleAddProgress}>+</ProgressButton>
+            <Progress
+              className="bar"
+              type="circle"
+              percent={item.how_much_achieved}
+            />
+            <ProgressButton onClick={handleSubProgress}>-</ProgressButton>
+          </label>
           <ButtonRemoveContainer onClick={handleRemoveHabit}>
-            remove
+            Excluir
           </ButtonRemoveContainer>
-        </Card>
+        </CardHabit>
       )}
 
       {listType === "group" && (
-        <CardGroup className="group">
-          <div>
-            <div>Título: {item.name}</div>
-            <div>Descrição: {item.description}</div>
-            <div>{item.category}</div>
+        <CardGroupCommunity className="group">
+          <div className="left">
+            <label>Título: {item.name}</label>
+            <label>Descrição: {item.description}</label>
+            <label>{item.category}</label>
           </div>
-          <div className="buttonContainer">
+          <div className="right">
             <ButtonSubscribe groupId={item.id}>Inscrever-se</ButtonSubscribe>
             <ButtonAbout item={item}>Sobre</ButtonAbout>
           </div>
-        </CardGroup>
+        </CardGroupCommunity>
       )}
 
       {listType === "userGroup" && (
@@ -86,30 +121,33 @@ const CardRender = ({ listType, item }) => {
       )}
 
       {listType === "activity" && (
-        <Card>
+        <CardActivity>
           <h2>{item.title}</h2>
-          <div>Data: {item.realization_time}</div>
-          <ButtonUpdate>Atualizar</ButtonUpdate>
-          <ButtonRemoveContainer onClick={handleRemoveAtivity}>
-            Excluir
-          </ButtonRemoveContainer>
-        </Card>
+          <label>Data: {item.realization_time}</label>
+          <div className="buttonContainer">
+            <ButtonUpdate>Atualizar</ButtonUpdate>
+            <ButtonRemoveContainer onClick={handleRemoveAtivity}>
+              Excluir
+            </ButtonRemoveContainer>
+          </div>
+        </CardActivity>
       )}
 
       {listType === "goal" && (
-        <Card>
+        <CardGoal>
           <h2>{item.title}</h2>
-          <div>Dificuldade: {item.difficulty}</div>
-          <div className="progressbar">
+          <label>Dificuldade: {item.difficulty}</label>
+          <label className="progressbar">
+            {}
             Progresso:{" "}
-            <Progress percent={item.how_much_achieved} status="success" />
-          </div>
+            <Progress percent={item.how_much_achieved} status="active" />
+          </label>
 
-          <div>Alcançado:</div>
+          <label>Alcançado:</label>
           <ButtonRemoveContainer onClick={handleRemoveGoal}>
             Excluir
           </ButtonRemoveContainer>
-        </Card>
+        </CardGoal>
       )}
     </>
   );
