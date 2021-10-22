@@ -8,7 +8,13 @@ export const UserGroupsPage = styled.div`
 
 export const UserGroupsMain = styled.div`
   height: 91.2%;
+  .sideDock {
+    display: none;
+  }
   @media (min-width: 1024px) {
+    .sideDock {
+      display: block;
+    }
     display: flex;
     align-items: center;
     height: 100%;

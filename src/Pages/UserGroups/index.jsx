@@ -20,7 +20,9 @@ const UserGroups = () => {
       <UserGroupsPage>
         <UserGroupsMain>
 
-          <SideDock />
+        <div className="sideDock">
+            <SideDock />
+          </div>
 
           <UserGroupsContent>
             <h3>Meus Grupos</h3>

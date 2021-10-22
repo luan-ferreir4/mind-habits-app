@@ -23,7 +23,9 @@ const GroupsCommunity = () => {
       <NavBar typeNav={"logged"} />
       <GComPage>
         <GComMain>
-          <SideDock />
+          <div className="sideDock">
+            <SideDock />
+          </div>
           <GComContent>
             <h1>Groups Community</h1>
             <div className="btnCreate">

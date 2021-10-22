@@ -6,7 +6,13 @@ export const GComPage = styled.div`
 
 export const GComMain = styled.div`
   height: 91.2%;
+  .sideDock {
+    display: none;
+  }
   @media (min-width: 1024px) {
+    .sideDock {
+    display: block;
+  }
     display: flex;
     align-items: center;
     height: 100%;
