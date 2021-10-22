@@ -1,5 +1,7 @@
 import { useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router";
+
+import { LoginContext } from "../../Providers/login";
 import {
   UserGroupsContent,
   UserGroupsMain,
@@ -12,7 +14,12 @@ import { UserGroupsContext } from "../../Providers/userGroups";
 
 const UserGroups = () => {
   const { userGroups } = useContext(UserGroupsContext);
-  const history = useHistory();
+  
+  const { auth } = useContext(LoginContext);
+
+  if (!auth) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <>
