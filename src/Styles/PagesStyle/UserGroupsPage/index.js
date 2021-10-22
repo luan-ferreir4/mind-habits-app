@@ -20,7 +20,7 @@ export const UserGroupsContent = styled.div`
   background-color: #e9f5db;
 
   h3 {
-    font-family: var(--font-type-details: "Saira");
+    font-family: var(--font-type-details);
     font-size: 60px;
     margin-top: 35px;
     margin-bottom: 35px;

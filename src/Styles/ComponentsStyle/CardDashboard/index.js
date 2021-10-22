@@ -17,6 +17,7 @@ justify-content: center;
 
   h3 {
     text-align: center;
+    font-size: var(--font-size-large);
     font-weight: var(--font-w-medium);
   }
   
@@ -24,10 +25,19 @@ justify-content: center;
       text-align: center;
       font-size: var(--font-size-standart);
   }
-
-  @media (min-width: 1024px) {
-    width: 360px;
-    height: 190px;
-    
+  @media (min-width: 768px) {
+    position: relative;
+    width: 460px;
+    height: 260px;
+    h3{
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    p{
+      margin-top: 20px;
+      font-size: var(--font-size-medium);
+    }
   }
 `;

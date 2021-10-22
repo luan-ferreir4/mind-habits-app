@@ -27,9 +27,7 @@ export const SideDock = () => {
       })
       .then((res) => setUserName(res.data.username))
       .catch((err) => console.log(err.message));
-  });
-
-  console.log(userName);
+  },[token, userId]);
 
   return (
     <>

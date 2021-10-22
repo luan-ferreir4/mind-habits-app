@@ -1,6 +1,5 @@
 import {
   DashboardContent,
-  DashboardMain,
   DashboardPage,
 } from "../../Styles/PagesStyle/DashboardPage";
 
@@ -29,9 +28,11 @@ const Dashboard = () => {
   return (
     <>
       <NavBar typeNav="logged" />
-      <DashboardPage>
-        <DashboardMain>
-          <SideDock />
+        <DashboardPage>
+          <div  className="sideDock">
+
+          <SideDock/>
+          </div>
 
           <DashboardContent>
             <h1>
@@ -53,8 +54,7 @@ const Dashboard = () => {
               <CardDashboard listType="group" />
             </div>
           </DashboardContent>
-        </DashboardMain>
-      </DashboardPage>
+        </DashboardPage>
     </>
   );
 };
