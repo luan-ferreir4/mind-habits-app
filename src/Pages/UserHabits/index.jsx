@@ -27,6 +27,7 @@ const UserHabits = () => {
         <HabitsContent>
           <h1>Meus Hábitos</h1>
           <ButtonCreate listType="habit" />
+          
           <HabitsListContainer>
             {notRenderd ? (
               <p>Não foi possivel renderizar a lista</p>

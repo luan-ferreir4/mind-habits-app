@@ -3,15 +3,27 @@ import styled from "styled-components";
 export const UserHabitsPage = styled.div`
   display: flex;
   flex-direction: column;
+  height: 90vh;
+
+  .sideDock{
+    display: none;
+    height: 10vh;
+  }
+
   @media(min-width: 1024px){
     flex-direction: row;
+    .sideDock{
+      display: block;
+    }
   }
 `;
 export const HabitsContent = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  flex-grow: 1;
+  height: 80vh;
+  padding: 25px 0;
   h1 {
     margin-bottom: 10px;
     font-family: var(--font-type-details);

@@ -5,7 +5,7 @@ export const SideDockStyled = styled.div`
   flex-direction: column;
   align-items: center;
 
-padding: 30px 0 ;
+  padding: 30px 0 ;
 
   background-color: #f5f5f5;
   color: #000;
@@ -19,7 +19,6 @@ padding: 30px 0 ;
 
   button {
     width: 160px;
-    max-width: 200px;
     height: 40px;
     font-family: var(--font-type-details);
     font-size: 19px;
@@ -43,11 +42,19 @@ padding: 30px 0 ;
 
   @media (min-width: 1024px) {
     background-color: var(--green-pallet-four);
-    height: 90vh;
+    height: 93vh;
     width: 23vw;
+    padding-top: 100px;
+
+    img{
+      width: 180px;
+    }
+
     button {
+      width: 70%;
       height: 46px;
-      font-size: var(--font-size-small);
+      margin-top: 25px;
+      font-size: var(--font-size-standart);
     }
   }
 `;
