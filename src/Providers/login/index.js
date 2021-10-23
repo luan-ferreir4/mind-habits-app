@@ -15,7 +15,7 @@ export const LoginProvider = ({ children }) => {
   const notifySuccessLogin = () => toast.success("Login realizado!");
   const notifyErrorLogin = () => toast.error("Erro no login!");
 
-  const handleLogin = (data, history) => {
+  const login = (data, history) => {
     const { username, password } = data;
     axios
       .post("https://kenzie-habits.herokuapp.com/sessions/", {
@@ -37,12 +37,19 @@ export const LoginProvider = ({ children }) => {
       });
   };
 
+  const logout = (history) =>{
+      localStorage.clear();
+      setAuth("")
+      history.push("/")
+  }
+
   return (
     <LoginContext.Provider
       value={{
         auth,
         setAuth,
-        handleLogin,
+        login,
+        logout,
       }}
     >
       {children}
