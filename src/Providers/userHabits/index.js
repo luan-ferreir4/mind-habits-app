@@ -41,7 +41,7 @@ export const UserHabitsProvider = ({ children }) => {
           title: title,
           category: category,
           difficulty: difficulty,
-          frequency: `${frequencyPartOne} por ${frequencyPartTwo}`,
+          frequency: `${frequencyPartOne} vezes por ${frequencyPartTwo}`,
           achieved: false,
           how_much_achieved: 0,
           user: userId,
