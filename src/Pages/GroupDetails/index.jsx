@@ -1,9 +1,8 @@
-import CardRender from "../../Components/CardRender";
-import { CardAbout } from "../../Components/CardAbout";
-import { LoginContext } from "../../Providers/login";
-import { ButtonCreate } from "../../Components/Button-Create";
-import { NavBar } from "../../Components/NavBar";
-import { SideDock } from "../../Components/SideDock";
+import axios from "axios";
+import { useState, useContext, useEffect } from "react";
+import { Redirect } from "react-router";
+import toast from "react-hot-toast";
+import { useParams } from "react-router";
 
 import {
   ButtonToggle,
@@ -12,15 +11,16 @@ import {
   GroupDetailsMain,
 } from "../../Styles/PagesStyle/GroupDetailsPage";
 
+import CardRender from "../../Components/CardRender";
+import { CardAbout } from "../../Components/CardAbout";
+import { LoginContext } from "../../Providers/login";
+import { ButtonCreate } from "../../Components/Button-Create";
+import { NavBar } from "../../Components/NavBar";
+import { SideDock } from "../../Components/SideDock";
+
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import { ActivitiesContext } from "../../Providers/activities";
 import { GoalsContext } from "../../Providers/goals";
-
-import axios from "axios";
-import { useState, useContext, useEffect } from "react";
-import { Redirect } from "react-router";
-import toast from "react-hot-toast";
-import { useParams } from "react-router";
 
 const GroupDetails = () => {
   const params = useParams();
