@@ -1,6 +1,7 @@
-import { createContext, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+
+import { createContext, useState } from "react";
 
 export const GoalsContext = createContext();
 
@@ -8,14 +9,7 @@ export const GoalsProvider = ({ children }) => {
   const [goals, setGoals] = useState([]);
   const [goalsPage, setGoalsPage] = useState(1);
 
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (localToken !== "") {
-      return JSON.parse(localToken);
-    } else {
-      return localToken;
-    }
-  });
+  const token = JSON.parse(localStorage.getItem("token")) || "";
 
 
   const createGoal = (newGoal, idGroup) => {

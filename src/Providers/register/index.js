@@ -1,10 +1,12 @@
 import axios from "axios";
-import { createContext, useState } from "react";
 import toast from "react-hot-toast";
 
-export const RegisterContext = createContext([]);
+import { createContext, useState } from "react";
+
+export const RegisterContext = createContext();
 
 export const RegisterProvider = ({ children }) => {
+  
   const [errorRegs, setErrorRegs] = useState("");
   const notifySuccessRegister = () => toast.success("Registro realizado!");
   const notifyErrorRegister = () => toast.error("Erro no registro!");
