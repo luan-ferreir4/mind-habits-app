@@ -5,50 +5,14 @@ import toast from "react-hot-toast";
 export const GroupsCommunityContext = createContext([]);
 
 export const GroupsCommunityProvider = ({ children }) => {
+
   const [communityGroups, setCommunityGroups] = useState([]);
   const [groupSelected, setGroupSelected] = useState();
 
-  // const token = localStorage.getItem("token") || "";
-
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (localToken !== "") {
-      return JSON.parse(localToken);
-    } else {
-      return localToken;
-    }
-  });
-
-  /** createGroup({
-        "name": "Grupo novo 2",
-        "description": "Descrição bolada",
-        "category": "Saúde"
-      }) 
-  */
-  const createGroup = (data) => {
-    axios
-      .post("https://kenzie-habits.herokuapp.com/groups/", data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${JSON.parse(token)}`,
-        },
-      })
-      .then((response) => {
-        toast.success(response.statusText);
-        getGroups();
-      })
-      .catch((error) => {
-        if (error.response) {
-          toast.error(error.response.data);
-        } else {
-          // Something happened in setting up the request and triggered an Error
-          toast.error("Error", error.message);
-        }
-      });
-  };
-
   const [goToPage, setGoToPage] = useState(1);
   const [isThereNext, setIsThereNext] = useState(null);
+
+  const token = JSON.parse(localStorage.getItem("token")) || "";
 
   const getGroups = (categoryName) => {
     const newCategoryName = categoryName === undefined ? "" : categoryName;
@@ -73,6 +37,8 @@ export const GroupsCommunityProvider = ({ children }) => {
         }
       });
   };
+
+  
   const GoToNextPage = () => {
     if (isThereNext !== null) {
       setGoToPage(goToPage + 1);
@@ -82,6 +48,28 @@ export const GroupsCommunityProvider = ({ children }) => {
     if (goToPage > 1) {
       setGoToPage(goToPage - 1);
     }
+  };
+
+  const createGroup = (data) => {
+    axios
+      .post("https://kenzie-habits.herokuapp.com/groups/", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        toast.success(response.statusText);
+        getGroups();
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data);
+        } else {
+          // Something happened in setting up the request and triggered an Error
+          toast.error("Error", error.message);
+        }
+      });
   };
 
   const getASpecificGroup = (groupId) => {
