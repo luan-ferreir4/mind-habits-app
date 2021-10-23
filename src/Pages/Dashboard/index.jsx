@@ -28,33 +28,32 @@ const Dashboard = () => {
   return (
     <>
       <NavBar typeNav="logged" />
-        <DashboardPage>
-          <div  className="sideDock">
+      <DashboardPage>
+        <div className="sideDock">
+          <SideDock />
+        </div>
 
-          <SideDock/>
+        <DashboardContent>
+          <h1>
+            Olá, <span>{userName}</span>
+          </h1>
+
+          <div className="Card1">
+            <p className="cardDescpt card--left">
+              Organize seus hábitos e crie metas...
+            </p>
+            <CardDashboard listType="habit" />
           </div>
 
-          <DashboardContent>
-            <h1>
-              Olá, <span>{userName}</span>
-            </h1>
-
-            <div className="Card1">
-              <p className="cardDescpt card--left">
-                Organize seus hábitos e crie metas...
-              </p>
-              <CardDashboard listType="habit" />
-            </div>
-
-            <div className="Card2">
-              <p className="cardDescpt card--right">
-                ...Compartilhe e contribua com novos hábitos e metas por meio
-                dos grupos
-              </p>
-              <CardDashboard listType="group" />
-            </div>
-          </DashboardContent>
-        </DashboardPage>
+          <div className="Card2">
+            <p className="cardDescpt card--right">
+              ...Compartilhe e contribua com novos hábitos e metas por meio dos
+              grupos
+            </p>
+            <CardDashboard listType="group" />
+          </div>
+        </DashboardContent>
+      </DashboardPage>
     </>
   );
 };

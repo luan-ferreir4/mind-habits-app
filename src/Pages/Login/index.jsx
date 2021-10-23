@@ -39,7 +39,7 @@ const LoginPage = () => {
   };
 
   if (auth) {
-     return <Redirect to="/dashboard" />;
+    return <Redirect to="/dashboard" />;
   }
 
   return (
