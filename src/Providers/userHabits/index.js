@@ -13,20 +13,22 @@ export const UserHabitsProvider = ({ children }) => {
   const [habitsList, setHabitsList] = useState([]);
   const [notRenderd, setNotRenderd] = useState(false);
 
-  const token = JSON.parse(localStorage.getItem("token")) || "";
+  const token = JSON.parse(localStorage.getItem("token"));
  
   useEffect(() => {
-    axios
-      .get("https://kenzie-habits.herokuapp.com/habits/personal/", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setHabitsList(res.data);
-      })
-      .catch((err) => {
-        console.log(err.messages);
-        setNotRenderd(true);
-      });
+    if(token){
+      axios
+        .get("https://kenzie-habits.herokuapp.com/habits/personal/", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          setHabitsList(res.data);
+        })
+        .catch((err) => {
+          console.log(err.messages);
+          setNotRenderd(true);
+        });
+    }
   }, [token, habitsList]);
 
 

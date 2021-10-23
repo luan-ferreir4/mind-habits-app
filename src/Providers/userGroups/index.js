@@ -9,23 +9,25 @@ export const UserGroupsProvider = ({ children }) => {
   const [userGroups, setUserGroups] = useState([]);
   const [errorUserGroups, setErrorUserGroups] = useState([]);
 
-  const token = JSON.parse(localStorage.getItem("token")) || "";
+  const token = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
-    axios
-      .get("https://kenzie-habits.herokuapp.com/groups/subscriptions/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setUserGroups(response.data);
-      })
-      .catch((error) => {
-        if (error.response) {
-          setErrorUserGroups(error.response);
-        }
-      });
+    if (token) {
+      axios
+        .get("https://kenzie-habits.herokuapp.com/groups/subscriptions/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setUserGroups(response.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            setErrorUserGroups(error.response);
+          }
+        });
+    }
   }, [token, userGroups]);
 
   const unsubscribeFromAGroup = (groupId) => {
