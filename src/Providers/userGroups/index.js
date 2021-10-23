@@ -1,6 +1,7 @@
-import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+
+import { createContext, useEffect, useState } from "react";
 
 export const UserGroupsContext = createContext([]);
 
@@ -8,16 +9,7 @@ export const UserGroupsProvider = ({ children }) => {
   const [userGroups, setUserGroups] = useState([]);
   const [errorUserGroups, setErrorUserGroups] = useState([]);
 
-  // const token = localStorage.getItem("token") || "";
-
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (localToken !== "") {
-      return JSON.parse(localToken);
-    } else {
-      return localToken;
-    }
-  });
+  const token = JSON.parse(localStorage.getItem("token")) || "";
 
   useEffect(() => {
     axios
@@ -42,13 +34,11 @@ export const UserGroupsProvider = ({ children }) => {
         `https://kenzie-habits.herokuapp.com/groups/${groupId}/unsubscribe/`,
         {
           headers: {
-            Authorization: `Bearer ${JSON.parse(token)}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       )
-      .then((response) => {
-        toast.success("Exclusão do grupo realizada com sucesso");
-      })
+      .then(toast.success("Exclusão do grupo realizada com sucesso"))
       .catch((error) => {
         if (error.response) {
           setErrorUserGroups(error.response);
@@ -57,13 +47,14 @@ export const UserGroupsProvider = ({ children }) => {
   };
 
   const subscribeToAGroup = (groupId) => {
+    console.log(groupId);
     axios
       .post(
         `https://kenzie-habits.herokuapp.com/groups/${groupId}/subscribe/`,
         null,
         {
           headers: {
-            Authorization: `Bearer ${JSON.parse(token)}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       )
@@ -71,28 +62,24 @@ export const UserGroupsProvider = ({ children }) => {
         toast.success(response.data.message);
       })
       .catch((error) => {
-        if (error.response) {
-          // setErrorUserGroups(`Group ${groupId} ${error.response.data.detail}`);
+        if (error.response.data.message === "User already on group") {
+          console.log("Já cadastrado neste grupo");
           setErrorUserGroups(error.response);
+        } else {
+          console.log(error.response.data);
         }
       });
   };
 
-  const editGroup = (groupId, payload) => {
+  const editGroup = (groupId, data) => {
     axios
-      .patch(
-        `https://kenzie-habits.herokuapp.com/groups/${groupId}/`,
-        payload,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${JSON.parse(token)}`,
-          },
-        }
-      )
-      .then((response) => {
-        toast.success("Alteração realizada com sucesso");
+      .patch(`https://kenzie-habits.herokuapp.com/groups/${groupId}/`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       })
+      .then(toast.success("Alteração realizada com sucesso"))
       .catch((error) => {
         if (error.response) {
           setErrorUserGroups(error.response);
@@ -105,10 +92,9 @@ export const UserGroupsProvider = ({ children }) => {
       value={{
         userGroups,
         errorUserGroups,
-        unsubscribeFromAGroup,
-
         subscribeToAGroup,
         editGroup,
+        unsubscribeFromAGroup,
       }}
     >
       {children}
