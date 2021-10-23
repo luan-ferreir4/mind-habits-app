@@ -1,25 +1,20 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
-import { UserContext } from "../user";
 import toast from "react-hot-toast";
+
+import { UserContext } from "../user";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const UserHabitsContext = createContext();
 
 export const UserHabitsProvider = ({ children }) => {
-  const [habitsList, setHabitsList] = useState([]);
-  const [notRenderd, setNotRenderd] = useState(false);
- 
+
   const { userId } = useContext(UserContext);
 
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (localToken !== "") {
-      return JSON.parse(localToken);
-    } else {
-      return localToken;
-    }
-  });
+  const [habitsList, setHabitsList] = useState([]);
+  const [notRenderd, setNotRenderd] = useState(false);
 
+  const token = JSON.parse(localStorage.getItem("token")) || "";
+ 
   useEffect(() => {
     axios
       .get("https://kenzie-habits.herokuapp.com/habits/personal/", {
@@ -45,7 +40,7 @@ export const UserHabitsProvider = ({ children }) => {
         title: title,
         category: category,
         difficulty: difficulty,
-        frequency: `${frequencyPartOne} por ${frequencyPartTwo}`,
+        frequency: `${frequencyPartOne} vezes por ${frequencyPartTwo}`,
         achieved: false,
         how_much_achieved: 0,
         user: userId,
