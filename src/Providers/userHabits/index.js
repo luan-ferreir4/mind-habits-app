@@ -7,16 +7,15 @@ import { createContext, useContext, useEffect, useState } from "react";
 export const UserHabitsContext = createContext();
 
 export const UserHabitsProvider = ({ children }) => {
-
   const { userId } = useContext(UserContext);
 
   const [habitsList, setHabitsList] = useState([]);
   const [notRenderd, setNotRenderd] = useState(false);
 
   const token = JSON.parse(localStorage.getItem("token"));
- 
+
   useEffect(() => {
-    if(token){
+    if (token) {
       axios
         .get("https://kenzie-habits.herokuapp.com/habits/personal/", {
           headers: { Authorization: `Bearer ${token}` },
@@ -35,7 +34,6 @@ export const UserHabitsProvider = ({ children }) => {
     const { title, category, difficulty, frequencyPartOne, frequencyPartTwo } =
       newHabit;
 
-<<<<<<< HEAD
     axios
       .post(
         "https://kenzie-habits.herokuapp.com/habits/",
@@ -43,27 +41,10 @@ export const UserHabitsProvider = ({ children }) => {
           title: title,
           category: category,
           difficulty: difficulty,
-          frequency: `${frequencyPartOne} por ${frequencyPartTwo}`,
+          frequency: `${frequencyPartOne} vezes por ${frequencyPartTwo}`,
           achieved: false,
           how_much_achieved: 0,
           user: userId,
-=======
-    axios.post(
-      "https://kenzie-habits.herokuapp.com/habits/",
-      {
-        title: title,
-        category: category,
-        difficulty: difficulty,
-        frequency: `${frequencyPartOne} vezes por ${frequencyPartTwo}`,
-        achieved: false,
-        how_much_achieved: 0,
-        user: userId,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
->>>>>>> 532af62a6c16428d97f8761ae6d59fbce0d4a264
         },
         {
           headers: {
