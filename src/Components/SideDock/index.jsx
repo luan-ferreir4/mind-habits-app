@@ -7,27 +7,18 @@ import { SideDockStyled } from "../../Styles/ComponentsStyle/SideDock";
 export const SideDock = () => {
   const [userName, setUserName] = useState("");
 
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (localToken !== "") {
-      return JSON.parse(localToken);
-    } else {
-      return localToken;
-    }
-  });
-
   const history = useHistory();
 
   const { userId } = useContext(UserContext);
 
   useEffect(() => {
-    axios
-      .get(`https://kenzie-habits.herokuapp.com/users/${userId}/`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => setUserName(res.data.username))
-      .catch((err) => console.log(err.message));
-  },[token, userId]);
+    if (userId) {
+      axios
+        .get(`https://kenzie-habits.herokuapp.com/users/${userId}/`)
+        .then((res) => setUserName(res.data.username))
+        .catch((err) => console.log(err.message));
+    }
+  }, [userId]);
 
   return (
     <>

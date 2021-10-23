@@ -18,7 +18,7 @@ import { ButtonForm } from "../../Components/ButtonForm";
 const LoginPage = () => {
   const formSchema = yup.object().shape({
     username: yup.string().required("Campo obrigatório"),
-    password: yup.string().required("Campo obrigatório"),
+    password: yup.string().required("Campo obrigatório").min(6, "Mínimo de 6 caracteres"),
   });
 
   const history = useHistory();
@@ -31,11 +31,10 @@ const LoginPage = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const { auth, handleLogin } = useContext(LoginContext);
+  const { auth, login } = useContext(LoginContext);
 
-  const sendToLoginHandling = (data) => {
-    // console.log(data);
-    handleLogin(data, history);
+  const handleLogin = (data) => {
+    login(data, history);
   };
 
   if (auth) {
@@ -47,7 +46,7 @@ const LoginPage = () => {
       <NavBar typeNav={"unlogged"} />
       <LoginContainer>
         <FormAnimationContainer>
-          <form className="form" onSubmit={handleSubmit(sendToLoginHandling)}>
+          <form className="form" onSubmit={handleSubmit(handleLogin)}>
             <h2>Login</h2>
             <InputForm
               register={register}

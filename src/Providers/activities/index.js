@@ -1,23 +1,18 @@
-import { createContext, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import * as moment from "moment";
 
+import { createContext, useState } from "react";
+
 export const ActivitiesContext = createContext();
 
 export const ActivitiesProvider = ({ children }) => {
+
   const [activities, setActivities] = useState([]);
 
   const [activitiesPage, setActivitiesPage] = useState(1);
 
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (localToken !== "") {
-      return JSON.parse(localToken);
-    } else {
-      return localToken;
-    }
-  });
+  const token = JSON.parse(localStorage.getItem("token")) || "";
 
   const createActivity = (newActivity, idGroup) => {
     const { title, realization_time } = newActivity;

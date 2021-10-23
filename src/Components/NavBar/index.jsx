@@ -4,6 +4,8 @@ import { useHistory } from "react-router";
 import { useState } from "react";
 import { IconButton } from "@material-ui/core";
 import { AiOutlineMenu } from "react-icons/ai";
+import { useContext } from "react";
+import { LoginContext } from "../../Providers/login";
 
 const useStyles = makeStyles(() => ({
   appbar: {
@@ -31,6 +33,7 @@ export const NavBar = ({ typeNav }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const { logout } = useContext(LoginContext);
 
   const history = useHistory();
 
@@ -48,8 +51,7 @@ export const NavBar = ({ typeNav }) => {
   };
 
   const handleLogout = () => {
-    localStorage.clear();
-    history.push("/");
+    logout(history)
   };
 
   return (

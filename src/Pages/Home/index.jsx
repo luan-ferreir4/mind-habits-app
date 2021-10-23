@@ -1,19 +1,22 @@
 import {
   HomePage,
-  PictureBackground,
   Subtitle,
   TitleHome,
 } from "../../Styles/PagesStyle/HomePage";
 import { ButtonForm } from "../../Components/ButtonForm";
-import { useHistory } from "react-router";
 import { NavBar } from "../../Components/NavBar";
+import { useContext } from "react";
+import { LoginContext } from "../../Providers/login";
 
 const Home = () => {
-  const history = useHistory();
+  
+  const { auth } = useContext(LoginContext);
+
+  const typeNavBar = (auth ? "logged" : "unlogged");
 
   return (
     <>
-      <NavBar typeNav="unlogged" />
+      <NavBar typeNav={typeNavBar} />
       <HomePage>
         <div className="Logo">
           <img src="images/Logo-verde1.png" alt="Logo" />

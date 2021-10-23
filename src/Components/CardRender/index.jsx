@@ -44,20 +44,16 @@ const CardRender = ({ listType, item }) => {
   const [progress, setProgress] = useState(item.how_much_achieved);
 
   const handleAddProgress = () => {
-    if (progress > 100 && progress >= 0) {
+    if (progress < 100) {
+      setProgress(progress + 10);
       updateHabit(item.id, progress + 10, false);
-    }
-    if (progress === 100) {
-      updateHabit(item.id, progress, true);
     }
   };
 
   const handleSubProgress = () => {
-    if (progress > 100 && progress > 0) {
-      updateHabit(progress - 10);
-    }
-    if (progress === 100) {
-      updateHabit(item.id, progress, true);
+    if (progress > 0) {
+      setProgress(progress - 10);
+      updateHabit(item.id, progress - 10, false);
     }
   };
 
@@ -78,11 +74,7 @@ const CardRender = ({ listType, item }) => {
           <label>Progresso: </label>
           <label>
             <ProgressButton onClick={handleAddProgress}>+</ProgressButton>
-            <Progress
-              className="bar"
-              type="circle"
-              percent={item.how_much_achieved}
-            />
+            <Progress className="bar" type="circle" percent={progress} />
             <ProgressButton onClick={handleSubProgress}>-</ProgressButton>
           </label>
           <ButtonRemoveContainer onClick={handleRemoveHabit}>
