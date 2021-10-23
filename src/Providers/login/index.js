@@ -20,19 +20,17 @@ export const LoginProvider = ({ children }) => {
         password: password,
       })
       .then((response) => {
-        // console.log("response do sign in", response);
         localStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
-        // console.log("response access do sign in", response.data.access);
         const tokenDecoded = jwt_decode(response.data.access);
-        console.log("token decoded", tokenDecoded);
         notifySuccessLogin();
         setAuth(tokenDecoded);
         history.push("/dashboard");
       })
-      .catch((e) => {
-        console.log("error", e);
-        notifyErrorLogin();
+      .catch((error) => {
+        if (error.response) {
+          notifyErrorLogin(error.response);
+        }
       });
   };
 
