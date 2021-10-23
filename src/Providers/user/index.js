@@ -1,29 +1,24 @@
-import { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
+
+import { createContext, useState, useEffect } from "react";
 
 export const UserContext = createContext([]);
 
 export const UserProvider = ({ children }) => {
+  
   const [userId, setUserId] = useState("");
 
-  const getUserId = (token) => {
-    const tokenDecoded = jwt_decode(token);
-    setUserId(JSON.stringify(tokenDecoded.user_id));
-  };
+  const token = localStorage.getItem("token") || "";
 
   useEffect(() => {
-    const obtainToken = localStorage.getItem("token");
-
-    obtainToken && getUserId(obtainToken);
-  }, []);
-
-  //   console.log("user id no provider user", userId);
+    const tokenDecoded = jwt_decode(token);
+    setUserId(tokenDecoded.user_id);
+  }, [token]);
 
   return (
     <UserContext.Provider
       value={{
-        userId,
-        getUserId,
+        userId
       }}
     >
       {children}
