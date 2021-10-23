@@ -10,8 +10,8 @@ import { GoalsProvider } from "./goals";
 
 const ProvidersGathered = ({ children }) => {
   return (
-    <LoginProvider>
-      <RegisterProvider>
+    <RegisterProvider>
+      <LoginProvider>
         <UserProvider>
           <GroupsCommunityProvider>
             <UserGroupsProvider>
@@ -23,8 +23,8 @@ const ProvidersGathered = ({ children }) => {
             </UserGroupsProvider>
           </GroupsCommunityProvider>
         </UserProvider>
-      </RegisterProvider>
-    </LoginProvider>
+      </LoginProvider>
+    </RegisterProvider>
   );
 };
 
