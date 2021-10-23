@@ -7,7 +7,6 @@ import { createContext, useState } from "react";
 export const ActivitiesContext = createContext();
 
 export const ActivitiesProvider = ({ children }) => {
-
   const [activities, setActivities] = useState([]);
 
   const [activitiesPage, setActivitiesPage] = useState(1);
@@ -65,11 +64,16 @@ export const ActivitiesProvider = ({ children }) => {
       });
   };
 
-  const updateActivity = (activityId, body) => {
+  const updateActivity = (data, id) => {
+    const { title, realization_time } = data;
+
     axios
       .patch(
-        `https://kenzie-habits.herokuapp.com/activities/${activityId}/`,
-        body,
+        `https://kenzie-habits.herokuapp.com/activities/${id}/`,
+        {
+          title: title,
+          realization_time: realization_time,
+        },
         {
           headers: { Authorization: `Bearer ${token}` },
         }

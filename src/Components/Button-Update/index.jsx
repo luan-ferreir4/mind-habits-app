@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CardUpdate } from "../CardUpdate";
 import { ButtonUpdateContainer } from "../../Styles/ComponentsStyle/ButtonUpdate";
 
-export const ButtonUpdate = () => {
+export const ButtonUpdate = ({ item }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -23,7 +23,7 @@ export const ButtonUpdate = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <CardUpdate />
+        <CardUpdate item={item} handleClose={handleClose} />
       </Modal>
     </>
   );

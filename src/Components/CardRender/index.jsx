@@ -4,6 +4,7 @@ import { ButtonUpdate } from "../Button-Update";
 import { ButtonRemoveContainer } from "../../Styles/ComponentsStyle/ButtonRemove";
 import { Progress } from "react-sweet-progress";
 import "react-sweet-progress/lib/style.css";
+import * as moment from "moment";
 import {
   CardGroup,
   ButtonMoreInfo,
@@ -115,9 +116,11 @@ const CardRender = ({ listType, item }) => {
       {listType === "activity" && (
         <CardActivity>
           <h2>{item.title}</h2>
-          <label>Data: {item.realization_time}</label>
+          <label>
+            Data: {moment(item.realization_time).format("DD/MM/YYYY")}
+          </label>
           <div className="buttonContainer">
-            <ButtonUpdate>Atualizar</ButtonUpdate>
+            <ButtonUpdate item={item}>Atualizar</ButtonUpdate>
             <ButtonRemoveContainer onClick={handleRemoveAtivity}>
               Excluir
             </ButtonRemoveContainer>
