@@ -1,18 +1,21 @@
 import axios from "axios";
-import { createContext, useState } from "react";
 import jwt_decode from "jwt-decode";
 import toast from "react-hot-toast";
 
-export const LoginContext = createContext([]);
+import { createContext, useState } from "react";
+
+export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
+  
   const token = localStorage.getItem("token") || "";
+
   const [auth, setAuth] = useState(token);
+
   const notifySuccessLogin = () => toast.success("Login realizado!");
   const notifyErrorLogin = () => toast.error("Erro no login!");
 
   const handleLogin = (data, history) => {
-    //   console.log(data);
     const { username, password } = data;
     axios
       .post("https://kenzie-habits.herokuapp.com/sessions/", {
