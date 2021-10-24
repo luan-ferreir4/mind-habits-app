@@ -19,7 +19,8 @@ export const DashboardContent = styled.div`
     }
   }
   .cardDescpt {
-    width: 300px;
+    width: 85vw;
+    max-width: 400px;
     margin: 10px auto 0;
     font-family: var(--font-type-formal);
   }
@@ -29,7 +30,7 @@ export const DashboardContent = styled.div`
   }
   @media (min-width: 768px) {
     .cardDescpt {
-      width: 400px;
+      width: 420px;
     }
   }
   @media (min-width: 1024px) {
@@ -48,7 +49,7 @@ export const DashboardContent = styled.div`
     }
 
     .cardDescpt {
-      width: 390px;
+      width: 400px;
       margin-top: 40px;
       font-size: var(--font-size-standart);
       font-family: var(--font-type-formal);
