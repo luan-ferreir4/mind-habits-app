@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-  width: 258px;
-  height: 206px;
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90vw;
+  max-width: 400px;
+  height: 220px;
+
   padding: 10px 15px;
   margin: 20px auto;
 
@@ -20,24 +21,24 @@ justify-content: center;
     font-size: var(--font-size-large);
     font-weight: var(--font-w-medium);
   }
-  
+
   p {
-      text-align: center;
-      font-size: var(--font-size-standart);
+    text-align: center;
+    font-size: var(--font-size-standart);
   }
-  @media (min-width: 768px) {
+  
+  @media (min-width: 1024px) {
     position: relative;
-    width: 460px;
-    height: 260px;
-    h3{
+    height: 200px;
+    h3 {
       position: absolute;
       top: 5%;
       left: 50%;
       transform: translateX(-50%);
     }
-    p{
+    p {
       margin-top: 20px;
-      font-size: var(--font-size-medium);
+      font-size: var(--font-size-standart);
     }
   }
 `;

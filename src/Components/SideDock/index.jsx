@@ -1,10 +1,14 @@
-import { useHistory } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { UserContext } from "../../Providers/user";
+import { useHistory, useLocation} from "react-router-dom";
+
 import { SideDockStyled } from "../../Styles/ComponentsStyle/SideDock";
 
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../Providers/user";
+
 export const SideDock = () => {
+  const location = useLocation()
+  console.log(location.pathname)
   const [userName, setUserName] = useState("");
 
   const history = useHistory();
@@ -22,15 +26,20 @@ export const SideDock = () => {
 
   return (
     <>
-      <SideDockStyled className="Menu">
+      <SideDockStyled>
+        <section className="content">
         <img src="images/avatar.png" alt="Avatar" />
-        <div>{userName}</div>
-        <button onClick={() => history.push("/dashboard")}>Dashboard</button>
-        <button onClick={() => history.push("/userhabits")}>
+        {location.pathname !== "/dashboard" && <h4>{userName}</h4> }
+       
+       <div className="content-buttons">
+        {location.pathname !== "/dashboard" &&  <button onClick={() => history.push("/dashboard")}>Dashboard</button>}
+        {location.pathname !== "/userhabits" && <button onClick={() => history.push("/userhabits")}>
           Meus Hábitos
-        </button>
-        <button onClick={() => history.push("/usergroups")}>Meus Grupos</button>
-        <button onClick={() => history.push("/groupscommunity")}>Grupos</button>
+        </button>}
+        {location.pathname !== "/usergroups" && <button onClick={() => history.push("/usergroups")}>Meus Grupos</button>}
+        {location.pathname !== "/groupscommunity" && <button onClick={() => history.push("/groupscommunity")}>Grupos</button> }
+       </div>
+        </section>
       </SideDockStyled>
     </>
   );

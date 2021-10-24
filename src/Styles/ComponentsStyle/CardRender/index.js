@@ -61,8 +61,9 @@ export const CardGroup = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 
-  width: 100%;
-  border-radius: 10px;
+  width: 90vw;
+  max-width: 750px;
+  border-radius: 8px;
   padding: 5px 20px;
   margin: 5px;
 
@@ -83,10 +84,8 @@ export const CardGroup = styled.div`
   }
 
   @media only screen and (min-width: 1024px) {
-    width: 100%;
-    border-radius: 25px;
     padding: 10px 30px;
-    margin: 5px;
+    margin: 5px 0 8px;
 
     font-size: var(--font-size-standart);
   }
@@ -94,17 +93,19 @@ export const CardGroup = styled.div`
 
 export const CardGroupCommunity = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 300px;
+  flex-direction: column;
+  align-items: center;
+  width: 70vw;
+  max-width: 780px;
+  
 
-  padding: 30px;
-  margin: 5px;
-  border-radius: 10px;
+  padding: 20px 15px;
+  margin: 5px auto 15px;
 
   background-color: var(--green-pallet-three);
+  border-radius: 8px;
   font-family: var(--font-type-details);
-
+  text-align: center;
   box-shadow: 2px 2px 3px rgb(0, 0, 0, 0.4), -1px -1px 7px rgb(0, 0, 0, 0.3);
 
   .left {
@@ -120,19 +121,26 @@ export const CardGroupCommunity = styled.div`
     width: 100%;
   }
   button {
-    width: 100%;
+    width: 150px;
     height: 40px;
     margin: 3px;
+    background-color: #f5f5f5;
+    color: var(--font-primary-light);
+    border-radius: 20px;
+    border: 1px solid transparent;
+
+    &:hover{
+      border-color: #f5f5f5;
+      background-color: transparent;
+    }
   }
 
-  @media only screen and (min-width: 1024px) {
-    width: 100%;
-    border-radius: 25px;
-    padding: 10px 30px;
-    margin: 5px;
+  @media (min-width: 1024px) {
+    flex-direction: row;
     justify-content: space-between;
-
+    padding: 10px 25px;
     font-size: var(--font-size-standart);
+    text-align: left;
   }
 `;
 
