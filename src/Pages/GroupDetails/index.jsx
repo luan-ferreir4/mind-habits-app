@@ -18,11 +18,11 @@ import { useParams } from "react-router";
 
 import CardRender from "../../Components/CardRender";
 import { CardAbout } from "../../Components/CardAbout";
-import { LoginContext } from "../../Providers/login";
 import { ButtonCreate } from "../../Components/Button-Create";
 import { NavBar } from "../../Components/NavBar";
 import { SideDock } from "../../Components/SideDock";
 
+import { LoginContext } from "../../Providers/login";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import { ActivitiesContext } from "../../Providers/activities";
 import { GoalsContext } from "../../Providers/goals";
