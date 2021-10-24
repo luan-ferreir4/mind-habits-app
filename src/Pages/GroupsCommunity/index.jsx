@@ -1,15 +1,13 @@
+import { ListContainer, NavContainer, Page ,PageContent } from "../../Styles/PagesStyle/GlobalPageStyle";
 import {
-  GComPage,
-  GComMain,
-  GComContent,
-  ButtonPageOne,
-  ButtonPageTwo,
+  PageNavButtons,
 } from "../../Styles/PagesStyle/GroupsComunnityPage";
 
 import { NavBar } from "../../Components/NavBar";
 import { ButtonCreate } from "../../Components/Button-Create";
 import { SideDock } from "../../Components/SideDock";
 import CardRender from "../../Components/CardRender";
+
 import { useContext } from "react";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import { LoginContext } from "../../Providers/login";
@@ -29,33 +27,43 @@ const GroupsCommunity = () => {
   return (
     <>
       <NavBar typeNav={"logged"} />
-      <GComPage>
-        <GComMain>
-          <div className="sideDock">
+      <Page>
+          <NavContainer>
             <SideDock />
-          </div>
-          <GComContent>
-            <h1>Groups Community</h1>
+          </NavContainer>
+
+          <PageContent>
+            <h1>Todos os grupos</h1>
             <div className="btnCreate">
               <ButtonCreate listType="group" />
             </div>
-            <div className="divCards">
+
+            <PageNavButtons>
+              <button className="bttnPrev" onClick={() => goToPreviousPage()}>
+                Página anterior
+              </button>
+              <button className="bttnNext" onClick={() => goToNextPage()}>
+                Próxima página
+              </button>
+            </PageNavButtons>
+
+            <ListContainer>
               {communityGroups.map((item) => (
                 <CardRender listType={"group"} item={item} />
               ))}
-            </div>
-            <div className="divButtons">
-              <ButtonPageOne onClick={() => goToPreviousPage()}>
+            </ListContainer>
+
+            <PageNavButtons>
+              <button className="bttnPrev" onClick={() => goToPreviousPage()}>
                 Página anterior
-              </ButtonPageOne>
-              <br />
-              <ButtonPageTwo onClick={() => goToNextPage()}>
+              </button>
+              <button className="bttnNext" onClick={() => goToNextPage()}>
                 Próxima página
-              </ButtonPageTwo>
-            </div>
-          </GComContent>
-        </GComMain>
-      </GComPage>
+              </button>
+            </PageNavButtons>
+
+          </PageContent>
+      </Page>
     </>
   );
 };

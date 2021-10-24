@@ -1,6 +1,6 @@
+import { NavContainer, Page } from "../../Styles/PagesStyle/GlobalPageStyle";
 import {
   DashboardContent,
-  DashboardPage,
 } from "../../Styles/PagesStyle/DashboardPage";
 
 import { useContext, useEffect, useState } from "react";
@@ -27,10 +27,11 @@ const Dashboard = () => {
   return (
     <>
       <NavBar typeNav="logged" />
-      <DashboardPage>
-        <div className="sideDock">
+      <Page>
+        
+        <NavContainer>
           <SideDock />
-        </div>
+        </NavContainer>
 
         <DashboardContent>
           <h1>
@@ -52,7 +53,7 @@ const Dashboard = () => {
             <CardDashboard listType="group" />
           </div>
         </DashboardContent>
-      </DashboardPage>
+      </Page>
     </>
   );
 };
