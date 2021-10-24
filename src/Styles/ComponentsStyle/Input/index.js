@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const InputContainer = styled.div`
-width: 200px;
+width: 170px;
+display: block;
   div{
     text-align: center;
     color: var(--alert-error);
@@ -18,8 +19,8 @@ export const InputBox = styled.div`
   margin: 5px;
 
   background-color: var(--green-pallet-four);
-  border: 1px solid var(--font-primary-light);
-  border-radius: 8px;
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
 
   div{
     padding: 0 5px;
