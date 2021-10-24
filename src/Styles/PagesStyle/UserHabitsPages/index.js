@@ -7,19 +7,18 @@ export const HabitsListContainer = styled.section`
   align-items: center;
 
   width: 98vw;
-  max-width: 700px;
+  max-width: 100%;
   padding: 5px 0;
   margin: 15px auto;
 
   @media(min-width: 768px){
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: flex-start;
   }
   
   @media(min-width: 1024px){
     flex-grow:1;
-    width: 70vw;
+    width: 90vw;
   }
 `;

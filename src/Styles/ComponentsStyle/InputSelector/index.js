@@ -9,14 +9,14 @@ export const SelectBox = styled.div`
   }
 `;
 export const Select = styled.select`
-  width: 100%;
-  padding: 5px 10px;
+  width: 130px;
+  padding: 6px 12px 6px 23px;
   background-color: var(--green-pallet-four);
   border: none;
   border-bottom: 1px solid transparent;
-  border-radius: 2px;
+  border-radius: 5px;
   cursor: pointer;
-
+  
   &:focus {
     outline: none;
   }
