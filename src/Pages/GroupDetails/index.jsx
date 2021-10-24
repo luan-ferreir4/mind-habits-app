@@ -1,15 +1,20 @@
+import {
+  NavContainer,
+  Page,
+  PageContent,
+} from "../../Styles/PagesStyle/GlobalPageStyle";
+import {
+  About,
+  ButtonToggle,
+  ButtonContainer,
+  listContainer,
+} from "../../Styles/PagesStyle/GroupDetailsPage";
+
 import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import { Redirect } from "react-router";
 import toast from "react-hot-toast";
 import { useParams } from "react-router";
-
-import {
-  ButtonToggle,
-  GroupDetailsContent,
-  GroupDetailsPage,
-  GroupDetailsMain,
-} from "../../Styles/PagesStyle/GroupDetailsPage";
 
 import CardRender from "../../Components/CardRender";
 import { CardAbout } from "../../Components/CardAbout";
@@ -42,7 +47,7 @@ const GroupDetails = () => {
   const [activitiesLink, setActivitiesLink] = useState(
     `https://kenzie-habits.herokuapp.com/activities/?group=${params.id}&page=${activitiesPage}`
   );
- 
+
   const [pageSelect, setPageSelect] = useState({});
 
   useEffect(() => {
@@ -114,33 +119,35 @@ const GroupDetails = () => {
     <>
       <NavBar typeNav={"logged"} />
 
-      <GroupDetailsPage>
-        <GroupDetailsMain>
+      <Page>
+        <NavContainer>
           <SideDock />
+        </NavContainer>
 
-          {groupSelected !== undefined && (
-            <GroupDetailsContent>
-              <h1>Grupo {groupSelected?.name}</h1>
+        {groupSelected !== undefined && (
+          <PageContent>
+            <h1>Grupo {groupSelected?.name}</h1>
 
-              <span className="subtitle">Atividades e metas</span>
+            <span className="subtitle">Atividades e metas</span>
 
-              <div className="about">
-                <CardAbout
-                  className="mid"
-                  groupSpecific={groupSelected}
-                ></CardAbout>
+            <About>
+              <CardAbout
+                className="mid"
+                groupSpecific={groupSelected}
+              ></CardAbout>
+            </About>
+
+            <div>
+              <div className="buttonToggleContainer">
+                <ButtonToggle onClick={handleSelectActivities}>
+                  Ver Atividades
+                </ButtonToggle>
+                <ButtonToggle onClick={handleSelectGoals}>
+                  Ver Metas
+                </ButtonToggle>
               </div>
 
-              <div>
-                <div className="buttonToggleContainer">
-                  <ButtonToggle onClick={handleSelectActivities}>
-                    Ver Atividades
-                  </ButtonToggle>
-                  <ButtonToggle onClick={handleSelectGoals}>
-                    Ver Metas
-                  </ButtonToggle>
-                </div>
-
+              <ButtonContainer>
                 <div className="ButtonCreateContainer">
                   {pageSelect === "activity" && (
                     <div className="buttonContainer-ativity">
@@ -158,31 +165,31 @@ const GroupDetails = () => {
                     </div>
                   )}
                 </div>
+              </ButtonContainer>
 
-                <div className="listContainer">
-                  {pageSelect === "activity" &&
-                    activities.map((item) => (
-                      <CardRender
-                        listType="activity"
-                        item={item}
-                        key={item.id}
-                      ></CardRender>
-                    ))}
+              <div>
+                {pageSelect === "activity" &&
+                  activities.map((item) => (
+                    <CardRender
+                      listType="activity"
+                      item={item}
+                      key={item.id}
+                    ></CardRender>
+                  ))}
 
-                  {pageSelect === "goal" &&
-                    goals.map((item) => (
-                      <CardRender
-                        listType="goal"
-                        item={item}
-                        key={item.id}
-                      ></CardRender>
-                    ))}
-                </div>
+                {pageSelect === "goal" &&
+                  goals.map((item) => (
+                    <CardRender
+                      listType="goal"
+                      item={item}
+                      key={item.id}
+                    ></CardRender>
+                  ))}
               </div>
-            </GroupDetailsContent>
-          )}
-        </GroupDetailsMain>
-      </GroupDetailsPage>
+            </div>
+          </PageContent>
+        )}
+      </Page>
     </>
   );
 };

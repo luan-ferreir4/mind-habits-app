@@ -1,6 +1,5 @@
+import { NavContainer, Page, PageContent } from "../../Styles/PagesStyle/GlobalPageStyle";
 import {
-  UserHabitsPage,
-  HabitsContent,
   HabitsListContainer,
 } from "../../Styles/PagesStyle/UserHabitsPages";
 
@@ -19,12 +18,13 @@ const UserHabits = () => {
     <>
       <NavBar typeNav="logged" />
 
-      <UserHabitsPage>
-        <div className="sideDock">
+      <Page>
+        
+        <NavContainer>
           <SideDock />
-        </div>
+        </NavContainer>
 
-        <HabitsContent>
+        <PageContent>
           <h1>Meus Hábitos</h1>
           <ButtonCreate listType="habit" />
           
@@ -39,8 +39,8 @@ const UserHabits = () => {
               </>
             )}
           </HabitsListContainer>
-        </HabitsContent>
-      </UserHabitsPage>
+        </PageContent>
+      </Page>
     </>
   );
 };

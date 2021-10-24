@@ -4,6 +4,7 @@ import { ButtonUpdate } from "../Button-Update";
 import { ButtonRemoveContainer } from "../../Styles/ComponentsStyle/ButtonRemove";
 import { Progress } from "react-sweet-progress";
 import "react-sweet-progress/lib/style.css";
+import * as moment from "moment";
 import {
   CardGroup,
   ButtonMoreInfo,
@@ -14,7 +15,7 @@ import {
   CardGroupCommunity,
 } from "../../Styles/ComponentsStyle/CardRender";
 import { useHistory } from "react-router";
-
+import { AiOutlineCheck } from "react-icons/ai";
 import { useContext, useState } from "react";
 import { UserHabitsContext } from "../../Providers/userHabits";
 import { GoalsContext } from "../../Providers/goals";
@@ -22,7 +23,7 @@ import { ActivitiesContext } from "../../Providers/activities";
 
 const CardRender = ({ listType, item }) => {
   const { deleteHabit, updateHabit } = useContext(UserHabitsContext);
-  const { deleteGoal } = useContext(GoalsContext);
+  const { deleteGoal, updateGoal } = useContext(GoalsContext);
   const { deleteActivity } = useContext(ActivitiesContext);
 
   const history = useHistory("");
@@ -57,6 +58,34 @@ const CardRender = ({ listType, item }) => {
     }
   };
 
+  const [goalProgress, setGoalProgress] = useState(item.how_much_achieved);
+
+  const handleAddGoal = () => {
+    const difficultyLevel = {
+      "muito fácil": 10,
+      facil: 8,
+      médio: 6,
+      difícil: 4,
+      "muito difícil": 2,
+    };
+
+    setGoalProgress(goalProgress + difficultyLevel[item.difficulty]);
+
+    if (!item.achieved) {
+      if (goalProgress + difficultyLevel[item.difficulty] >= 100) {
+        updateGoal(item.id, {
+          how_much_achieved: 100,
+          achieved: true,
+        });
+      } else {
+        updateGoal(item.id, {
+          how_much_achieved: goalProgress + difficultyLevel[item.difficulty],
+          achieved: false,
+        });
+      }
+    }
+  };
+
   return (
     <>
       {listType === "habit" && (
@@ -72,10 +101,10 @@ const CardRender = ({ listType, item }) => {
             Frequência: <span>{item.frequency}</span>
           </label>
           <label>Progresso: </label>
-          <label>
-            <ProgressButton onClick={handleAddProgress}>+</ProgressButton>
-            <Progress className="bar" type="circle" percent={progress} />
+          <label className="progressLabel">
             <ProgressButton onClick={handleSubProgress}>-</ProgressButton>
+            <Progress className="bar" type="circle" percent={progress} />
+            <ProgressButton onClick={handleAddProgress}>+</ProgressButton>
           </label>
           <ButtonRemoveContainer onClick={handleRemoveHabit}>
             Excluir
@@ -115,9 +144,11 @@ const CardRender = ({ listType, item }) => {
       {listType === "activity" && (
         <CardActivity>
           <h2>{item.title}</h2>
-          <label>Data: {item.realization_time}</label>
+          <label>
+            Data: {moment(item.realization_time).format("DD/MM/YYYY")}
+          </label>
           <div className="buttonContainer">
-            <ButtonUpdate>Atualizar</ButtonUpdate>
+            <ButtonUpdate item={item}>Atualizar</ButtonUpdate>
             <ButtonRemoveContainer onClick={handleRemoveAtivity}>
               Excluir
             </ButtonRemoveContainer>
@@ -132,10 +163,15 @@ const CardRender = ({ listType, item }) => {
           <label className="progressbar">
             {}
             Progresso:{" "}
-            <Progress percent={item.how_much_achieved} status="active" />
           </label>
-
-          <label>Alcançado:</label>
+          <label>
+            <Progress percent={item.how_much_achieved} />
+          </label>
+          <label className="centerButton">
+            <button className="buttonCheck" onClick={handleAddGoal}>
+              <AiOutlineCheck></AiOutlineCheck>
+            </button>
+          </label>
           <ButtonRemoveContainer onClick={handleRemoveGoal}>
             Excluir
           </ButtonRemoveContainer>

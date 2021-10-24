@@ -5,49 +5,84 @@ import toast from "react-hot-toast";
 export const GroupsCommunityContext = createContext([]);
 
 export const GroupsCommunityProvider = ({ children }) => {
-
   const [communityGroups, setCommunityGroups] = useState([]);
   const [groupSelected, setGroupSelected] = useState();
 
-  const [goToPage, setGoToPage] = useState(1);
-  const [isThereNext, setIsThereNext] = useState(null);
+  const [isThereNext, setIsThereNext] = useState(
+    "https://kenzie-habits.herokuapp.com/groups/"
+  );
+  const [isTherePrevious, setIsTherePrevious] = useState(null);
 
-  const token = JSON.parse(localStorage.getItem("token")) || "";
+  const token = JSON.parse(localStorage.getItem("token"));
 
-  const getGroups = (categoryName) => {
-    const newCategoryName = categoryName === undefined ? "" : categoryName;
+  /** Get first 15 community groups */
+  useEffect(() => {
+    if (token) {
+      axios
+        .get(`https://kenzie-habits.herokuapp.com/groups/`)
+        .then((response) => {
+          setCommunityGroups(response.data.results);
+          setIsThereNext(response.data.next);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+          }
+        });
+    }
+  }, [token, setCommunityGroups]);
+
+  const goToNextPage = () => {
+    console.log(isThereNext);
+    if (isThereNext) {
+      axios
+        .get(isThereNext)
+        .then((response) => {
+          setIsThereNext(response.data.next);
+          setIsTherePrevious(response.data.previous);
+          setCommunityGroups(response.data.results);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+          }
+        });
+    }
+  };
+
+  const goToPreviousPage = () => {
+    console.log(isTherePrevious);
+    if (isTherePrevious) {
+      axios
+        .get(isTherePrevious)
+        .then((response) => {
+          setIsTherePrevious(response.data.previous);
+          setIsThereNext(response.data.next);
+          setCommunityGroups(response.data.results);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+          }
+        });
+    }
+  };
+
+  const searchGroups = (category) => {
     axios
-      .get(
-        `https://kenzie-habits.herokuapp.com/groups/?page=${goToPage}&category`,
-        {
-          params: { category: `${newCategoryName}` },
-        }
-      )
+      .get("https://kenzie-habits.herokuapp.com/groups/", {
+        params: { category: `${category}` },
+      })
       .then((response) => {
-        console.log(response.data.results);
+        console.log("Grupos filtrados por categoria", response.data.results);
         setCommunityGroups(response.data.results);
         setIsThereNext(response.data.next);
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(error.response.data.message);
-        } else {
-          // Something happened in setting up the request and triggered an Error
-          toast.error("Error", error.message);
+          console.log(error.response);
         }
       });
-  };
-
-  
-  const GoToNextPage = () => {
-    if (isThereNext !== null) {
-      setGoToPage(goToPage + 1);
-    }
-  };
-  const GoToPreviewPage = () => {
-    if (goToPage > 1) {
-      setGoToPage(goToPage - 1);
-    }
   };
 
   const createGroup = (data) => {
@@ -60,7 +95,6 @@ export const GroupsCommunityProvider = ({ children }) => {
       })
       .then((response) => {
         toast.success(response.statusText);
-        getGroups();
       })
       .catch((error) => {
         if (error.response) {
@@ -81,30 +115,24 @@ export const GroupsCommunityProvider = ({ children }) => {
       .catch((error) => {
         if (error.response) {
           toast.error(error.response.data.message);
-        } else {
-          // Something happened in setting up the request and triggered an Error
-          toast.error("Error", error.message);
         }
       });
   };
-
-  useEffect(() => {
-    getGroups();
-  }, [goToPage]);
 
   return (
     <GroupsCommunityContext.Provider
       value={{
         communityGroups,
         createGroup,
-        getGroups,
         getASpecificGroup,
         groupSelected,
-        GoToNextPage,
-        GoToPreviewPage,
+        goToNextPage,
+        goToPreviousPage,
+        searchGroups,
       }}
     >
       {children}
     </GroupsCommunityContext.Provider>
   );
 };
+

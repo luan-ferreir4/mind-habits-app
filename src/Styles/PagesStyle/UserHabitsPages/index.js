@@ -1,36 +1,5 @@
 import styled from "styled-components";
 
-export const UserHabitsPage = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 90vh;
-
-  .sideDock{
-    display: none;
-    height: 10vh;
-  }
-
-  @media(min-width: 1024px){
-    flex-direction: row;
-    .sideDock{
-      display: block;
-    }
-  }
-`;
-export const HabitsContent = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: 1;
-  height: 80vh;
-  padding: 25px 0;
-  h1 {
-    margin-bottom: 10px;
-    font-family: var(--font-type-details);
-    font-weight: var(--font-w-thin);
-  }
-`;
-
 export const HabitsListContainer = styled.section`
   display: flex;
   flex-direction: column;
@@ -38,17 +7,18 @@ export const HabitsListContainer = styled.section`
   align-items: center;
 
   width: 98vw;
-  max-width: 700px;
+  max-width: 100%;
   padding: 5px 0;
   margin: 15px auto;
 
   @media(min-width: 768px){
     flex-direction: row;
-    justify-content: center;
+    flex-wrap: wrap;
     align-items: flex-start;
   }
+  
   @media(min-width: 1024px){
     flex-grow:1;
-    width: 70vw;
+    width: 90vw;
   }
 `;
