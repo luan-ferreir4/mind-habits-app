@@ -11,6 +11,7 @@ import { SideDock } from "../../Components/SideDock";
 import { UserHabitsContext } from "../../Providers/userHabits";
 import { useContext } from "react";
 import CardRender from "../../Components/CardRender";
+import { NavContainer } from "../../Styles/PagesStyle/GlobalPageStyle";
 
 const UserHabits = () => {
   const { habitsList, notRenderd } = useContext(UserHabitsContext);
@@ -20,9 +21,10 @@ const UserHabits = () => {
       <NavBar typeNav="logged" />
 
       <UserHabitsPage>
-        <div className="sideDock">
+        
+        <NavContainer>
           <SideDock />
-        </div>
+        </NavContainer>
 
         <HabitsContent>
           <h1>Meus Hábitos</h1>

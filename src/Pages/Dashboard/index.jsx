@@ -10,6 +10,7 @@ import { UserContext } from "../../Providers/user";
 import { NavBar } from "../../Components/NavBar";
 import { SideDock } from "../../Components/SideDock";
 import { CardDashboard } from "../../Components/CardDashboard";
+import { NavContainer } from "../../Styles/PagesStyle/GlobalPageStyle";
 
 const Dashboard = () => {
   const [userName, setUserName] = useState("");
@@ -28,9 +29,10 @@ const Dashboard = () => {
     <>
       <NavBar typeNav="logged" />
       <DashboardPage>
-        <div className="sideDock">
+        
+        <NavContainer>
           <SideDock />
-        </div>
+        </NavContainer>
 
         <DashboardContent>
           <h1>

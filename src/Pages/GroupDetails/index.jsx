@@ -21,6 +21,7 @@ import { SideDock } from "../../Components/SideDock";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import { ActivitiesContext } from "../../Providers/activities";
 import { GoalsContext } from "../../Providers/goals";
+import { NavContainer } from "../../Styles/PagesStyle/GlobalPageStyle";
 
 const GroupDetails = () => {
   const params = useParams();
@@ -42,7 +43,7 @@ const GroupDetails = () => {
   const [activitiesLink, setActivitiesLink] = useState(
     `https://kenzie-habits.herokuapp.com/activities/?group=${params.id}&page=${activitiesPage}`
   );
- 
+
   const [pageSelect, setPageSelect] = useState({});
 
   useEffect(() => {
@@ -116,7 +117,10 @@ const GroupDetails = () => {
 
       <GroupDetailsPage>
         <GroupDetailsMain>
-          <SideDock />
+          
+          <NavContainer>
+            <SideDock />
+          </NavContainer>
 
           {groupSelected !== undefined && (
             <GroupDetailsContent>

@@ -14,6 +14,7 @@ import { useContext } from "react";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import { LoginContext } from "../../Providers/login";
 import { Redirect } from "react-router";
+import { NavContainer } from "../../Styles/PagesStyle/GlobalPageStyle";
 
 const GroupsCommunity = () => {
   const { communityGroups, goToNextPage, goToPreviousPage, searchGroups } = useContext(
@@ -31,9 +32,11 @@ const GroupsCommunity = () => {
       <NavBar typeNav={"logged"} />
       <GComPage>
         <GComMain>
-          <div className="sideDock">
+          
+          <NavContainer>
             <SideDock />
-          </div>
+          </NavContainer>
+
           <GComContent>
             <h1>Groups Community</h1>
             <div className="btnCreate">
