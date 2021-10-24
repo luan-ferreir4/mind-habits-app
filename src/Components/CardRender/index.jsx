@@ -73,10 +73,10 @@ const CardRender = ({ listType, item }) => {
             Frequência: <span>{item.frequency}</span>
           </label>
           <label>Progresso: </label>
-          <label>
-            <ProgressButton onClick={handleAddProgress}>+</ProgressButton>
-            <Progress className="bar" type="circle" percent={progress} />
+          <label className="progressLabel">
             <ProgressButton onClick={handleSubProgress}>-</ProgressButton>
+            <Progress className="bar" type="circle" percent={progress} />
+            <ProgressButton onClick={handleAddProgress}>+</ProgressButton>
           </label>
           <ButtonRemoveContainer onClick={handleRemoveHabit}>
             Excluir
