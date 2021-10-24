@@ -1,17 +1,19 @@
+import {
+  ListContainer,
+  NavContainer,
+  Page,
+  PageContent,
+} from "../../Styles/PagesStyle/GlobalPageStyle";
+
 import { useContext } from "react";
 import { Redirect } from "react-router";
 
-import { LoginContext } from "../../Providers/login";
-import {
-  UserGroupsContent,
-  UserGroupsMain,
-  UserGroupsPage,
-} from "../../Styles/PagesStyle/UserGroupsPage";
 import { NavBar } from "../../Components/NavBar";
 import { SideDock } from "../../Components/SideDock";
 import CardRender from "../../Components/CardRender";
+
 import { UserGroupsContext } from "../../Providers/userGroups";
-import { NavContainer } from "../../Styles/PagesStyle/GlobalPageStyle";
+import { LoginContext } from "../../Providers/login";
 
 const UserGroups = () => {
   const { userGroups } = useContext(UserGroupsContext);
@@ -25,21 +27,20 @@ const UserGroups = () => {
   return (
     <>
       <NavBar typeNav={"logged"} />
-      <UserGroupsPage>
-        <UserGroupsMain>
-          
+      <Page>
           <NavContainer>
             <SideDock />
           </NavContainer>
 
-          <UserGroupsContent>
-            <h3>Meus Grupos</h3>
+          <PageContent>
+            <h1>Meus Grupos</h1>
+            <ListContainer>
             {userGroups.map((group) => (
               <CardRender listType={"userGroup"} item={group} key={group.id} />
             ))}
-          </UserGroupsContent>
-        </UserGroupsMain>
-      </UserGroupsPage>
+            </ListContainer>
+          </PageContent>
+      </Page>
     </>
   );
 };

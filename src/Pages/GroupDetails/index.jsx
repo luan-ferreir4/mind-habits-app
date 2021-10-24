@@ -1,15 +1,15 @@
+import { NavContainer, Page, PageContent } from "../../Styles/PagesStyle/GlobalPageStyle";
+import {
+  About,
+  ButtonToggle,
+} from "../../Styles/PagesStyle/GroupDetailsPage";
+
 import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import { Redirect } from "react-router";
 import toast from "react-hot-toast";
 import { useParams } from "react-router";
 
-import {
-  ButtonToggle,
-  GroupDetailsContent,
-  GroupDetailsPage,
-  GroupDetailsMain,
-} from "../../Styles/PagesStyle/GroupDetailsPage";
 
 import CardRender from "../../Components/CardRender";
 import { CardAbout } from "../../Components/CardAbout";
@@ -21,7 +21,6 @@ import { SideDock } from "../../Components/SideDock";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import { ActivitiesContext } from "../../Providers/activities";
 import { GoalsContext } from "../../Providers/goals";
-import { NavContainer } from "../../Styles/PagesStyle/GlobalPageStyle";
 
 const GroupDetails = () => {
   const params = useParams();
@@ -115,25 +114,24 @@ const GroupDetails = () => {
     <>
       <NavBar typeNav={"logged"} />
 
-      <GroupDetailsPage>
-        <GroupDetailsMain>
+      <Page>
           
           <NavContainer>
             <SideDock />
           </NavContainer>
 
           {groupSelected !== undefined && (
-            <GroupDetailsContent>
+            <PageContent>
               <h1>Grupo {groupSelected?.name}</h1>
 
               <span className="subtitle">Atividades e metas</span>
 
-              <div className="about">
+              <About>
                 <CardAbout
                   className="mid"
                   groupSpecific={groupSelected}
                 ></CardAbout>
-              </div>
+              </About>
 
               <div>
                 <div className="buttonToggleContainer">
@@ -183,10 +181,9 @@ const GroupDetails = () => {
                     ))}
                 </div>
               </div>
-            </GroupDetailsContent>
+            </PageContent>
           )}
-        </GroupDetailsMain>
-      </GroupDetailsPage>
+      </Page>
     </>
   );
 };
