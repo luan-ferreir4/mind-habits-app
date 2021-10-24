@@ -25,15 +25,24 @@ export const CardDashboard = ({ listType }) => {
   return (
     <CardContainer>
       <h3>{content}</h3>
-      <p>
-        Você possui {listQuantity} {content}
-      </p>
-      {listType === "habit" ? (
-        <p><Link to="/userhabits">Cadastre um novo hábito agora mesmo!</Link></p>
-      ) : (
-        <p><Link to="/groupscommunity">Procure grupos para se cadastrar!</Link></p>
-      )
-      }
+      <div className="containerText">
+        <p>
+          Você possui <span>{listQuantity}</span> {content}
+        </p>
+        {listType === "habit" ? (
+          <p>
+            <Link className="pLink" to="/userhabits">
+              Cadastre um novo hábito agora mesmo!
+            </Link>
+          </p>
+        ) : (
+          <p>
+            <Link className="pLink" to="/groupscommunity">
+              Procure grupos para se cadastrar!
+            </Link>
+          </p>
+        )}
+      </div>
     </CardContainer>
   );
 };
