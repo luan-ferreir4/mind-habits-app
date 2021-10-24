@@ -11,7 +11,6 @@ export const GoalsProvider = ({ children }) => {
 
   const token = JSON.parse(localStorage.getItem("token")) || "";
 
-
   const createGoal = (newGoal, idGroup) => {
     const { title, difficulty, how_much_achieved } = newGoal;
 
@@ -62,11 +61,8 @@ export const GoalsProvider = ({ children }) => {
 
   const updateGoal = (goalId, body) => {
     axios
-      .patch(`https://kenzie-habits.herokuapp.com/goals/${goalId}`, body, {
+      .patch(`https://kenzie-habits.herokuapp.com/goals/${goalId}/`, body, {
         headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        toast.success("Meta alterada com sucesso.");
       })
       .catch((error) => {
         if (error.response) {

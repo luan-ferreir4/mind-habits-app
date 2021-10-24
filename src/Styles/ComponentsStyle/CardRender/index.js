@@ -97,7 +97,6 @@ export const CardGroupCommunity = styled.div`
   align-items: center;
   width: 70vw;
   max-width: 780px;
-  
 
   padding: 20px 15px;
   margin: 5px auto 15px;
@@ -129,7 +128,7 @@ export const CardGroupCommunity = styled.div`
     border-radius: 20px;
     border: 1px solid transparent;
 
-    &:hover{
+    &:hover {
       border-color: #f5f5f5;
       background-color: transparent;
     }
@@ -192,6 +191,19 @@ export const CardGoal = styled.section`
     height: 40px;
   }
 
+  .buttonCheck {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--green-pallet-one);
+    cursor: pointer;
+  }
+
+  .centerButton {
+    display: flex;
+    justify-content: center;
+  }
+
   @media only screen and (min-width: 1024px) {
     width: 400px;
     margin: 10px;
@@ -205,6 +217,7 @@ export const CardGoal = styled.section`
     label {
       font-size: var(--font-size-medium);
       margin: 10px 0px;
+      width: 100%;
     }
   }
 `;

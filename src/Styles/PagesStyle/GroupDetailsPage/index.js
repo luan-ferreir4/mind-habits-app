@@ -43,3 +43,33 @@ export const ButtonToggle = styled.button`
     }
   }
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+
+  .buttonContainer-ativity {
+    display: flex;
+    justify-content: center;
+  }
+
+  .buttonContainer-goal {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (min-width: 1024px) {
+    .buttonContainer-ativity {
+      width: 680px;
+      justify-content: left;
+      margin: 10px 0px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .buttonContainer-goal {
+      width: 680px;
+      justify-content: right;
+      margin: 10px 0px;
+    }
+  }
+`;
