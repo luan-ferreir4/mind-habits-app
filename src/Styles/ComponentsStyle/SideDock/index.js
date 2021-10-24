@@ -21,6 +21,10 @@ export const SideDockStyled = styled.div`
         width: 90px;
       }
 
+      label {
+        height: 30px;
+      }
+
       h4 {
         font-size: 35px;
         font-weight: var(--font-w-standart);
