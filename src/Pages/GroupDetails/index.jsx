@@ -1,7 +1,13 @@
-import { NavContainer, Page, PageContent } from "../../Styles/PagesStyle/GlobalPageStyle";
+import {
+  NavContainer,
+  Page,
+  PageContent,
+} from "../../Styles/PagesStyle/GlobalPageStyle";
 import {
   About,
   ButtonToggle,
+  ButtonContainer,
+  listContainer,
 } from "../../Styles/PagesStyle/GroupDetailsPage";
 
 import axios from "axios";
@@ -9,7 +15,6 @@ import { useState, useContext, useEffect } from "react";
 import { Redirect } from "react-router";
 import toast from "react-hot-toast";
 import { useParams } from "react-router";
-
 
 import CardRender from "../../Components/CardRender";
 import { CardAbout } from "../../Components/CardAbout";
@@ -115,34 +120,34 @@ const GroupDetails = () => {
       <NavBar typeNav={"logged"} />
 
       <Page>
-          
-          <NavContainer>
-            <SideDock />
-          </NavContainer>
+        <NavContainer>
+          <SideDock />
+        </NavContainer>
 
-          {groupSelected !== undefined && (
-            <PageContent>
-              <h1>Grupo {groupSelected?.name}</h1>
+        {groupSelected !== undefined && (
+          <PageContent>
+            <h1>Grupo {groupSelected?.name}</h1>
 
-              <span className="subtitle">Atividades e metas</span>
+            <span className="subtitle">Atividades e metas</span>
 
-              <About>
-                <CardAbout
-                  className="mid"
-                  groupSpecific={groupSelected}
-                ></CardAbout>
-              </About>
+            <About>
+              <CardAbout
+                className="mid"
+                groupSpecific={groupSelected}
+              ></CardAbout>
+            </About>
 
-              <div>
-                <div className="buttonToggleContainer">
-                  <ButtonToggle onClick={handleSelectActivities}>
-                    Ver Atividades
-                  </ButtonToggle>
-                  <ButtonToggle onClick={handleSelectGoals}>
-                    Ver Metas
-                  </ButtonToggle>
-                </div>
+            <div>
+              <div className="buttonToggleContainer">
+                <ButtonToggle onClick={handleSelectActivities}>
+                  Ver Atividades
+                </ButtonToggle>
+                <ButtonToggle onClick={handleSelectGoals}>
+                  Ver Metas
+                </ButtonToggle>
+              </div>
 
+              <ButtonContainer>
                 <div className="ButtonCreateContainer">
                   {pageSelect === "activity" && (
                     <div className="buttonContainer-ativity">
@@ -160,29 +165,30 @@ const GroupDetails = () => {
                     </div>
                   )}
                 </div>
+              </ButtonContainer>
 
-                <div className="listContainer">
-                  {pageSelect === "activity" &&
-                    activities.map((item) => (
-                      <CardRender
-                        listType="activity"
-                        item={item}
-                        key={item.id}
-                      ></CardRender>
-                    ))}
+              <div>
+                {pageSelect === "activity" &&
+                  activities.map((item) => (
+                    <CardRender
+                      listType="activity"
+                      item={item}
+                      key={item.id}
+                    ></CardRender>
+                  ))}
 
-                  {pageSelect === "goal" &&
-                    goals.map((item) => (
-                      <CardRender
-                        listType="goal"
-                        item={item}
-                        key={item.id}
-                      ></CardRender>
-                    ))}
-                </div>
+                {pageSelect === "goal" &&
+                  goals.map((item) => (
+                    <CardRender
+                      listType="goal"
+                      item={item}
+                      key={item.id}
+                    ></CardRender>
+                  ))}
               </div>
-            </PageContent>
-          )}
+            </div>
+          </PageContent>
+        )}
       </Page>
     </>
   );
