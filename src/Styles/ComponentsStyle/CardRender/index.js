@@ -161,13 +161,14 @@ export const ButtonMoreInfo = styled.button`
 
 export const CardGoal = styled.section`
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 
-  padding: 30px;
-  margin: 5px;
-  width: 300px;
+  width: 280px;
   border-radius: 10px;
+  padding: 20px 20px 0;
+  margin: 15px auto;
 
   background-color: var(--green-pallet-three);
   font-family: var(--font-type-details);
@@ -181,19 +182,44 @@ export const CardGoal = styled.section`
     font-size: var(--font-size-medium);
     line-height: 30px;
   }
-
   label {
-    width: 100%;
-  }
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
 
+    width: 100%;
+    margin: 0 0 6px;
+    span {
+      margin-left: 25px;
+    }
+  }
+  .progressLabel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    width: 235px;
+    margin: 20px auto 0;
+    button {
+      height: 30px;
+    }
+  }
+  span {
+    border-radius: 5px;
+    background-color: white;
+    width: 140px;
+    padding: 0px 5px;
+  }
   button {
-    width: 200px;
-    height: 40px;
+    height: 30px;
+    font-size: var(--font-size-small);
   }
 
   .buttonCheck {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background-color: var(--green-pallet-one);
     cursor: pointer;
@@ -205,19 +231,33 @@ export const CardGoal = styled.section`
   }
 
   @media only screen and (min-width: 1024px) {
-    width: 400px;
-    margin: 10px;
-
     h2 {
-      padding: 0px 10px 30px;
-      font-size: var(--font-size-large);
-      line-height: 50px;
+      font-size: var(--font-size-standart);
+      line-height: 35px;
     }
 
     label {
-      font-size: var(--font-size-medium);
-      margin: 10px 0px;
+    }
+    label {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+
       width: 100%;
+      margin: 0 0 6px;
+      font-size: var(--font-size-xsmall);
+      span {
+        margin-left: 42px;
+      }
+    }
+    .progressLabel {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      height: 90px;
+      margin: 20px auto 0;
     }
   }
 `;
@@ -227,10 +267,10 @@ export const CardActivity = styled.section`
   flex-wrap: wrap;
   justify-content: center;
 
-  padding: 30px;
-  margin: 5px;
-  width: 300px;
+  width: 280px;
   border-radius: 10px;
+  padding: 20px 20px 20px;
+  margin: 15px auto;
 
   background-color: var(--green-pallet-three);
   font-family: var(--font-type-details);
@@ -264,11 +304,8 @@ export const CardActivity = styled.section`
   }
 
   @media only screen and (min-width: 1024px) {
-    width: 400px;
-    margin: 10px;
-
     h2 {
-      font-size: var(--font-size-large);
+      font-size: var(--font-size-standart);
       line-height: 35px;
     }
 
@@ -335,7 +372,7 @@ export const CardHabit = styled.section`
     width: 235px;
     margin: 20px auto 0;
     button {
-     height: 30px;
+      height: 30px;
     }
   }
   span {
@@ -344,10 +381,10 @@ export const CardHabit = styled.section`
     width: 140px;
     padding: 0px 5px;
   }
-button{
-  height: 30px;
-  font-size: var(--font-size-small);
-}
+  button {
+    height: 30px;
+    font-size: var(--font-size-small);
+  }
 
   @media only screen and (min-width: 1024px) {
     height: 360px;
@@ -355,29 +392,30 @@ button{
       font-size: var(--font-size-standart);
       line-height: 35px;
     }
-    
+
     label {
-    }label {
+    }
+    label {
       display: flex;
       justify-content: flex-start;
       align-items: center;
       text-align: center;
-      
+
       width: 100%;
       margin: 0 0 6px;
       font-size: var(--font-size-xsmall);
-    span {
-      margin-left: 42px;
+      span {
+        margin-left: 42px;
+      }
     }
-  }
     .progressLabel {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 90px;
-    margin: 20px auto 0;
-  }
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      height: 90px;
+      margin: 20px auto 0;
+    }
   }
 `;
 
@@ -393,7 +431,7 @@ export const ProgressButton = styled.button`
   background-color: var(--green-pallet-three);
   cursor: pointer;
 
-  &:hover{
+  &:hover {
     background-color: #f5f5f5;
     color: var(--font-primary-light);
   }
