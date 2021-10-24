@@ -9,7 +9,6 @@ flex-direction: column; */
   margin: 0 auto;
 
   width: 300px;
-  height: 250px;
 
   background-color: var(--green-pallet-three);
   color: #000;
@@ -19,6 +18,13 @@ flex-direction: column; */
   font-size: 16px;
   font-family: var(--font-type-details);
 
+  input {
+    width: 100%;
+  }
+
+  label {
+    width: 100%;
+  }
   form {
     display: flex;
     justify-content: flex-start;
@@ -35,6 +41,7 @@ flex-direction: column; */
     height: 90%;
 
     .containerTitleAndInput {
+      width: 100%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -51,10 +58,7 @@ flex-direction: column; */
     }
 
     button {
-      position: absolute;
-      bottom: 5px;
-      left: 50%;
-      transform: translateX(-50%);
+      margin: 20px auto;
     }
   }
 `;
