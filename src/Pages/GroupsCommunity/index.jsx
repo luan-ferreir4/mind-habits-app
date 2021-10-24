@@ -16,7 +16,7 @@ import { LoginContext } from "../../Providers/login";
 import { Redirect } from "react-router";
 
 const GroupsCommunity = () => {
-  const { communityGroups, GoToNextPage, GoToPreviewPage } = useContext(
+  const { communityGroups, goToNextPage, goToPreviousPage, searchGroups } = useContext(
     GroupsCommunityContext
   );
 
@@ -25,7 +25,6 @@ const GroupsCommunity = () => {
   if (!auth) {
     return <Redirect to="/login" />;
   }
-
 
   return (
     <>
@@ -46,11 +45,11 @@ const GroupsCommunity = () => {
               ))}
             </div>
             <div className="divButtons">
-              <ButtonPageOne onClick={() => GoToPreviewPage()}>
+              <ButtonPageOne onClick={() => goToPreviousPage()}>
                 Página anterior
               </ButtonPageOne>
               <br />
-              <ButtonPageTwo onClick={() => GoToNextPage()}>
+              <ButtonPageTwo onClick={() => goToNextPage()}>
                 Próxima página
               </ButtonPageTwo>
             </div>
