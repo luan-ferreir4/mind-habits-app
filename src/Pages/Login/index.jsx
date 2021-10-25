@@ -34,7 +34,7 @@ const LoginPage = () => {
   const { auth, login } = useContext(LoginContext);
 
   const handleLogin = (data) => {
-    login(data, history);
+    login(data, history); 
   };
 
   if (auth) {
