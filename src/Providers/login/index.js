@@ -1,20 +1,16 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
 
 import { createContext, useState } from "react";
 
 export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
+  
   const token = localStorage.getItem("token") || "";
 
-  const [userId, setUserId] = useState("");
-
   const [auth, setAuth] = useState(token);
-
-  const [userName, setUserName] = useState("");
 
   const notifySuccessLogin = () => toast.success("Login realizado!");
   const notifyErrorLogin = () => toast.error("Erro no login!");
@@ -30,7 +26,6 @@ export const LoginProvider = ({ children }) => {
         localStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
         const tokenDecoded = jwt_decode(response.data.access);
-        setUserId(tokenDecoded.user_id);
         notifySuccessLogin();
         setAuth(tokenDecoded);
         history.push("/dashboard");
@@ -42,21 +37,11 @@ export const LoginProvider = ({ children }) => {
       });
   };
 
-  useEffect(() => {
-    if (userId) {
-      console.log(userId);
-      axios
-        .get(`https://kenzie-habits.herokuapp.com/users/${userId}/`)
-        .then((res) => setUserName(res.data.username))
-        .catch((error) => console.log(error.message));
-    }
-  }, [userId]);
-
-  const logout = (history) => {
-    localStorage.clear();
-    setAuth("");
-    history.push("/");
-  };
+  const logout = (history) =>{
+      localStorage.clear();
+      setAuth("")
+      history.push("/")
+  }
 
   return (
     <LoginContext.Provider
@@ -65,7 +50,6 @@ export const LoginProvider = ({ children }) => {
         setAuth,
         login,
         logout,
-        userName,
       }}
     >
       {children}
