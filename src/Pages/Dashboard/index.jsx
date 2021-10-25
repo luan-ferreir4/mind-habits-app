@@ -1,6 +1,14 @@
 import { NavContainer, Page } from "../../Styles/PagesStyle/GlobalPageStyle";
+<<<<<<< HEAD
 import { DashboardContent } from "../../Styles/PagesStyle/DashboardPage";
 import { useContext, useEffect, useState } from "react";
+=======
+import {
+  DashboardContent,
+} from "../../Styles/PagesStyle/DashboardPage";
+
+import { useContext } from "react";
+>>>>>>> develop
 
 import { LoginContext } from "../../Providers/login";
 

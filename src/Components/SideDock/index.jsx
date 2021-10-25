@@ -1,7 +1,8 @@
+import avatar from "../../assets/avatar.png"
 import { SideDockStyled } from "../../Styles/ComponentsStyle/SideDock";
 
 import { useHistory, useLocation } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 
 import { LoginContext } from "../../Providers/login";
 
@@ -16,7 +17,7 @@ export const SideDock = () => {
     <>
       <SideDockStyled>
         <section className="content">
-          <img src="images/avatar.png" alt="Avatar" />
+          <img src={avatar} alt="Avatar" />
           <label>
             {location.pathname !== "/dashboard" && <h4>{userName}</h4>}
           </label>
