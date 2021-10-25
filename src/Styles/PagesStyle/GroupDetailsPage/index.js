@@ -73,3 +73,11 @@ export const ButtonContainer = styled.div`
     }
   }
 `;
+
+export const ListContainerDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  width: 100%;
+`;

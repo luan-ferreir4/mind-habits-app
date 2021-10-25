@@ -7,7 +7,7 @@ import {
   About,
   ButtonToggle,
   ButtonContainer,
-  listContainer,
+  ListContainerDiv,
 } from "../../Styles/PagesStyle/GroupDetailsPage";
 
 import axios from "axios";
@@ -18,11 +18,11 @@ import { useParams } from "react-router";
 
 import CardRender from "../../Components/CardRender";
 import { CardAbout } from "../../Components/CardAbout";
-import { LoginContext } from "../../Providers/login";
 import { ButtonCreate } from "../../Components/Button-Create";
 import { NavBar } from "../../Components/NavBar";
 import { SideDock } from "../../Components/SideDock";
 
+import { LoginContext } from "../../Providers/login";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import { ActivitiesContext } from "../../Providers/activities";
 import { GoalsContext } from "../../Providers/goals";
@@ -123,51 +123,49 @@ const GroupDetails = () => {
         <NavContainer>
           <SideDock />
         </NavContainer>
-
         {groupSelected !== undefined && (
-          <PageContent>
-            <h1>Grupo {groupSelected?.name}</h1>
+          <>
+            <PageContent>
+              <h1>Grupo {groupSelected?.name}</h1>
+              <span className="subtitle">Atividades e metas</span>
+              <About>
+                <CardAbout
+                  className="mid"
+                  groupSpecific={groupSelected}
+                ></CardAbout>
+              </About>
+              <div>
+                <div className="buttonToggleContainer">
+                  <ButtonToggle onClick={handleSelectActivities}>
+                    Ver Atividades
+                  </ButtonToggle>
+                  <ButtonToggle onClick={handleSelectGoals}>
+                    Ver Metas
+                  </ButtonToggle>
+                </div>
 
-            <span className="subtitle">Atividades e metas</span>
+                <ButtonContainer>
+                  <div className="ButtonCreateContainer">
+                    {pageSelect === "activity" && (
+                      <div className="buttonContainer-ativity">
+                        <ButtonCreate listType="activity" idGroup={params.id}>
+                          Criar Atividade
+                        </ButtonCreate>
+                      </div>
+                    )}
 
-            <About>
-              <CardAbout
-                className="mid"
-                groupSpecific={groupSelected}
-              ></CardAbout>
-            </About>
-
-            <div>
-              <div className="buttonToggleContainer">
-                <ButtonToggle onClick={handleSelectActivities}>
-                  Ver Atividades
-                </ButtonToggle>
-                <ButtonToggle onClick={handleSelectGoals}>
-                  Ver Metas
-                </ButtonToggle>
+                    {pageSelect === "goal" && (
+                      <div className="buttonContainer-goal">
+                        <ButtonCreate listType="goal" idGroup={params.id}>
+                          Criar Meta
+                        </ButtonCreate>
+                      </div>
+                    )}
+                  </div>
+                </ButtonContainer>
               </div>
 
-              <ButtonContainer>
-                <div className="ButtonCreateContainer">
-                  {pageSelect === "activity" && (
-                    <div className="buttonContainer-ativity">
-                      <ButtonCreate listType="activity" idGroup={params.id}>
-                        Criar Atividade
-                      </ButtonCreate>
-                    </div>
-                  )}
-
-                  {pageSelect === "goal" && (
-                    <div className="buttonContainer-goal">
-                      <ButtonCreate listType="goal" idGroup={params.id}>
-                        Criar Meta
-                      </ButtonCreate>
-                    </div>
-                  )}
-                </div>
-              </ButtonContainer>
-
-              <div>
+              <ListContainerDiv>
                 {pageSelect === "activity" &&
                   activities.map((item) => (
                     <CardRender
@@ -185,9 +183,9 @@ const GroupDetails = () => {
                       key={item.id}
                     ></CardRender>
                   ))}
-              </div>
-            </div>
-          </PageContent>
+              </ListContainerDiv>
+            </PageContent>
+          </>
         )}
       </Page>
     </>

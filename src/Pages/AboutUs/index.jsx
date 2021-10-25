@@ -1,7 +1,11 @@
+import { useContext } from "react";
+
 import { NavBar } from "../../Components/NavBar";
 import { CardAboutUs } from "../../Components/CardAboutUS";
 
 import { ContainerAbout } from "../../Styles/PagesStyle/AboutUsPage";
+
+import { LoginContext } from "../../Providers/login";
 
 const AboutUs = () => {
   const groupArray = [
@@ -37,9 +41,13 @@ const AboutUs = () => {
     },
   ];
 
+  const { auth } = useContext(LoginContext);
+
+  const typeNavBar = auth ? "logged" : "unlogged";
+
   return (
     <>
-      <NavBar typeNav={"unlogged"} />
+      <NavBar typeNav={typeNavBar} />
       <ContainerAbout>
         <h2>Equipe MindHabits</h2>
         <ul>

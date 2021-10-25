@@ -48,8 +48,8 @@ const GroupsCommunity = () => {
             </PageNavButtons>
 
             <ListContainer>
-              {communityGroups.map((item) => (
-                <CardRender listType={"group"} item={item} />
+              {communityGroups.map((item, index) => (
+                <CardRender key={index} listType={"group"} item={item} />
               ))}
             </ListContainer>
 
