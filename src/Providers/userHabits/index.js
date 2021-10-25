@@ -1,14 +1,13 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-import { UserContext } from "../user";
 import { createContext, useContext, useEffect, useState } from "react";
+import { LoginContext } from "../login";
 
 export const UserHabitsContext = createContext();
 
 export const UserHabitsProvider = ({ children }) => {
-  const { userId } = useContext(UserContext);
-
+  const { userId } = useContext(LoginContext)
   const [habitsList, setHabitsList] = useState([]);
   const [notRenderd, setNotRenderd] = useState(false);
 

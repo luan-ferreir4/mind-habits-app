@@ -1,16 +1,20 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
 
 import { createContext, useState } from "react";
 
 export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
-  
   const token = localStorage.getItem("token") || "";
 
+  const [userId, setUserId] = useState("");
+
   const [auth, setAuth] = useState(token);
+
+  const [userName, setUserName] = useState("");
 
   const notifySuccessLogin = () => toast.success("Login realizado!");
   const notifyErrorLogin = () => toast.error("Erro no login!");
@@ -23,11 +27,9 @@ export const LoginProvider = ({ children }) => {
         password: password,
       })
       .then((response) => {
-        localStorage.clear();
+        localStorage.clear()
         localStorage.setItem("token", JSON.stringify(response.data.access));
-        const tokenDecoded = jwt_decode(response.data.access);
         notifySuccessLogin();
-        setAuth(tokenDecoded);
         history.push("/dashboard");
       })
       .catch((error) => {
@@ -35,13 +37,30 @@ export const LoginProvider = ({ children }) => {
           notifyErrorLogin(error.response);
         }
       });
-  };
+    };
+    
+    useEffect(() => {
+      if(token){
+        const tokenDecoded = jwt_decode(token);
+        setUserId(tokenDecoded.user_id);
+      }
+    },[token]);
 
-  const logout = (history) =>{
-      localStorage.clear();
-      setAuth("")
-      history.push("/")
-  }
+    useEffect(() => {
+    if (userId) {
+      axios
+        .get(`https://kenzie-habits.herokuapp.com/users/${userId}/`)
+        .then((res) => setUserName(res.data.username))
+        .catch((error) => console.log(error.message));
+    }
+  },[userId]);
+
+  const logout = (history) => {
+    localStorage.clear();
+    setAuth("");
+    setUserId("")
+    history.push("/");
+  };
 
   return (
     <LoginContext.Provider
@@ -50,6 +69,7 @@ export const LoginProvider = ({ children }) => {
         setAuth,
         login,
         logout,
+        userName,
       }}
     >
       {children}
