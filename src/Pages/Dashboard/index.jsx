@@ -5,16 +5,24 @@ import {
 
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-
-import { LoginContext } from "../../Providers/login";
+import { UserContext } from "../../Providers/user";
 
 import { NavBar } from "../../Components/NavBar";
 import { SideDock } from "../../Components/SideDock";
 import { CardDashboard } from "../../Components/CardDashboard";
 
 const Dashboard = () => {
+  const [userName, setUserName] = useState("");
 
-  const { userName } = useContext(LoginContext);
+  const { userId } = useContext(UserContext);
+  useEffect(() => {
+    if (userId) {
+      axios
+        .get(`https://kenzie-habits.herokuapp.com/users/${userId}/`)
+        .then((res) => setUserName(res.data.username))
+        .catch((err) => console.log(err.message));
+    }
+  }, [userId]);
 
   return (
     <>
