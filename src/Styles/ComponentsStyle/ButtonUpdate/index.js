@@ -3,6 +3,7 @@ export const ButtonUpdateContainer = styled.button`
   width: 149px;
   height: 55px;
   margin: 30px auto 20px;
+
   background: #60b948;
   color: #f5f5f5;
   border: none;

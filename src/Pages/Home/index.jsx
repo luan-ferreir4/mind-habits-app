@@ -9,10 +9,9 @@ import { useContext } from "react";
 import { LoginContext } from "../../Providers/login";
 
 const Home = () => {
-  
   const { auth } = useContext(LoginContext);
 
-  const typeNavBar = (auth ? "logged" : "unlogged");
+  const typeNavBar = auth ? "logged" : "unlogged";
 
   return (
     <>
@@ -36,7 +35,6 @@ const Home = () => {
           <ButtonForm buttonFunction={"redirectToRegister"} />
           <ButtonForm buttonFunction={"redirectToLogin"} />
         </div>
-        {/* <PictureBackground /> */}
       </HomePage>
     </>
   );

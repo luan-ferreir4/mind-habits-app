@@ -25,6 +25,8 @@ const CardRender = ({ listType, item }) => {
   const { deleteHabit, updateHabit } = useContext(UserHabitsContext);
   const { deleteGoal, updateGoal } = useContext(GoalsContext);
   const { deleteActivity } = useContext(ActivitiesContext);
+  const [progress, setProgress] = useState(item.how_much_achieved);
+  const [goalProgress, setGoalProgress] = useState(item.how_much_achieved);
 
   const history = useHistory("");
 
@@ -41,13 +43,15 @@ const CardRender = ({ listType, item }) => {
   const handleRemoveAtivity = () => {
     deleteActivity(item.id);
   };
-
-  const [progress, setProgress] = useState(item.how_much_achieved);
-
+  console.log(item);
   const handleAddProgress = () => {
     if (progress < 100) {
       setProgress(progress + 10);
-      updateHabit(item.id, progress + 10, false);
+      if (progress + 10 >= 100) {
+        updateHabit(item.id, progress + 10, true);
+      } else {
+        updateHabit(item.id, progress + 10, false);
+      }
     }
   };
 
@@ -57,8 +61,6 @@ const CardRender = ({ listType, item }) => {
       updateHabit(item.id, progress - 10, false);
     }
   };
-
-  const [goalProgress, setGoalProgress] = useState(item.how_much_achieved);
 
   const handleAddGoal = () => {
     const difficultyLevel = {
