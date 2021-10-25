@@ -1,27 +1,16 @@
-import axios from "axios";
-import { useHistory, useLocation } from "react-router-dom";
-
 import { SideDockStyled } from "../../Styles/ComponentsStyle/SideDock";
 
+import { useHistory, useLocation } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../Providers/user";
+
+import { LoginContext } from "../../Providers/login";
 
 export const SideDock = () => {
   const location = useLocation();
-  const [userName, setUserName] = useState("");
 
   const history = useHistory();
 
-  const { userId } = useContext(UserContext);
-
-  useEffect(() => {
-    if (userId) {
-      axios
-        .get(`https://kenzie-habits.herokuapp.com/users/${userId}/`)
-        .then((res) => setUserName(res.data.username))
-        .catch((err) => console.log(err.message));
-    }
-  }, [userId]);
+  const { userName } = useContext(LoginContext);
 
   return (
     <>
