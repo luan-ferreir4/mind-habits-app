@@ -43,7 +43,7 @@ const CardRender = ({ listType, item }) => {
   const handleRemoveAtivity = () => {
     deleteActivity(item.id);
   };
-  console.log(item);
+
   const handleAddProgress = () => {
     if (progress < 100) {
       setProgress(progress + 10);

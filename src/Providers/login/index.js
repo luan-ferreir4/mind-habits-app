@@ -29,6 +29,7 @@ export const LoginProvider = ({ children }) => {
       .then((response) => {
         localStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
+        console.log(response);
         const tokenDecoded = jwt_decode(response.data.access);
         setUserId(tokenDecoded.user_id);
         notifySuccessLogin();
