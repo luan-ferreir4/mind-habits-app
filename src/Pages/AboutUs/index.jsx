@@ -1,10 +1,7 @@
 import { useContext } from "react";
-
 import { NavBar } from "../../Components/NavBar";
 import { CardAboutUs } from "../../Components/CardAboutUS";
-
 import { ContainerAbout } from "../../Styles/PagesStyle/AboutUsPage";
-
 import { LoginContext } from "../../Providers/login";
 
 const AboutUs = () => {

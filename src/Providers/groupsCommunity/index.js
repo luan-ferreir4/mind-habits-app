@@ -15,7 +15,6 @@ export const GroupsCommunityProvider = ({ children }) => {
 
   const token = JSON.parse(localStorage.getItem("token"));
 
-  /** Get first 15 community groups */
   useEffect(() => {
     if (token) {
       axios
@@ -26,14 +25,12 @@ export const GroupsCommunityProvider = ({ children }) => {
         })
         .catch((error) => {
           if (error.response) {
-            console.log(error.response);
           }
         });
     }
   }, [token, setCommunityGroups]);
 
   const goToNextPage = () => {
-    console.log(isThereNext);
     if (isThereNext) {
       axios
         .get(isThereNext)
@@ -44,14 +41,12 @@ export const GroupsCommunityProvider = ({ children }) => {
         })
         .catch((error) => {
           if (error.response) {
-            console.log(error.response);
           }
         });
     }
   };
 
   const goToPreviousPage = () => {
-    console.log(isTherePrevious);
     if (isTherePrevious) {
       axios
         .get(isTherePrevious)
@@ -62,7 +57,6 @@ export const GroupsCommunityProvider = ({ children }) => {
         })
         .catch((error) => {
           if (error.response) {
-            console.log(error.response);
           }
         });
     }
@@ -74,13 +68,11 @@ export const GroupsCommunityProvider = ({ children }) => {
         params: { category: `${category}` },
       })
       .then((response) => {
-        console.log("Grupos filtrados por categoria", response.data.results);
         setCommunityGroups(response.data.results);
         setIsThereNext(response.data.next);
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response);
         }
       });
   };
@@ -100,7 +92,6 @@ export const GroupsCommunityProvider = ({ children }) => {
         if (error.response) {
           toast.error(error.response.data);
         } else {
-          // Something happened in setting up the request and triggered an Error
           toast.error("Error", error.message);
         }
       });
@@ -135,4 +126,3 @@ export const GroupsCommunityProvider = ({ children }) => {
     </GroupsCommunityContext.Provider>
   );
 };
-

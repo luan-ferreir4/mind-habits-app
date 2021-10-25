@@ -27,7 +27,7 @@ export const LoginProvider = ({ children }) => {
         password: password,
       })
       .then((response) => {
-        localStorage.clear()
+        localStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
         notifySuccessLogin();
         history.push("/dashboard");
@@ -37,28 +37,28 @@ export const LoginProvider = ({ children }) => {
           notifyErrorLogin(error.response);
         }
       });
-    };
-    
-    useEffect(() => {
-      if(token){
-        const tokenDecoded = jwt_decode(token);
-        setUserId(tokenDecoded.user_id);
-      }
-    },[token]);
+  };
 
-    useEffect(() => {
+  useEffect(() => {
+    if (token) {
+      const tokenDecoded = jwt_decode(token);
+      setUserId(tokenDecoded.user_id);
+    }
+  }, [token]);
+
+  useEffect(() => {
     if (userId) {
       axios
         .get(`https://kenzie-habits.herokuapp.com/users/${userId}/`)
         .then((res) => setUserName(res.data.username))
         .catch((error) => console.log(error.message));
     }
-  },[userId]);
+  }, [userId]);
 
   const logout = (history) => {
     localStorage.clear();
     setAuth("");
-    setUserId("")
+    setUserId("");
     history.push("/");
   };
 

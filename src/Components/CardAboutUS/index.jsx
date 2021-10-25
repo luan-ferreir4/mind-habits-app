@@ -1,10 +1,7 @@
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 import { LiContainer } from "../../Styles/ComponentsStyle/CardAboutUs";
+
 export const CardAboutUs = (item) => {
-  // const history = useHistory();
-  // const sendTo = (path) => {
-  //   <Redirect to=path />;
-  // };
   return (
     <LiContainer>
       <img src={item.item.image} alt={item.item.name} />

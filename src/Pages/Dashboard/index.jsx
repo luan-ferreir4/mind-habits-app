@@ -1,7 +1,5 @@
 import { NavContainer, Page } from "../../Styles/PagesStyle/GlobalPageStyle";
-import {
-  DashboardContent,
-} from "../../Styles/PagesStyle/DashboardPage";
+import { DashboardContent } from "../../Styles/PagesStyle/DashboardPage";
 
 import { useContext } from "react";
 
@@ -12,14 +10,12 @@ import { SideDock } from "../../Components/SideDock";
 import { CardDashboard } from "../../Components/CardDashboard";
 
 const Dashboard = () => {
-
   const { userName } = useContext(LoginContext);
 
   return (
     <>
       <NavBar typeNav="logged" />
       <Page>
-        
         <NavContainer>
           <SideDock />
         </NavContainer>
