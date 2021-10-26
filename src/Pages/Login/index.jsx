@@ -31,15 +31,12 @@ const LoginPage = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const { auth, login } = useContext(LoginContext);
+  const { login } = useContext(LoginContext);
 
   const handleLogin = (data) => {
     login(data, history); 
+    history.push("/dashboard")
   };
-
-  if (auth) {
-     return <Redirect to="/dashboard" />;
-  }
 
   return (
     <>

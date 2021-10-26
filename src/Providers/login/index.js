@@ -14,8 +14,6 @@ export const LoginProvider = ({ children }) => {
 
   const [userId, setUserId] = useState("");
 
-  const [auth, setAuth] = useState(token);
-
   const [userName, setUserName] = useState("");
 
   // const notifySuccessLogin = () => toast.success("Login realizado!");
@@ -59,7 +57,6 @@ export const LoginProvider = ({ children }) => {
 
   const logout = (history) => {
     localStorage.clear();
-    setAuth("");
     setUserId("");
     history.push("/");
   };
@@ -67,8 +64,6 @@ export const LoginProvider = ({ children }) => {
   return (
     <LoginContext.Provider
       value={{
-        auth,
-        setAuth,
         login,
         logout,
         userName,
