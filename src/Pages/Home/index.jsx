@@ -34,7 +34,6 @@ const Home = () => {
           <ButtonForm buttonFunction={"redirectToRegister"} />
           <ButtonForm buttonFunction={"redirectToLogin"} />
         </div>
-        <Alerts type="error" message="Login realizado com sucesso." />
       </HomePage>
     </>
   );

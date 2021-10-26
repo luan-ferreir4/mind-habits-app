@@ -4,7 +4,6 @@ import { Snackbar } from "@material-ui/core";
 
 export const Alerts = ({ type, message }) => {
   const [open, setOpen] = React.useState(true);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const Alert = React.forwardRef(function Alert(props, ref) {
