@@ -5,7 +5,6 @@ import {
 } from "../../Styles/PagesStyle/HomePage";
 import { ButtonForm } from "../../Components/ButtonForm";
 import { NavBar } from "../../Components/NavBar";
-import { Alerts } from "../../Components/Alerts";
 import { useContext } from "react";
 import { LoginContext } from "../../Providers/login";
 
@@ -36,7 +35,6 @@ const Home = () => {
           <ButtonForm buttonFunction={"redirectToRegister"} />
           <ButtonForm buttonFunction={"redirectToLogin"} />
         </div>
-        <Alerts type="error" message="Login realizado com sucesso." />
       </HomePage>
     </>
   );
