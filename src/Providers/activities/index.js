@@ -1,8 +1,9 @@
 import axios from "axios";
-import toast from "react-hot-toast";
 import * as moment from "moment";
 
 import { createContext, useState } from "react";
+
+import { Alerts } from "../../Components/Alerts";
 
 export const ActivitiesContext = createContext();
 
@@ -32,15 +33,18 @@ export const ActivitiesProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        toast.success("Atividade criada com sucesso.");
+        //toast.success("Atividade criada com sucesso.");
+        <Alerts type="success" message="Atividade criada com sucesso." />
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(
+          /** toast.error(
             `Goals: ${error.response.status} ${error.response.statusText}`
-          );
+          ); */
+          <Alerts type="error" message={`Goals: ${error.response.status} ${error.response.statusText}`} />
         } else {
-          toast.error("Error", error.message);
+          // toast.error("Error", error.message);
+          <Alerts type="error" message={error.message} />
         }
       });
   };
@@ -51,15 +55,16 @@ export const ActivitiesProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        toast.success("Atividade excluida com sucesso.");
+        <Alerts type="success" message="Atividade deletada com sucesso." />
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(
+          /** toast.error(
             `Goals: ${error.response.status} ${error.response.statusText}`
-          );
+          ); */
+          <Alerts type="error" message={`Goals: ${error.response.status} ${error.response.statusText}`} />
         } else {
-          toast.error("Error", error.message);
+          <Alerts type="error" message={error.message} />
         }
       });
   };
@@ -79,15 +84,16 @@ export const ActivitiesProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        toast.success("Atividade alterada com sucesso.");
+        <Alerts type="success" message="Atividade alterada com sucesso." />
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(
+          /** toast.error(
             `Goals: ${error.response.status} ${error.response.statusText}`
-          );
+          ); */
+          <Alerts type="error" message={`Goals: ${error.response.status} ${error.response.statusText}`} />
         } else {
-          toast.error("Error", error.message);
+          <Alerts type="error" message={error.message} />
         }
       });
   };

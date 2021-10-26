@@ -1,7 +1,8 @@
 import axios from "axios";
-import toast from "react-hot-toast";
 
 import { createContext, useState } from "react";
+
+import { Alerts } from "../../Components/Alerts";
 
 export const GoalsContext = createContext();
 
@@ -31,13 +32,16 @@ export const GoalsProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        toast.success("Meta criada com sucesso.");
+        // toast.success("Meta criada com sucesso.");
+        console.log(<Alerts type="success" message="Meta criada com sucesso." />);
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(error.response.data.message);
+          // toast.error(error.response.data.message);
+          <Alerts type="error" message={error.response.data.message} />
         } else {
-          toast.error("Error", error.message);
+          // toast.error("Error", error.message);
+          <Alerts type="error" message={error.message} />
         }
       });
   };
@@ -48,13 +52,15 @@ export const GoalsProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        toast.success("Meta excluida com sucesso.");
+        // toast.success("Meta excluida com sucesso.");
+        <Alerts type="error" message="Meta excluida com sucesso." />
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(error.response.data.message);
+          // toast.error(error.response.data.message);
+          <Alerts type="error" message={error.response.data.message} />
         } else {
-          toast.error("Error", error.message);
+          <Alerts type="error" message={error.message} />
         }
       });
   };
@@ -66,9 +72,9 @@ export const GoalsProvider = ({ children }) => {
       })
       .catch((error) => {
         if (error.response) {
-          toast.error(error.response.data.message);
+          <Alerts type="error" message={error.response.data.message} />
         } else {
-          toast.error("Error", error.message);
+          <Alerts type="error" message={error.message} />
         }
       });
   };
