@@ -1,18 +1,24 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
+import { Alert } from "@material-ui/lab";
 
 import { createContext, useState } from "react";
+import { Snackbar } from "@material-ui/core";
 
 export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
-  
   const token = localStorage.getItem("token") || "";
+
+  const [userId, setUserId] = useState("");
 
   const [auth, setAuth] = useState(token);
 
-  const notifySuccessLogin = () => toast.success("Login realizado!");
+  const [userName, setUserName] = useState("");
+
+  // const notifySuccessLogin = () => toast.success("Login realizado!");
   const notifyErrorLogin = () => toast.error("Erro no login!");
 
   const login = (data, history) => {
@@ -25,9 +31,7 @@ export const LoginProvider = ({ children }) => {
       .then((response) => {
         localStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
-        const tokenDecoded = jwt_decode(response.data.access);
-        notifySuccessLogin();
-        setAuth(tokenDecoded);
+        // notifySuccessLogin();
         history.push("/dashboard");
       })
       .catch((error) => {
@@ -37,11 +41,28 @@ export const LoginProvider = ({ children }) => {
       });
   };
 
-  const logout = (history) =>{
-      localStorage.clear();
-      setAuth("")
-      history.push("/")
-  }
+  useEffect(() => {
+    if (token) {
+      const tokenDecoded = jwt_decode(token);
+      setUserId(tokenDecoded.user_id);
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (userId) {
+      axios
+        .get(`https://kenzie-habits.herokuapp.com/users/${userId}/`)
+        .then((res) => setUserName(res.data.username))
+        .catch((error) => console.log(error.message));
+    }
+  }, [userId]);
+
+  const logout = (history) => {
+    localStorage.clear();
+    setAuth("");
+    setUserId("");
+    history.push("/");
+  };
 
   return (
     <LoginContext.Provider
@@ -50,6 +71,7 @@ export const LoginProvider = ({ children }) => {
         setAuth,
         login,
         logout,
+        userName,
       }}
     >
       {children}

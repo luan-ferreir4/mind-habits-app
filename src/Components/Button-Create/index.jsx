@@ -6,6 +6,7 @@ import { CardCreateHabit } from "../../Components/CardCreateHabit";
 import { CardCreateGroup } from "../../Components/CardCreateGroup";
 import { CardCreateGoal } from "../../Components/CardCreateGoal";
 import { CardCreateActivity } from "../../Components/CardCreateActivity";
+import { Box } from "@material-ui/core"
 
 export const ButtonCreate = ({ listType, idGroup }) => {
   const [open, setOpen] = useState(false);
@@ -29,7 +30,9 @@ export const ButtonCreate = ({ listType, idGroup }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
+            <Box>
             <CardCreateHabit handleClose={handleClose}></CardCreateHabit>
+            </Box>
           </Modal>
         </>
       )}
@@ -49,7 +52,9 @@ export const ButtonCreate = ({ listType, idGroup }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
+            <Box>
             <CardCreateGroup handleClose={handleClose}></CardCreateGroup>
+            </Box>
           </Modal>
         </>
       )}
@@ -69,10 +74,12 @@ export const ButtonCreate = ({ listType, idGroup }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
+            <Box>
             <CardCreateGoal
               handleClose={handleClose}
               idGroup={idGroup}
             ></CardCreateGoal>
+            </Box>
           </Modal>
         </>
       )}
@@ -92,10 +99,12 @@ export const ButtonCreate = ({ listType, idGroup }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
+            <Box>
             <CardCreateActivity
               idGroup={idGroup}
               handleClose={handleClose}
             ></CardCreateActivity>
+            </Box>
           </Modal>
         </>
       )}

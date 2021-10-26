@@ -49,7 +49,6 @@ export const UserGroupsProvider = ({ children }) => {
   };
 
   const subscribeToAGroup = (groupId) => {
-    console.log(groupId);
     axios
       .post(
         `https://kenzie-habits.herokuapp.com/groups/${groupId}/subscribe/`,
@@ -65,10 +64,8 @@ export const UserGroupsProvider = ({ children }) => {
       })
       .catch((error) => {
         if (error.response.data.message === "User already on group") {
-          console.log("Já cadastrado neste grupo");
           setErrorUserGroups(error.response);
         } else {
-          console.log(error.response.data);
         }
       });
   };

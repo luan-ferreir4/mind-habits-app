@@ -1,7 +1,5 @@
 import { LoginProvider } from "./login";
 import { RegisterProvider } from "./register";
-
-import { UserProvider } from "./user";
 import { GroupsCommunityProvider } from "./groupsCommunity";
 import { UserGroupsProvider } from "./userGroups";
 import { UserHabitsProvider } from "./userHabits";
@@ -12,7 +10,6 @@ const ProvidersGathered = ({ children }) => {
   return (
     <RegisterProvider>
       <LoginProvider>
-        <UserProvider>
           <GroupsCommunityProvider>
             <UserGroupsProvider>
               <UserHabitsProvider>
@@ -22,7 +19,6 @@ const ProvidersGathered = ({ children }) => {
               </UserHabitsProvider>
             </UserGroupsProvider>
           </GroupsCommunityProvider>
-        </UserProvider>
       </LoginProvider>
     </RegisterProvider>
   );

@@ -1,3 +1,13 @@
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useState, useContext, useEffect } from "react";
+import { Redirect } from "react-router";
+import { useParams } from "react-router";
+import CardRender from "../../Components/CardRender";
+import { CardAbout } from "../../Components/CardAbout";
+import { ButtonCreate } from "../../Components/Button-Create";
+import { NavBar } from "../../Components/NavBar";
+import { SideDock } from "../../Components/SideDock";
 import {
   NavContainer,
   Page,
@@ -9,18 +19,6 @@ import {
   ButtonContainer,
   ListContainerDiv,
 } from "../../Styles/PagesStyle/GroupDetailsPage";
-
-import axios from "axios";
-import { useState, useContext, useEffect } from "react";
-import { Redirect } from "react-router";
-import toast from "react-hot-toast";
-import { useParams } from "react-router";
-
-import CardRender from "../../Components/CardRender";
-import { CardAbout } from "../../Components/CardAbout";
-import { ButtonCreate } from "../../Components/Button-Create";
-import { NavBar } from "../../Components/NavBar";
-import { SideDock } from "../../Components/SideDock";
 
 import { LoginContext } from "../../Providers/login";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
@@ -93,27 +91,6 @@ const GroupDetails = () => {
   const handleSelectActivities = () => {
     setPageSelect("activity");
   };
-
-  //  const nextActivitiesPage = () => {
-  //    if (activitiesPage !== null) {
-  //      setActivitiesPage(activitiesPage + 1);
-  //    }
-  //  };
-  //  const prevActivitiesPage = () => {
-  //    if (activitiesPage > 1) {
-  //      setActivitiesPage(activitiesPage + 1);
-  //    }
-  //  };
-  //  const nextGoalsPage = () => {
-  //   if (goalsPage !== null) {
-  //     setGoalsPage(goalsPage + 1);
-  //   }
-  // };
-  // const prevGoalsPage = () => {
-  //   if (goalsPage > 1) {
-  //     setGoalsPage(goalsPage + 1);
-  //   }
-  // };
 
   return (
     <>

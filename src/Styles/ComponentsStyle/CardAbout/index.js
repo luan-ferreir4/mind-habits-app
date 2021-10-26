@@ -5,21 +5,19 @@ export const CardContainer = styled.div`
   justify-content: space-around;
   flex-wrap: nowrap;
   flex-direction: column;
+  position: absolute;
+  right: 50%;
+  top: 30%;
+  transform: translateX(50%);
 
   width: 300px;
   height: 170px;
 
   background-color: var(--green-pallet-three);
   color: #000;
-
   border-radius: 30px;
-
   font-size: 22px;
   font-family: var(--font-type-details);
-  position: absolute;
-  right: 50%;
-  top: 30%;
-  transform: translateX(50%);
 
   p {
     padding-left: 15px;

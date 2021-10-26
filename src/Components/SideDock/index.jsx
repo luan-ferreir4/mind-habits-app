@@ -1,33 +1,23 @@
-import axios from "axios";
-import { useHistory, useLocation } from "react-router-dom";
-
+import avatar from "../../assets/avatar.png"
 import { SideDockStyled } from "../../Styles/ComponentsStyle/SideDock";
 
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../Providers/user";
+import { useHistory, useLocation } from "react-router-dom";
+import { useContext } from "react";
+
+import { LoginContext } from "../../Providers/login";
 
 export const SideDock = () => {
   const location = useLocation();
-  const [userName, setUserName] = useState("");
 
   const history = useHistory();
 
-  const { userId } = useContext(UserContext);
-
-  useEffect(() => {
-    if (userId) {
-      axios
-        .get(`https://kenzie-habits.herokuapp.com/users/${userId}/`)
-        .then((res) => setUserName(res.data.username))
-        .catch((err) => console.log(err.message));
-    }
-  }, [userId]);
+  const { userName } = useContext(LoginContext);
 
   return (
     <>
       <SideDockStyled>
         <section className="content">
-          <img src="images/avatar.png" alt="Avatar" />
+          <img src={avatar} alt="Avatar" />
           <label>
             {location.pathname !== "/dashboard" && <h4>{userName}</h4>}
           </label>

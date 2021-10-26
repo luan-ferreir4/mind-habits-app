@@ -6,7 +6,6 @@ import { createContext, useState } from "react";
 export const RegisterContext = createContext();
 
 export const RegisterProvider = ({ children }) => {
-  
   const [errorRegs, setErrorRegs] = useState("");
   const notifySuccessRegister = () => toast.success("Registro realizado!");
   const notifyErrorRegister = () => toast.error("Erro no registro!");
@@ -20,7 +19,6 @@ export const RegisterProvider = ({ children }) => {
         password: password,
       })
       .then((response) => {
-        console.log(response.data);
         notifySuccessRegister();
         history.push("/login");
       })
