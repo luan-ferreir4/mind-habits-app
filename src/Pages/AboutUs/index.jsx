@@ -1,8 +1,6 @@
-import { useContext } from "react";
 import { NavBar } from "../../Components/NavBar";
 import { CardAboutUs } from "../../Components/CardAboutUS";
 import { ContainerAbout } from "../../Styles/PagesStyle/AboutUsPage";
-import { LoginContext } from "../../Providers/login";
 
 const AboutUs = () => {
   const groupArray = [
@@ -37,10 +35,9 @@ const AboutUs = () => {
       image: "images/kelvincrepaldi.jpeg",
     },
   ];
-
-  const { auth } = useContext(LoginContext);
-
-  const typeNavBar = auth ? "logged" : "unlogged";
+  
+  const token = localStorage.getItem("token")
+  const typeNavBar = token ? "logged" : "unlogged";
 
   return (
     <>

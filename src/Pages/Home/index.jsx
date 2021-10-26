@@ -6,13 +6,11 @@ import {
 import { ButtonForm } from "../../Components/ButtonForm";
 import { NavBar } from "../../Components/NavBar";
 import { Alerts } from "../../Components/Alerts";
-import { useContext } from "react";
-import { LoginContext } from "../../Providers/login";
 
 const Home = () => {
-  const { auth } = useContext(LoginContext);
+  const token = localStorage.getItem("token")
 
-  const typeNavBar = auth ? "logged" : "unlogged";
+  const typeNavBar = token ? "logged" : "unlogged";
 
   return (
     <>

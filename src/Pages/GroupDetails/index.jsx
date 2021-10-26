@@ -1,7 +1,6 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useState, useContext, useEffect } from "react";
-import { Redirect } from "react-router";
 import { useParams } from "react-router";
 import CardRender from "../../Components/CardRender";
 import { CardAbout } from "../../Components/CardAbout";
@@ -20,7 +19,6 @@ import {
   ListContainerDiv,
 } from "../../Styles/PagesStyle/GroupDetailsPage";
 
-import { LoginContext } from "../../Providers/login";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import { ActivitiesContext } from "../../Providers/activities";
 import { GoalsContext } from "../../Providers/goals";
@@ -28,15 +26,13 @@ import { GoalsContext } from "../../Providers/goals";
 const GroupDetails = () => {
   const params = useParams();
 
-  const { auth } = useContext(LoginContext);
-
   const { getASpecificGroup, groupSelected } = useContext(
     GroupsCommunityContext
   );
 
-  const { goals, setGoals, goalsPage, setGoalsPage } = useContext(GoalsContext);
+  const { goals, setGoals, goalsPage } = useContext(GoalsContext);
 
-  const { activities, setActivities, activitiesPage, setActivitiesPage } =
+  const { activities, setActivities, activitiesPage } =
     useContext(ActivitiesContext);
 
   const [goalsLink, setGoalsLink] = useState(
@@ -79,10 +75,6 @@ const GroupDetails = () => {
   useEffect(() => {
     getASpecificGroup(params.id);
   }, [getASpecificGroup, params.id]);
-
-  if (!auth) {
-    return <Redirect to="/login" />;
-  }
 
   const handleSelectGoals = () => {
     setPageSelect("goal");

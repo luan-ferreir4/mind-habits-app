@@ -13,22 +13,13 @@ import CardRender from "../../Components/CardRender";
 
 import { useContext } from "react";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
-import { LoginContext } from "../../Providers/login";
-import { Redirect } from "react-router";
 import { useState } from "react";
 import { GroupsFilter } from "../../Styles/ComponentsStyle/GroupsFilter";
 
 const GroupsCommunity = () => {
   const [ isFiltered, setIsFiltered ] = useState(false);
-  const [ initial, setInital ] = useState("eae")
   const { communityGroups, goToNextPage, goToPreviousPage, searchGroups } =
     useContext(GroupsCommunityContext);
-
-  const { auth } = useContext(LoginContext);
-
-  if (!auth) {
-    return <Redirect to="/login" />;
-  }
 
   const filter = (category) =>{
     searchGroups(category)
@@ -60,7 +51,7 @@ const GroupsCommunity = () => {
             <section>
 
             <p>Filtrar por categoria: </p>
-            <select defaultValue={initial} onChange={(e)=> filter(e.target.value)}>
+            <select defaultValue="default" onChange={(e)=> filter(e.target.value)}>
               <option value="default" disabled>
                 Categoria
               </option>
