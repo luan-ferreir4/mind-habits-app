@@ -1,7 +1,10 @@
-import { ListContainer, NavContainer, Page ,PageContent } from "../../Styles/PagesStyle/GlobalPageStyle";
 import {
-  PageNavButtons,
-} from "../../Styles/PagesStyle/GroupsComunnityPage";
+  ListContainer,
+  NavContainer,
+  Page,
+  PageContent,
+} from "../../Styles/PagesStyle/GlobalPageStyle";
+import { PageNavButtons } from "../../Styles/PagesStyle/GroupsComunnityPage";
 
 import { NavBar } from "../../Components/NavBar";
 import { ButtonCreate } from "../../Components/Button-Create";
@@ -12,11 +15,14 @@ import { useContext } from "react";
 import { GroupsCommunityContext } from "../../Providers/groupsCommunity";
 import { LoginContext } from "../../Providers/login";
 import { Redirect } from "react-router";
+import { useState } from "react";
+import { GroupsFilter } from "../../Styles/ComponentsStyle/GroupsFilter";
 
 const GroupsCommunity = () => {
-  const { communityGroups, goToNextPage, goToPreviousPage, searchGroups } = useContext(
-    GroupsCommunityContext
-  );
+  const [ isFiltered, setIsFiltered ] = useState(false);
+  const [ initial, setInital ] = useState("eae")
+  const { communityGroups, goToNextPage, goToPreviousPage, searchGroups } =
+    useContext(GroupsCommunityContext);
 
   const { auth } = useContext(LoginContext);
 
@@ -24,49 +30,85 @@ const GroupsCommunity = () => {
     return <Redirect to="/login" />;
   }
 
+  const filter = (category) =>{
+    searchGroups(category)
+    setIsFiltered(true)
+  }
+
+  const showAll = (select) => {
+    const backToDefault = "default";
+    select.value = backToDefault;
+    searchGroups("")
+    setIsFiltered(false)
+  }
+
   return (
     <>
       <NavBar typeNav={"logged"} />
       <Page>
-          <NavContainer>
-            <SideDock />
-          </NavContainer>
+        <NavContainer>
+          <SideDock />
+        </NavContainer>
 
-          <PageContent>
-            <h1>Todos os grupos</h1>
-            <div className="btnCreate">
-              <ButtonCreate listType="group" />
-            </div>
+        <PageContent>
+          <h1>Todos os grupos</h1>
+          <div className="btnCreate">
+            <ButtonCreate listType="group" />
+          </div>
 
-            <PageNavButtons>
-              <button className="bttnPrev" onClick={() => goToPreviousPage()}>
-                Página anterior
-              </button>
-              <button className="bttnNext" onClick={() => goToNextPage()}>
-                Próxima página
-              </button>
-            </PageNavButtons>
+          <GroupsFilter>
+            <section>
 
-            <ListContainer>
-              {communityGroups.map((item, index) => (
-                <CardRender key={index} listType={"group"} item={item} />
-              ))}
-            </ListContainer>
+            <p>Filtrar por categoria: </p>
+            <select defaultValue={initial} onChange={(e)=> filter(e.target.value)}>
+              <option value="default" disabled>
+                Categoria
+              </option>
 
-            <PageNavButtons>
-              <button className="bttnPrev" onClick={() => goToPreviousPage()}>
-                Página anterior
-              </button>
-              <button className="bttnNext" onClick={() => goToNextPage()}>
-                Próxima página
-              </button>
-            </PageNavButtons>
+              <option value="alimentação" defaultValue>
+                alimentação
+              </option>
+              <option value="fitness">fitness</option>
+              <option value="sono">sono</option>
+              <option value="meditação">meditação</option>
+              <option value="yoga">yoga</option>
+              <option value="produtividade">produtividade</option>
+              <option value="outros">outros...</option>
+            </select>
+            </section>
 
-          </PageContent>
+            {isFiltered &&
+                <button onClick={(e)=>showAll(e.target.previousSibling)}>Mostar tudo</button>
+             } 
+          </GroupsFilter>
+
+          <PageNavButtons>
+            <button className="bttnPrev" onClick={() => goToPreviousPage()}>
+              Página anterior
+            </button>
+            <button className="bttnNext" onClick={() => goToNextPage()}>
+              Próxima página
+            </button>
+          </PageNavButtons>
+
+          <ListContainer>
+            {communityGroups.map((item, index) => (
+              <CardRender key={index} listType={"group"} item={item} />
+            ))}
+          </ListContainer>
+
+          <PageNavButtons>
+            <button className="bttnPrev" onClick={() => goToPreviousPage()}>
+              Página anterior
+            </button>
+            <button className="bttnNext" onClick={() => goToNextPage()}>
+              Próxima página
+            </button>
+          </PageNavButtons>
+        </PageContent>
       </Page>
     </>
   );
 };
 
 export default GroupsCommunity;
-
