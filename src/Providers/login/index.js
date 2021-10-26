@@ -2,8 +2,10 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
+import { Alert } from "@material-ui/lab";
 
 import { createContext, useState } from "react";
+import { Snackbar } from "@material-ui/core";
 
 export const LoginContext = createContext();
 
@@ -16,7 +18,7 @@ export const LoginProvider = ({ children }) => {
 
   const [userName, setUserName] = useState("");
 
-  const notifySuccessLogin = () => toast.success("Login realizado!");
+  // const notifySuccessLogin = () => toast.success("Login realizado!");
   const notifyErrorLogin = () => toast.error("Erro no login!");
 
   const login = (data, history) => {
@@ -29,7 +31,7 @@ export const LoginProvider = ({ children }) => {
       .then((response) => {
         localStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
-        notifySuccessLogin();
+        // notifySuccessLogin();
         history.push("/dashboard");
       })
       .catch((error) => {
