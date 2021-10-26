@@ -14,6 +14,7 @@ import { LoginContext } from "../../Providers/login";
 import { InputForm } from "../../Components/InputForm";
 import { NavBar } from "../../Components/NavBar";
 import { ButtonForm } from "../../Components/ButtonForm";
+import { Alerts } from "../../Components/Alerts";
 
 const LoginPage = () => {
   const formSchema = yup.object().shape({
@@ -35,6 +36,7 @@ const LoginPage = () => {
 
   const handleLogin = (data) => {
     login(data, history); 
+    <Alerts type="success" message="Login realizado com sucesso." />
     history.push("/dashboard")
   };
 
