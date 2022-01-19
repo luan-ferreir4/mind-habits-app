@@ -1,21 +1,22 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin-top: 8px;
+  margin-top: 12px;
 
   text-align: left;
 
   @media (min-width: 1024px) {
-    width: 495px;
+    width: 400px;
     margin: 10px auto;
   }
 
   div {
+    margin-bottom: 8px;
     font-size: 16px;
     font-family: var(--font-type-formal);
 
     @media (min-width: 1024px) {
-      font-size: 25px;
+      font-size: 15px;
     }
     span {
       color: var(--alert-error);
@@ -25,40 +26,35 @@ export const Container = styled.div`
 
 export const InputContainer = styled.div`
   display: flex;
-
   width: 100%;
-  padding: 0.5rem;
-
-  background: #fff;
+  padding: 5px;
   color: #c5c5c5;
   border: 2px solid #000;
   border-radius: 10px;
 
   @media (min-width: 1024px) {
-    padding: 1.5rem;
+    padding: 12px 20px;
   }
 
   input {
+    display: flex;
     align-items: center;
-    flex: 1;
-
     height: 25px;
-
-    background: transparent;
-    color: #000;
-    border: 0;
+    background-color: transparent;
+    color: var(--font-primary);
+    border: None;
+    outline: None;
 
     font-size: 16px;
     font-family: var(--font-type-formal);
 
     @media (min-width: 1024px) {
-      font-size: 25px;
     }
   }
 
   svg {
-    margin-right: 16px;
+    margin: 2.5px 16px 0 0 ;
 
-    color: #000;
+    color: var(--font-primary);
   }
 `;
