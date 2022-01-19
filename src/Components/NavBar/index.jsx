@@ -51,7 +51,7 @@ export const NavBar = ({ typeNav }) => {
   };
 
   const handleLogout = () => {
-    logout(history)
+    logout(history);
   };
 
   return (
