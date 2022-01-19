@@ -2,9 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 export const RegisterContainer = styled.div`
   display: flex;
-  align-items: stretch;
-
-  height: 100vh;
+  align-items: center;
 
   background-color: #f5f5f5;
   color: #000;
@@ -12,11 +10,10 @@ export const RegisterContainer = styled.div`
 
 export const PictureBackground = styled.div`
   @media (min-width: 1024px) {
-    flex: 1;
-
+    height: 500px;
+    width: 50vw;
     background: url("images/healthy1.png") no-repeat center,
       var(--green-pallet-four);
-    background-size: 638px;
   }
 `;
 
@@ -46,8 +43,7 @@ export const FormAnimationContainer = styled.div`
     justify-content: center;
 
     width: 50vw;
-    margin-top: 0;
-    margin-bottom: 50px;
+    margin: 0;
   }
 
   .form {
@@ -59,14 +55,14 @@ export const FormAnimationContainer = styled.div`
     font-family: var(--font-type-formal);
 
     @media (min-width: 1024px) {
-      width: 700px;
+      width: 400px;
     }
   }
 
   h2 {
     margin-bottom: 16px;
 
-    font-size: 30px;
+    font-size: 25px;
     font-family: var(--font-type-details);
     font-weight: var(--font-w-thin);
 
@@ -85,7 +81,7 @@ export const FormAnimationContainer = styled.div`
     font-family: var(--font-type-details);
 
     @media (min-width: 1024px) {
-      font-size: 20px;
+      font-size: 16px;
     }
   }
 

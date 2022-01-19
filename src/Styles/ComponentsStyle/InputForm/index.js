@@ -6,7 +6,7 @@ export const Container = styled.div`
   text-align: left;
 
   @media (min-width: 1024px) {
-    width: 400px;
+    width: 330px;
     margin: 10px auto;
   }
 
@@ -33,7 +33,7 @@ export const InputContainer = styled.div`
   border-radius: 10px;
 
   @media (min-width: 1024px) {
-    padding: 12px 20px;
+    padding: 8px 18px;
   }
 
   input {

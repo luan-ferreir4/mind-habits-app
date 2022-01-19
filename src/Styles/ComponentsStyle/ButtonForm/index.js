@@ -16,11 +16,11 @@ export const ButtonSubmit = styled.button`
   cursor: pointer;
 
   @media (min-width: 1024px) {
-    width: 480px;
-    height: 78px;
+    width: 300px;
+    height: 60px;
     margin: 35px auto 35px;
 
-    font-size: 25px;
+    font-size: 18px;
   }
 `;
 
