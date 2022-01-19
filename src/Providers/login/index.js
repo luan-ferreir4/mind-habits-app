@@ -10,16 +10,18 @@ import { Snackbar } from "@material-ui/core";
 export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
+  const [userId, setUserId] = useState("");
+  const [userName, setUserName] = useState("");
   const [isLoged, setIsLoged] = useState(() => {
     const isLoged = localStorage.getItem("token") || false;
     if (isLoged) {
+      const tokenDecoded = jwt_decode(localStorage.getItem("token"));
+      setUserId(tokenDecoded.user_id);
       return true;
     } else {
       return false;
     }
   });
-  const [userId, setUserId] = useState("");
-  const [userName, setUserName] = useState("");
 
   // const notifySuccessLogin = () => toast.success("Login realizado!");
   const notifyErrorLogin = () => toast.error("Erro no login!");
@@ -75,6 +77,7 @@ export const LoginProvider = ({ children }) => {
         logout,
         userName,
         isLoged,
+        userId,
       }}
     >
       {children}
