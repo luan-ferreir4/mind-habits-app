@@ -1,13 +1,14 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
+import { UserContext } from "../user";
 import { createContext, useContext, useEffect, useState } from "react";
-import { LoginContext } from "../login";
 
 export const UserHabitsContext = createContext();
 
 export const UserHabitsProvider = ({ children }) => {
-  const { userId } = useContext(LoginContext)
+  const { userId } = useContext(UserContext);
+
   const [habitsList, setHabitsList] = useState([]);
   const [notRenderd, setNotRenderd] = useState(false);
 
@@ -23,7 +24,6 @@ export const UserHabitsProvider = ({ children }) => {
           setHabitsList(res.data);
         })
         .catch((err) => {
-          console.log(err.messages);
           setNotRenderd(true);
         });
     }

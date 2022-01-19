@@ -10,10 +10,15 @@ import { Snackbar } from "@material-ui/core";
 export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
-  const token = localStorage.getItem("token") || "";
-
+  const [isLoged, setIsLoged] = useState(() => {
+    const isLoged = localStorage.getItem("token") || false;
+    if (isLoged) {
+      return true;
+    } else {
+      return false;
+    }
+  });
   const [userId, setUserId] = useState("");
-
   const [userName, setUserName] = useState("");
 
   // const notifySuccessLogin = () => toast.success("Login realizado!");
@@ -29,6 +34,7 @@ export const LoginProvider = ({ children }) => {
       .then((response) => {
         localStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
+        setIsLoged(true);
         // notifySuccessLogin();
         history.push("/dashboard");
       })
@@ -40,11 +46,11 @@ export const LoginProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (token) {
-      const tokenDecoded = jwt_decode(token);
+    if (isLoged) {
+      const tokenDecoded = jwt_decode(localStorage.getItem("token"));
       setUserId(tokenDecoded.user_id);
     }
-  }, [token]);
+  }, [isLoged]);
 
   useEffect(() => {
     if (userId) {
@@ -56,6 +62,7 @@ export const LoginProvider = ({ children }) => {
   }, [userId]);
 
   const logout = (history) => {
+    setIsLoged(false);
     localStorage.clear();
     setUserId("");
     history.push("/");
@@ -67,6 +74,7 @@ export const LoginProvider = ({ children }) => {
         login,
         logout,
         userName,
+        isLoged,
       }}
     >
       {children}
