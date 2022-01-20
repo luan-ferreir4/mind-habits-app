@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const ButtonSubmit = styled.button`
-  width: 149px;
-  height: 55px;
-  margin: 30px auto 20px;
+  width: 168px;
+  height: 50px;
 
   background: #60b948;
   color: #f5f5f5;
@@ -16,9 +15,8 @@ export const ButtonSubmit = styled.button`
   cursor: pointer;
 
   @media (min-width: 1024px) {
-    width: 300px;
-    height: 60px;
-    margin: 35px auto 35px;
+    width: 280px;
+    height: 58px;
 
     font-size: 18px;
   }

@@ -2,20 +2,19 @@ import styled, { keyframes } from "styled-components";
 
 export const LoginContainer = styled.div`
   display: flex;
-  align-items: stretch;
+  align-items: center;
 
-  height: 100vh;
-
+  height: 90vh;
+  color: var(--font-primary);
   background-color: #f5f5f5;
-  color: #000;
 `;
 
 export const PictureBackground = styled.div`
-  @media (min-width: 1024px) {
-    flex: 1;
-    background: url("images/Login.png") no-repeat center bottom 180px,
-      var(--green-pallet-four);
-    background-size: 719px 690px;
+    @media (min-width: 1024px) {
+      height: 100%;
+      width: 54vw;
+      background: url(images/Login.png) no-repeat, var(--green-pallet-four);
+      background-size: 90%;
   }
 `;
 
@@ -64,16 +63,16 @@ export const FormAnimationContainer = styled.div`
   h2 {
     margin-bottom: 16px;
 
-    font-size: 30px;
+    font-size: 25px;
     font-family: var(--font-type-details);
     font-weight: var(--font-w-thin);
 
     @media (min-width: 1024px) {
-      font-size: 46px;
+      font-size: 44px;
     }
   }
   button {
-    margin: 20px auto 0px;
+    margin: 20px auto;
   }
 
   p {
@@ -83,7 +82,7 @@ export const FormAnimationContainer = styled.div`
     font-family: var(--font-type-details);
 
     @media (min-width: 1024px) {
-      font-size: 20px;
+      font-size: 16px;
     }
   }
 

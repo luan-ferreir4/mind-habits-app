@@ -67,11 +67,11 @@ export const FormAnimationContainer = styled.div`
     font-weight: var(--font-w-thin);
 
     @media (min-width: 1024px) {
-      font-size: 46px;
+      font-size: 44px;
     }
   }
   button {
-    margin: 20px auto 0px;
+    margin: 20px auto;
   }
 
   p {
